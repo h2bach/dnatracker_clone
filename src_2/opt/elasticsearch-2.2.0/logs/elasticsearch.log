@@ -1,0 +1,17 @@
+[2019-07-04 16:28:18,510][INFO ][node                     ] [Doorman] stopped
+[2019-07-04 16:28:18,511][INFO ][node                     ] [Doorman] closing ...
+[2019-07-04 16:28:18,590][INFO ][node                     ] [Doorman] closed
+[2019-07-04 16:29:35,443][INFO ][node                     ] [Leo] version[2.2.0], pid[1178], build[8ff36d1/2016-01-27T13:32:39Z]
+[2019-07-04 16:29:35,470][INFO ][node                     ] [Leo] initializing ...
+[2019-07-04 16:29:36,659][INFO ][plugins                  ] [Leo] modules [lang-expression, lang-groovy], plugins [elasticsearch-analysis-vietnamese], sites []
+[2019-07-04 16:29:37,020][INFO ][env                      ] [Leo] using [1] data paths, mounts [[/ (/dev/sda1)]], net usable_space [9.6gb], net total_space [19.3gb], spins? [possibly], types [ext4]
+[2019-07-04 16:29:37,032][INFO ][env                      ] [Leo] heap size [1015.6mb], compressed ordinary object pointers [true]
+[2019-07-04 16:29:43,172][INFO ][node                     ] [Leo] initialized
+[2019-07-04 16:29:43,176][INFO ][node                     ] [Leo] starting ...
+[2019-07-04 16:29:43,416][INFO ][transport                ] [Leo] publish_address {127.0.0.1:9300}, bound_addresses {[::1]:9300}, {127.0.0.1:9300}
+[2019-07-04 16:29:43,469][INFO ][discovery                ] [Leo] elasticsearch/TZKKwdZhTrGSlnHFW3EwSA
+[2019-07-04 16:29:46,579][INFO ][cluster.service          ] [Leo] new_master {Leo}{TZKKwdZhTrGSlnHFW3EwSA}{127.0.0.1}{127.0.0.1:9300}, reason: zen-disco-join(elected_as_master, [0] joins received)
+[2019-07-04 16:29:46,642][INFO ][http                     ] [Leo] publish_address {127.0.0.1:9200}, bound_addresses {[::1]:9200}, {127.0.0.1:9200}
+[2019-07-04 16:29:46,643][INFO ][node                     ] [Leo] started
+[2019-07-04 16:29:46,757][INFO ][gateway                  ] [Leo] recovered [1] indices into cluster_state
+[2019-07-04 16:29:48,172][INFO ][cluster.routing.allocation] [Leo] Cluster health status changed from [RED] to [YELLOW] (reason: [shards started [[dna_tracker][1]] ...]).

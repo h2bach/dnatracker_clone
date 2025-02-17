@@ -1,0 +1,171 @@
+[2019-01-18 08:11:51,862][INFO ][node                     ] [Betty Brant] version[2.2.0], pid[28545], build[8ff36d1/2016-01-27T13:32:39Z]
+[2019-01-18 08:11:51,865][INFO ][node                     ] [Betty Brant] initializing ...
+[2019-01-18 08:11:52,586][INFO ][plugins                  ] [Betty Brant] modules [lang-expression, lang-groovy], plugins [], sites []
+[2019-01-18 08:11:52,623][INFO ][env                      ] [Betty Brant] using [1] data paths, mounts [[/ (/dev/sda1)]], net usable_space [5.8gb], net total_space [9.6gb], spins? [possibly], types [ext4]
+[2019-01-18 08:11:52,624][INFO ][env                      ] [Betty Brant] heap size [1015.6mb], compressed ordinary object pointers [true]
+[2019-01-18 08:11:55,670][INFO ][node                     ] [Betty Brant] initialized
+[2019-01-18 08:11:55,671][INFO ][node                     ] [Betty Brant] starting ...
+[2019-01-18 08:11:55,746][INFO ][transport                ] [Betty Brant] publish_address {127.0.0.1:9300}, bound_addresses {[::1]:9300}, {127.0.0.1:9300}
+[2019-01-18 08:11:55,762][INFO ][discovery                ] [Betty Brant] elasticsearch/t2GeV_rDRAisHip1uWdRgQ
+[2019-01-18 08:11:58,828][INFO ][cluster.service          ] [Betty Brant] new_master {Betty Brant}{t2GeV_rDRAisHip1uWdRgQ}{127.0.0.1}{127.0.0.1:9300}, reason: zen-disco-join(elected_as_master, [0] joins received)
+[2019-01-18 08:11:58,878][INFO ][http                     ] [Betty Brant] publish_address {127.0.0.1:9200}, bound_addresses {[::1]:9200}, {127.0.0.1:9200}
+[2019-01-18 08:11:58,882][INFO ][node                     ] [Betty Brant] started
+[2019-01-18 08:11:58,897][INFO ][gateway                  ] [Betty Brant] recovered [0] indices into cluster_state
+[2019-01-18 08:13:56,822][INFO ][node                     ] [Betty Brant] stopping ...
+[2019-01-18 08:13:56,834][INFO ][node                     ] [Betty Brant] stopped
+[2019-01-18 08:13:56,834][INFO ][node                     ] [Betty Brant] closing ...
+[2019-01-18 08:13:56,845][INFO ][node                     ] [Betty Brant] closed
+[2019-01-18 09:07:56,602][INFO ][node                     ] [Brass] version[2.2.0], pid[31962], build[8ff36d1/2016-01-27T13:32:39Z]
+[2019-01-18 09:07:56,612][INFO ][node                     ] [Brass] initializing ...
+[2019-01-18 09:07:57,282][INFO ][plugins                  ] [Brass] modules [lang-expression, lang-groovy], plugins [], sites []
+[2019-01-18 09:07:57,308][INFO ][env                      ] [Brass] using [1] data paths, mounts [[/ (/dev/sda1)]], net usable_space [4.7gb], net total_space [9.6gb], spins? [possibly], types [ext4]
+[2019-01-18 09:07:57,308][INFO ][env                      ] [Brass] heap size [1015.6mb], compressed ordinary object pointers [true]
+[2019-01-18 09:08:00,050][INFO ][node                     ] [Brass] initialized
+[2019-01-18 09:08:00,053][INFO ][node                     ] [Brass] starting ...
+[2019-01-18 09:08:00,156][INFO ][transport                ] [Brass] publish_address {127.0.0.1:9300}, bound_addresses {[::1]:9300}, {127.0.0.1:9300}
+[2019-01-18 09:08:00,174][INFO ][discovery                ] [Brass] elasticsearch/bjFvlDn6RSy-KQoMmfB_hQ
+[2019-01-18 09:08:01,254][INFO ][node                     ] [Brass] stopping ...
+[2019-01-18 09:08:01,273][INFO ][node                     ] [Brass] stopped
+[2019-01-18 09:08:01,273][INFO ][node                     ] [Brass] closing ...
+[2019-01-18 09:08:01,282][INFO ][node                     ] [Brass] closed
+[2019-01-18 09:10:44,232][INFO ][node                     ] [Captain Zero] version[2.2.0], pid[32057], build[8ff36d1/2016-01-27T13:32:39Z]
+[2019-01-18 09:10:44,235][INFO ][node                     ] [Captain Zero] initializing ...
+[2019-01-18 09:10:44,986][INFO ][plugins                  ] [Captain Zero] modules [lang-expression, lang-groovy], plugins [], sites []
+[2019-01-18 09:10:45,008][INFO ][env                      ] [Captain Zero] using [1] data paths, mounts [[/ (/dev/sda1)]], net usable_space [4.7gb], net total_space [9.6gb], spins? [possibly], types [ext4]
+[2019-01-18 09:10:45,009][INFO ][env                      ] [Captain Zero] heap size [1015.6mb], compressed ordinary object pointers [true]
+[2019-01-18 09:10:47,916][INFO ][node                     ] [Captain Zero] initialized
+[2019-01-18 09:10:47,922][INFO ][node                     ] [Captain Zero] starting ...
+[2019-01-18 09:10:48,029][INFO ][transport                ] [Captain Zero] publish_address {127.0.0.1:9300}, bound_addresses {[::1]:9300}, {127.0.0.1:9300}
+[2019-01-18 09:10:48,042][INFO ][discovery                ] [Captain Zero] elasticsearch/yORTXf7oT8mPG7EvMwSYmw
+[2019-01-18 09:10:51,115][INFO ][cluster.service          ] [Captain Zero] new_master {Captain Zero}{yORTXf7oT8mPG7EvMwSYmw}{127.0.0.1}{127.0.0.1:9300}, reason: zen-disco-join(elected_as_master, [0] joins received)
+[2019-01-18 09:10:51,166][INFO ][http                     ] [Captain Zero] publish_address {127.0.0.1:9200}, bound_addresses {[::1]:9200}, {127.0.0.1:9200}
+[2019-01-18 09:10:51,167][INFO ][node                     ] [Captain Zero] started
+[2019-01-18 09:10:51,192][INFO ][gateway                  ] [Captain Zero] recovered [0] indices into cluster_state
+[2019-01-18 09:10:53,486][INFO ][node                     ] [Captain Zero] stopping ...
+[2019-01-18 09:10:53,501][INFO ][node                     ] [Captain Zero] stopped
+[2019-01-18 09:10:53,501][INFO ][node                     ] [Captain Zero] closing ...
+[2019-01-18 09:10:53,514][INFO ][node                     ] [Captain Zero] closed
+[2019-01-18 09:51:31,512][INFO ][node                     ] [Caliban] version[2.2.0], pid[2382], build[8ff36d1/2016-01-27T13:32:39Z]
+[2019-01-18 09:51:31,513][INFO ][node                     ] [Caliban] initializing ...
+[2019-01-18 09:51:32,283][INFO ][plugins                  ] [Caliban] modules [lang-expression, lang-groovy], plugins [elasticsearch-analysis-vietnamese], sites []
+[2019-01-18 09:51:32,311][INFO ][env                      ] [Caliban] using [1] data paths, mounts [[/ (/dev/sda1)]], net usable_space [3.7gb], net total_space [9.6gb], spins? [possibly], types [ext4]
+[2019-01-18 09:51:32,318][INFO ][env                      ] [Caliban] heap size [1015.6mb], compressed ordinary object pointers [true]
+[2019-01-18 09:51:35,473][INFO ][node                     ] [Caliban] initialized
+[2019-01-18 09:51:35,485][INFO ][node                     ] [Caliban] starting ...
+[2019-01-18 09:51:35,654][INFO ][transport                ] [Caliban] publish_address {127.0.0.1:9300}, bound_addresses {[::1]:9300}, {127.0.0.1:9300}
+[2019-01-18 09:51:35,682][INFO ][discovery                ] [Caliban] elasticsearch/ysVqZ56XQPKRaMtTSUVUtg
+[2019-01-18 09:51:38,761][INFO ][cluster.service          ] [Caliban] new_master {Caliban}{ysVqZ56XQPKRaMtTSUVUtg}{127.0.0.1}{127.0.0.1:9300}, reason: zen-disco-join(elected_as_master, [0] joins received)
+[2019-01-18 09:51:38,806][INFO ][http                     ] [Caliban] publish_address {127.0.0.1:9200}, bound_addresses {[::1]:9200}, {127.0.0.1:9200}
+[2019-01-18 09:51:38,806][INFO ][node                     ] [Caliban] started
+[2019-01-18 09:51:38,831][INFO ][gateway                  ] [Caliban] recovered [0] indices into cluster_state
+[2019-01-18 09:58:31,680][INFO ][node                     ] [Caliban] stopping ...
+[2019-01-18 09:58:31,693][INFO ][node                     ] [Caliban] stopped
+[2019-01-18 09:58:31,694][INFO ][node                     ] [Caliban] closing ...
+[2019-01-18 09:58:31,707][INFO ][node                     ] [Caliban] closed
+[2019-01-18 10:13:01,732][INFO ][node                     ] [Apocalypse] version[2.2.0], pid[2762], build[8ff36d1/2016-01-27T13:32:39Z]
+[2019-01-18 10:13:01,747][INFO ][node                     ] [Apocalypse] initializing ...
+[2019-01-18 10:13:02,542][INFO ][plugins                  ] [Apocalypse] modules [lang-expression, lang-groovy], plugins [elasticsearch-analysis-vietnamese], sites []
+[2019-01-18 10:13:02,578][INFO ][env                      ] [Apocalypse] using [1] data paths, mounts [[/ (/dev/sda1)]], net usable_space [3.7gb], net total_space [9.6gb], spins? [possibly], types [ext4]
+[2019-01-18 10:13:02,582][INFO ][env                      ] [Apocalypse] heap size [1015.6mb], compressed ordinary object pointers [true]
+[2019-01-18 10:13:05,707][INFO ][node                     ] [Apocalypse] initialized
+[2019-01-18 10:13:05,708][INFO ][node                     ] [Apocalypse] starting ...
+[2019-01-18 10:13:05,822][INFO ][transport                ] [Apocalypse] publish_address {127.0.0.1:9300}, bound_addresses {[::1]:9300}, {127.0.0.1:9300}
+[2019-01-18 10:13:05,842][INFO ][discovery                ] [Apocalypse] elasticsearch/22B-X_lWTJuSFnvgLdGPsw
+[2019-01-18 10:13:08,912][INFO ][cluster.service          ] [Apocalypse] new_master {Apocalypse}{22B-X_lWTJuSFnvgLdGPsw}{127.0.0.1}{127.0.0.1:9300}, reason: zen-disco-join(elected_as_master, [0] joins received)
+[2019-01-18 10:13:08,953][INFO ][http                     ] [Apocalypse] publish_address {127.0.0.1:9200}, bound_addresses {[::1]:9200}, {127.0.0.1:9200}
+[2019-01-18 10:13:08,958][INFO ][node                     ] [Apocalypse] started
+[2019-01-18 10:13:08,977][INFO ][gateway                  ] [Apocalypse] recovered [0] indices into cluster_state
+[2019-01-18 10:45:58,679][INFO ][rest.suppressed          ] /dna_tracker/_search Params: {q=cáo cao, scroll=30s, index=dna_tracker}
+[dna_tracker] IndexNotFoundException[no such index]
+	at org.elasticsearch.cluster.metadata.IndexNameExpressionResolver$WildcardExpressionResolver.resolve(IndexNameExpressionResolver.java:586)
+	at org.elasticsearch.cluster.metadata.IndexNameExpressionResolver.concreteIndices(IndexNameExpressionResolver.java:133)
+	at org.elasticsearch.cluster.metadata.IndexNameExpressionResolver.concreteIndices(IndexNameExpressionResolver.java:113)
+	at org.elasticsearch.action.search.type.TransportSearchTypeAction$BaseAsyncAction.<init>(TransportSearchTypeAction.java:121)
+	at org.elasticsearch.action.search.type.TransportSearchQueryThenFetchAction$AsyncAction.<init>(TransportSearchQueryThenFetchAction.java:73)
+	at org.elasticsearch.action.search.type.TransportSearchQueryThenFetchAction$AsyncAction.<init>(TransportSearchQueryThenFetchAction.java:67)
+	at org.elasticsearch.action.search.type.TransportSearchQueryThenFetchAction.doExecute(TransportSearchQueryThenFetchAction.java:64)
+	at org.elasticsearch.action.search.type.TransportSearchQueryThenFetchAction.doExecute(TransportSearchQueryThenFetchAction.java:53)
+	at org.elasticsearch.action.support.TransportAction.execute(TransportAction.java:70)
+	at org.elasticsearch.action.search.TransportSearchAction.doExecute(TransportSearchAction.java:99)
+	at org.elasticsearch.action.search.TransportSearchAction.doExecute(TransportSearchAction.java:44)
+	at org.elasticsearch.action.support.TransportAction.execute(TransportAction.java:70)
+	at org.elasticsearch.client.node.NodeClient.doExecute(NodeClient.java:58)
+	at org.elasticsearch.client.support.AbstractClient.execute(AbstractClient.java:351)
+	at org.elasticsearch.client.FilterClient.doExecute(FilterClient.java:52)
+	at org.elasticsearch.rest.BaseRestHandler$HeadersAndContextCopyClient.doExecute(BaseRestHandler.java:83)
+	at org.elasticsearch.client.support.AbstractClient.execute(AbstractClient.java:351)
+	at org.elasticsearch.client.support.AbstractClient.search(AbstractClient.java:574)
+	at org.elasticsearch.rest.action.search.RestSearchAction.handleRequest(RestSearchAction.java:84)
+	at org.elasticsearch.rest.BaseRestHandler.handleRequest(BaseRestHandler.java:54)
+	at org.elasticsearch.rest.RestController.executeHandler(RestController.java:207)
+	at org.elasticsearch.rest.RestController.dispatchRequest(RestController.java:166)
+	at org.elasticsearch.http.HttpServer.internalDispatchRequest(HttpServer.java:128)
+	at org.elasticsearch.http.HttpServer$Dispatcher.dispatchRequest(HttpServer.java:86)
+	at org.elasticsearch.http.netty.NettyHttpServerTransport.dispatchRequest(NettyHttpServerTransport.java:363)
+	at org.elasticsearch.http.netty.HttpRequestHandler.messageReceived(HttpRequestHandler.java:63)
+	at org.jboss.netty.channel.SimpleChannelUpstreamHandler.handleUpstream(SimpleChannelUpstreamHandler.java:70)
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564)
+	at org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:791)
+	at org.elasticsearch.http.netty.pipelining.HttpPipeliningHandler.messageReceived(HttpPipeliningHandler.java:60)
+	at org.jboss.netty.channel.SimpleChannelHandler.handleUpstream(SimpleChannelHandler.java:88)
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564)
+	at org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:791)
+	at org.jboss.netty.handler.codec.http.HttpChunkAggregator.messageReceived(HttpChunkAggregator.java:145)
+	at org.jboss.netty.channel.SimpleChannelUpstreamHandler.handleUpstream(SimpleChannelUpstreamHandler.java:70)
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564)
+	at org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:791)
+	at org.jboss.netty.handler.codec.http.HttpContentDecoder.messageReceived(HttpContentDecoder.java:108)
+	at org.jboss.netty.channel.SimpleChannelUpstreamHandler.handleUpstream(SimpleChannelUpstreamHandler.java:70)
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564)
+	at org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:791)
+	at org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:296)
+	at org.jboss.netty.handler.codec.frame.FrameDecoder.unfoldAndFireMessageReceived(FrameDecoder.java:459)
+	at org.jboss.netty.handler.codec.replay.ReplayingDecoder.callDecode(ReplayingDecoder.java:536)
+	at org.jboss.netty.handler.codec.replay.ReplayingDecoder.messageReceived(ReplayingDecoder.java:435)
+	at org.jboss.netty.channel.SimpleChannelUpstreamHandler.handleUpstream(SimpleChannelUpstreamHandler.java:70)
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564)
+	at org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:791)
+	at org.elasticsearch.common.netty.OpenChannelsHandler.handleUpstream(OpenChannelsHandler.java:75)
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564)
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:559)
+	at org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:268)
+	at org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:255)
+	at org.jboss.netty.channel.socket.nio.NioWorker.read(NioWorker.java:88)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.process(AbstractNioWorker.java:108)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:337)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.run(AbstractNioWorker.java:89)
+	at org.jboss.netty.channel.socket.nio.NioWorker.run(NioWorker.java:178)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+[2019-01-18 10:52:28,015][INFO ][cluster.metadata         ] [Apocalypse] [dna_tracker] creating index, cause [api], templates [], shards [5]/[1], mappings []
+[2019-01-18 10:52:28,543][INFO ][cluster.metadata         ] [Apocalypse] [dna_tracker] create_mapping [species]
+[2019-01-18 10:52:28,616][INFO ][cluster.routing.allocation] [Apocalypse] Cluster health status changed from [RED] to [YELLOW] (reason: [shards started [[dna_tracker][4]] ...]).
+[2019-01-18 11:02:25,541][INFO ][cluster.metadata         ] [Apocalypse] [dna_tracker] creating index, cause [api], templates [], shards [5]/[1], mappings []
+[2019-01-18 11:02:25,702][INFO ][cluster.routing.allocation] [Apocalypse] Cluster health status changed from [RED] to [YELLOW] (reason: [shards started [[dna_tracker][4]] ...]).
+[2019-01-18 11:02:25,713][INFO ][cluster.metadata         ] [Apocalypse] [dna_tracker] create_mapping [species]
+[2019-01-18 11:02:26,535][INFO ][cluster.metadata         ] [Apocalypse] [dna_tracker] update_mapping [species]
+[2019-01-18 11:07:25,037][INFO ][cluster.metadata         ] [Apocalypse] [dna_tracker] creating index, cause [api], templates [], shards [5]/[1], mappings []
+[2019-01-18 11:07:25,202][INFO ][cluster.routing.allocation] [Apocalypse] Cluster health status changed from [RED] to [YELLOW] (reason: [shards started [[dna_tracker][4], [dna_tracker][4]] ...]).
+[2019-01-18 11:07:25,223][INFO ][cluster.metadata         ] [Apocalypse] [dna_tracker] create_mapping [species]
+[2019-01-18 11:17:25,235][INFO ][cluster.metadata         ] [Apocalypse] [dna_tracker] creating index, cause [api], templates [], shards [5]/[1], mappings []
+[2019-01-18 11:17:25,411][INFO ][cluster.routing.allocation] [Apocalypse] Cluster health status changed from [RED] to [YELLOW] (reason: [shards started [[dna_tracker][4]] ...]).
+[2019-01-18 11:17:25,426][INFO ][cluster.metadata         ] [Apocalypse] [dna_tracker] create_mapping [species]
+[2019-01-18 11:38:54,727][INFO ][cluster.metadata         ] [Apocalypse] [dna_tracker] creating index, cause [api], templates [], shards [5]/[1], mappings []
+[2019-01-18 11:38:54,843][INFO ][cluster.routing.allocation] [Apocalypse] Cluster health status changed from [RED] to [YELLOW] (reason: [shards started [[dna_tracker][4], [dna_tracker][4]] ...]).
+[2019-01-18 11:38:54,858][INFO ][cluster.metadata         ] [Apocalypse] [dna_tracker] create_mapping [species]
+[2019-01-18 11:38:55,973][INFO ][cluster.metadata         ] [Apocalypse] [dna_tracker] update_mapping [species]
+[2019-01-18 11:48:13,270][INFO ][cluster.metadata         ] [Apocalypse] [dna_tracker] creating index, cause [api], templates [], shards [5]/[1], mappings []
+[2019-01-18 11:48:13,379][INFO ][cluster.routing.allocation] [Apocalypse] Cluster health status changed from [RED] to [YELLOW] (reason: [shards started [[dna_tracker][0], [dna_tracker][0], [dna_tracker][4]] ...]).
+[2019-01-18 11:48:13,394][INFO ][cluster.metadata         ] [Apocalypse] [dna_tracker] create_mapping [species]
+[2019-01-18 11:48:14,529][INFO ][cluster.metadata         ] [Apocalypse] [dna_tracker] update_mapping [species]
+[2019-01-18 11:52:26,048][INFO ][cluster.metadata         ] [Apocalypse] [dna_tracker] creating index, cause [api], templates [], shards [5]/[1], mappings []
+[2019-01-18 11:52:26,171][INFO ][cluster.routing.allocation] [Apocalypse] Cluster health status changed from [RED] to [YELLOW] (reason: [shards started [[dna_tracker][4], [dna_tracker][4]] ...]).
+[2019-01-18 11:52:26,186][INFO ][cluster.metadata         ] [Apocalypse] [dna_tracker] create_mapping [species]
+[2019-01-18 11:52:27,360][INFO ][cluster.metadata         ] [Apocalypse] [dna_tracker] update_mapping [species]
+[2019-01-18 11:52:53,760][INFO ][cluster.metadata         ] [Apocalypse] [dna_tracker] creating index, cause [api], templates [], shards [5]/[1], mappings []
+[2019-01-18 11:52:53,905][INFO ][cluster.routing.allocation] [Apocalypse] Cluster health status changed from [RED] to [YELLOW] (reason: [shards started [[dna_tracker][4]] ...]).
+[2019-01-18 11:52:53,916][INFO ][cluster.metadata         ] [Apocalypse] [dna_tracker] create_mapping [species]
+[2019-01-18 11:52:55,157][INFO ][cluster.metadata         ] [Apocalypse] [dna_tracker] update_mapping [species]

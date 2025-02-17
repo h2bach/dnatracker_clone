@@ -1,0 +1,33 @@
+<div class="modal-header">
+    <h3 class="modal-title" ng-if="!view.hasReturnData">Tạo tài khoản mới</h3>
+    <h3 class="modal-title" ng-if="view.hasReturnData">Tài khoản đã tạo</h3>
+</div>
+<div class="modal-body" ng-if="!view.hasReturnData">
+    <div class="form-group">
+        <label for="user-email">Email</label>
+        <input type="email" ng-model="newUser.email" class="form-control" id="user-email" placeholder="Nhập Email">
+    </div>
+    <div class="form-group">
+        <label for="user-username">Tên tài khoản</label>
+        <input type="text" ng-model="newUser.username" class="form-control" id="user-username" placeholder="Nhập tên tài khoản">
+    </div>
+    <div class="form-group">
+        <label for="multipleSelect">Quyền</label>
+        <select name="multipleSelect" id="multipleSelect" ng-model="newUser.role">
+            <option ng-repeat="role in roles track by $index" value="{{role}}">{{role}}</option>
+        </select>
+    </div>
+</div>
+<div class="modal-body" ng-if="view.hasReturnData">
+    <p>Email: {{view.returnData.email}}</p>
+    <p>Name: {{view.returnData.username}}</p>
+    <p>role: {{view.returnData.role}}</p>
+    <p>password: {{view.returnData.password}}</p>
+</div>
+<div class="modal-footer" ng-if="!view.hasReturnData">
+    <button class="btn btn-primary" type="button" ng-click="create()">Tạo</button>
+    <button class="btn btn-warning" type="button" ng-click="cancel()">Hủy</button>
+</div>
+<div class="modal-footer" ng-if="view.hasReturnData">
+    <button class="btn btn-default" type="button" ng-click="close()">Close</button>
+</div>

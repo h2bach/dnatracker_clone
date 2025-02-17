@@ -1,0 +1,29 @@
+<div class="back-btn">
+    <a class="btn btn-primary btn-x2 page-scroll" ui-sref="frontend.home"><i class="fa fa-arrow-left"></i> Về Trang Chủ</a>
+</div>
+<login-btn></login-btn>
+
+<header style="background-image: url(assets/img/Red_Fox.jpg); height: 100%;">
+    <div class="header-content overlay"></div>
+    <div class="header-content">
+        <div class="header-content-inner">
+            <h2>Tìm kiếm thông tin về các loài</h2>
+            <h2>được bảo vệ tại Việt Nam</h2>
+            <hr style="max-width: 200px;">
+            <div class="row" ng-if="!view.searching">
+                <div class="col-sm-6 col-sm-offset-3">
+                    <div class="input-group-lg">
+                        <input type="text" class="form-control" ng-model="view.keyWord" placeholder="Nhập accession hoặc tên loài" on-enter="search()"/>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-sm-offset-3" style="margin-top: 20px;">
+                    <button class="btn btn-primary btn-xl" style="min-width: 150px;" ng-click="search()"><i class="fa fa-search"></i> Tìm kiếm</button>
+                </div>
+            </div>
+            <div class="row" ng-if="view.searching">
+                <h3>Đang tìm kiếm</h3>
+                <img src="assets/img/loading-spin.svg" style="width: 60px; height: 60px;" alt=""/>
+            </div>
+        </div>
+    </div>
+</header>

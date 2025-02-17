@@ -1,0 +1,36 @@
+<div class="back-btn">
+    <a class="btn btn-primary btn-x2 page-scroll" ui-sref="frontend.search-species"><i class="fa fa-arrow-left"></i> Tìm kiếm</a>
+</div>
+<login-btn></login-btn>
+
+<section>
+    <div class="container">
+        <div class="row" style="margin-top: 20px;">
+            <div class="col-sm-6 col-sm-offset-3" style="margin-bottom: 50px;">
+                <div class="input-group">
+                    <input ng-disabled="view.usingFile" type="text" class="form-control" ng-model="inputSearch"
+                           placeholder="Nhập accession hoặc tên loài"
+                           style="border-bottom-left-radius: 300px; border-top-left-radius: 300px; padding-left: 20px;"
+                           on-enter="search()"/>
+                    <span class="input-group-btn">
+                        <button class="btn btn-primary" type="button" ng-click="search()" style="border: 1px solid #f05f40;">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </span>
+                </div>
+            </div>
+            <div class="col-sm-12 text-center">
+                <h2 class="section-heading">Kết quả tìm kiếm cho: {{inputSearch}}</h2>
+                <hr class="primary">
+                <p>Có {{results.length}} kết quả</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3">
+                <div class="item-species" ng-repeat="item in results" ng-click="view(item._source.suggest.payload.species_id)">
+                    {{item._source.suggest.output}}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

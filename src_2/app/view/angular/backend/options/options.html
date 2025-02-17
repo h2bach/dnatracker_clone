@@ -1,0 +1,22 @@
+<section class="content">
+
+    <!-- TODO: export & import db controller-->
+    <div class="row" style="margin-top: 20px;">
+        <div class="col-md-6">
+            <div class="box box-success box-solid">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Nhập xuất dữ liệu</h3>
+                </div>
+                <div class="box-body" style="display: block;">
+                    <button class="btn btn-flat btn-primary" ng-click="runExport()">Export DB</button>
+                    <div class="btn-group" ng-disabled="view.importing">
+                        <button class="btn btn-flat btn-success" ng-click="uploadImportFile()" ng-disabled="!file">Import DB</button>
+                        <button class="btn btn-flat" ngf-select ng-model="file" ngf-accept=".zip">Chọn File</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TODO: setting language-->
+</section>

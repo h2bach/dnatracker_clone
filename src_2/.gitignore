@@ -1,0 +1,11 @@
+node_modules
+.idea
+uploads
+*.nin
+*.nog
+*.nsd
+*.nsi
+*.nsq
+*.nhr
+tmp
+.vagrant

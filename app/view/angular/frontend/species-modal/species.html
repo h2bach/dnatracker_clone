@@ -1,0 +1,248 @@
+<div class="modal-header" ng-if="isRole('admin curator')">
+    <button type="button" class="close" ng-click="close()">
+        <span aria-hidden="true">×</span></button>
+    <h4 class="modal-title">Đã chỉnh sửa vào: {{species.updated_at | momentFormat}}</h4>
+</div>
+<!--edit-->
+<div class="modal-body" ng-if="view.editting && isRole('admin curator')">
+    <div class="col-md-12">
+        <species-thumb ng-repeat="image in images track by $index" image="image.img" on-delete="deleteImage(image)"
+                       on-view="viewImage(image)"></species-thumb>
+        <species-thumb ng-repeat="image in view.newImages track by $index" image="image" on-delete="deleteImage(image)"
+                       on-view="viewImage(image)"></species-thumb>
+        <div class="add-images drop-box" ngf-select ngf-resize="{quality: 0.8}" ng-model="view.inputImages"
+             accept="image/*" ngf-multiple="true">
+            <div class="content-center">
+                <i class="fa fa-plus" style="color: #DDD; font-size: 30px;"></i>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label>Tên Khoa Học</label>
+            <input class="form-control" type="text" ng-model="species.scientific_name">
+        </div>
+        <div class="form-group">
+            <label>Tên thông thường:</label>
+            <input class="form-control" type="text" ng-model="species.english_name">
+        </div>
+        <div class="form-group">
+            <label>Tên Tiếng Việt:</label>
+            <input class="form-control" type="text" ng-model="species.vietnamese_name">
+        </div>
+        <div class="form-group">
+            <label>Tên Tiếng Lào:</label>
+            <input class="form-control" type="text" ng-model="species.laos_name">
+        </div>
+        <div class="form-group">
+            <label>Tên Tiếng Campuchia:</label>
+            <input class="form-control" type="text" ng-model="species.campuchia_name">
+        </div>
+        <div class="form-group">
+            <label>Kiểu gen:</label>
+            <input class="form-control" type="text" ng-model="species.type">
+        </div>
+        <div class="form-group">
+            <label>Phân hạng IUCN (2008 v3.1):</label>
+            <input class="form-control" type="text" ng-model="species.iucn_class">
+        </div>
+        <div class="form-group">
+            <label>Phân hạng Danh lục Đỏ Việt Nam (2007):</label>
+            <input class="form-control" type="text" ng-model="species.vn_redbook_class">
+        </div>
+        <div class="form-group">
+            <label>Nguồn ảnh:</label>
+            <textarea class="form-control" type="text" ng-model="species.img_source"></textarea>
+        </div>
+        <div class="form-group">
+            <label>Link Tham Khảo:</label>
+            <p style="margin: 0;" ng-repeat="link in species.reference_link"><a href="{{link}}">{{link}}</a>  <i class="fa fa-trash" style="cursor: pointer;" ng-click="deleteLink(link)"></i></p>
+            <div class="row">
+                <div class="col-md-9">
+                    <input class="form-control" type="text" ng-model="view.inputLink">
+                </div>
+                <div class="col-md-3">
+                    <button class="btn btn-primary" ng-disabled="view.inputLink.length == 0" ng-click="addLink()">Thêm</button>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label>Nước:</label>
+
+            <tags-input ng-model="species.countries">
+                <auto-complete source="countries" load-on-focus="true" debounce-delay="0" min-length="1" max-results-to-show="20">
+                </auto-complete>
+            </tags-input>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="provinces">
+                    <p><strong>Tỉnh:</strong> (hãy chọn nước để có thể nhập các tỉnh)</p>
+                    <tags-input ng-model="distribution">
+                        <auto-complete source="getProvinces($query)" load-on-focus="true" debounce-delay="0" min-length="1"
+                           max-results-to-show="20">
+                        </auto-complete>
+                    </tags-input>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="form-group" style="margin-bottom: 0px;">
+            <label>Phân bố theo tọa độ ({{species.lat_lng ? species.lat_lng.length : '0'}}):</label>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div ng-repeat="item in species.lat_lng" class="clearfix m-b-sm">
+                    <p class="pull-left">Lat: {{item.lat}}, Lng: {{item.lng}}</p>
+                    <button class="btn btn-danger pull-right" ng-click="deleteLatLng(item.lat, item.lng)">Xóa</button>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <input class="form-control" type="text" ng-model="view.lat">
+            </div>
+            <div class="col-md-4">
+                <input class="form-control" type="text" ng-model="view.lng">
+            </div>
+            <div class="col-md-4">
+                <button class="btn btn-primary" ng-disabled="!view.lat || !view.lng" ng-click="addLatLng()">Thêm</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="form-group">
+            <label>Mô tả:</label>
+            <textarea rows="3" class="form-control" ng-model="species.description"></textarea>
+        </div>
+        <div class="form-group">
+            <label>Các Chuỗi:</label>
+        </div>
+        <div class="form-group" style="overflow: auto;">
+            <table class="table table-hover">
+                <tbody>
+                <tr>
+                    <th>Accession</th>
+                    <th>Loại</th>
+                    <th>Seq</th>
+                    <th>Tọa độ</th>
+                    <th></th>
+                </tr>
+                <tr ng-form="inputSeq">
+                    <td style="min-width: 80px; max-width: 80px;">
+                        <input class="form-control" type="text" ng-model="termSeq.accession" required>
+                    </td>
+                    <td style="min-width: 100px; max-width: 100px;">
+                        <select class="form-control" ng-model="termSeq.gen_type" required>
+                            <option value="COI">COI</option>
+                            <option value="Cytochrome B">Cytochrome B</option>
+                        </select>
+                    </td>
+                    <td>
+                        <textarea rows="3" class="form-control" ng-model="termSeq.seq" required></textarea>
+                    </td>
+                    <td>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input class="form-control" type="text" ng-model="termSeq.location.lat">
+                            </div>
+                            <div class="col-md-6">
+                                <input class="form-control" type="text" ng-model="termSeq.location.lng">
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <button class="btn btn-primary" ng-disabled="inputSeq.$invalid" ng-click="addSeq()">Thêm</button>
+                    </td>
+                </tr>
+                <tr ng-repeat="seq in species.seqs">
+                    <td style="min-width: 80px; max-width: 80px;">{{seq.accession}}</td>
+                    <td style="min-width: 100px; max-width: 100px;">{{seq.gen_type}}</td>
+                    <td><pre style="max-width: 550px; white-space: pre-line;">{{seq.seq}}</pre></td>
+                    <td>
+                        <p ng-if="seq.location.lat && seq.location.lng">Lat: {{seq.location.lat}}, Lng: {{seq.location.lng}}</p>
+                    </td>
+                    <td>
+                        <button class="btn btn-danger" ng-click="deleteSeq(seq)">Xóa</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>
+
+<!--view-->
+<div class="modal-body" ng-if="!view.editting" style="padding-top: 35px;">
+    <div class="col-md-6">
+        <div ng-if="images.length == 0" style="border: 2px dashed #ddd;">
+            <img style="width: 100%;" src="assets/img/default.jpg" alt="">
+        </div>
+        <fotorama ng-if="images.length > 0" items="images" options="view.options"></fotorama>
+        <p><strong>Nguồn ảnh:</strong> {{species.img_source | noData}}</p>
+    </div>
+    <div class="col-md-6">
+        <p ng-if="hasData(species.scientific_name)"><strong>Tên Khoa Học</strong>:</strong> <span style="font-style: italic">{{species.scientific_name}}</span></p>
+        <p ng-if="hasData(species.english_name)"><strong>Tên thông thường:</strong> {{species.english_name}}</p>
+        <p ng-if="hasData(species.vietnamese_name)"><strong>Tên tiếng Việt:</strong> {{species.vietnamese_name}}</p>
+        <p ng-if="hasData(species.laos_name)"><strong>Tên Lào:</strong> {{species.laos_name}}</p>
+        <p ng-if="hasData(species.campuchia_name)"><strong>Tên Campuchia:</strong> {{species.campuchia_name}}</p>
+        <p ng-if="hasData(species.type)"><strong>Kiểu gen:</strong> {{species.type}}</p>
+        <p><strong>Phân hạng IUCN (2008 v3.1):</strong> {{species.iucn_class | noData}}</p>
+        <p ng-if="hasData(species.vn_redbook_class) && species.countries.indexOf('Vietnam') >= 0"><strong>Phân hạng Danh lục Đỏ Việt Nam (2007):</strong> {{species.vn_redbook_class}}</p>
+        <p><strong>Bản đồ:</strong></p>
+        <button class="btn btn-default" ng-disabled="distribution.length == 0" ng-click="openMapArea()">Phân bố theo tỉnh</button>
+        <button class="btn btn-success" ng-if="isRole('admin curator')" ng-disabled="species.lat_lng.length == 0" ng-click="openMapLatLng()">Phân bố theo tọa độ</button>
+    </div>
+    <div class="col-md-12">
+        <p><strong>Mô tả:</strong> {{species.description | noData}}</p>
+        <br>
+    </div>
+
+    <div class="col-md-6">
+        <p style="margin: 0;" ng-if="species.reference_link.length > 0"><strong>Link tham khảo:</strong></p>
+        <a ng-repeat="link in species.reference_link" href="{{link}}" target="_blank" title="{{link}}"><div class="link-preview" style="background-image: url('assets/img/{{getImage(link)}}')"></div></a>
+    </div>
+    <div class="col-md-6" ng-if="species.seqs.length == 0">
+        <label>Chưa có trình tự tham khảo nào</label>
+    </div>
+    <div class="col-md-6" ng-if="species.seqs && species.seqs.length > 0">
+        <label>Trình tự tham khảo:</label>
+        <div class="form-group">
+            <table class="table table-hover">
+                <tbody>
+                <tr>
+                    <th>Accession</th>
+                    <th>Gen</th>
+                    <th ng-if="isRole('admin curator')">Tọa độ</th>
+                </tr>
+                <tr ng-repeat="seq in species.seqs">
+                    <td>
+                        <a href="{{'http://www.ncbi.nlm.nih.gov/nuccore/' + seq.accession}}" data-toggle="tooltip" data-placement="right" title="Link to NCBI">
+                            {{seq.accession}}
+                            <i class="fa fa-link"></i>
+                        </a>
+                    </td>
+                    <td>{{seq.gen_type}}</td>
+                    <td ng-if="isRole('admin curator')">
+                        <a ng-if="seq.location.lat && seq.location.lng" ng-click="showOnMap(seq.location)">Xem tọa độ</a>
+                        <p ng-if="!(seq.location.lat && seq.location.lng)">Chưa có tọa độ</p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-default pull-left" ng-click="close()" ng-if="!view.editting">Đóng</button>
+    <button ng-if="view.editting && isRole('admin curator')" class="btn btn-success" ng-click="save()">Lưu thay đổi</button>
+    <button class="btn btn-default pull-left" ng-click="cancel()" ng-if="view.editting">Hủy</button>
+    <button ng-if="!view.editting && isRole('admin curator')" class="btn btn-primary" ng-click="edit()"><i
+            class="fa fa-pencil"></i> Chỉnh Sửa
+    </button>
+</div>

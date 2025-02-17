@@ -1,0 +1,130 @@
+"use strict";
+
+(function ($) {
+
+    angular.module('dna-tracker.common.static-value', [])
+        .factory("Provinces", function () {
+            var Vietnam = [
+                { id: "VN-44", text: "An Giang"},
+                { id: "VN-43", text: "Bà Rịa–Vũng Tàu"},
+                { id: "VN-54", text: "Bắc Giang"},
+                { id: "VN-53", text: "Bắc Kạn"},
+                { id: "VN-55", text: "Bạc Liêu"},
+                { id: "VN-56", text: "Bắc Ninh"},
+                { id: "VN-50", text: "Bến Tre"},
+                { id: "VN-31", text: "Bình Định"},
+                { id: "VN-57", text: "Bình Dương"},
+                { id: "VN-58", text: "Bình Phước"},
+                { id: "VN-40", text: "Bình Thuận"},
+                { id: "VN-59", text: "Cà Mau"},
+                { id: "VN-04", text: "Cao Bằng"},
+                { id: "VN-33", text: "Đắk Lắk"},
+                { id: "VN-72", text: "Đắk Nông"},
+                { id: "VN-71", text: "Điện Biên"},
+                { id: "VN-39", text: "Đồng Nai"},
+                { id: "VN-45", text: "Đồng Tháp"},
+                { id: "VN-30", text: "Gia Lai"},
+                { id: "VN-03", text: "Hà Giang"},
+                { id: "VN-63", text: "Hà Nam"},
+                { id: "VN-23", text: "Hà Tĩnh"},
+                { id: "VN-61", text: "Hải Dương"},
+                { id: "VN-73", text: "Hậu Giang"},
+                { id: "VN-14", text: "Hòa Bình"},
+                { id: "VN-66", text: "Hưng Yên"},
+                { id: "VN-34", text: "Khánh Hòa"},
+                { id: "VN-47", text: "Kiên Giang"},
+                { id: "VN-28", text: "Kon Tum"},
+                { id: "VN-01", text: "Lai Châu"},
+                { id: "VN-35", text: "Lâm Đồng"},
+                { id: "VN-09", text: "Lạng Sơn"},
+                { id: "VN-02", text: "Lào Cai"},
+                { id: "VN-41", text: "Long An"},
+                { id: "VN-67", text: "Nam Định"},
+                { id: "VN-22", text: "Nghệ An"},
+                { id: "VN-18", text: "Ninh Bình"},
+                { id: "VN-36", text: "Ninh Thuận"},
+                { id: "VN-68", text: "Phú Thọ"},
+                { id: "VN-32", text: "Phú Yên"},
+                { id: "VN-24", text: "Quảng Bình"},
+                { id: "VN-27", text: "Quảng Nam"},
+                { id: "VN-29", text: "Quảng Ngãi"},
+                { id: "VN-13", text: "Quảng Ninh"},
+                { id: "VN-25", text: "Quảng Trị"},
+                { id: "VN-52", text: "Sóc Trăng"},
+                { id: "VN-05", text: "Sơn La"},
+                { id: "VN-37", text: "Tây Ninh"},
+                { id: "VN-20", text: "Thái Bình"},
+                { id: "VN-69", text: "Thái Nguyên"},
+                { id: "VN-21", text: "Thanh Hóa"},
+                { id: "VN-26", text: "Thừa Thiên–Huế"},
+                { id: "VN-46", text: "Tiền Giang"},
+                { id: "VN-51", text: "Trà Vinh"},
+                { id: "VN-07", text: "Tuyên Quang"},
+                { id: "VN-49", text: "Vĩnh Long"},
+                { id: "VN-70", text: "Vĩnh Phúc"},
+                { id: "VN-06", text: "Yên Bái"},
+                { id: "VN-CT", text: "Cần Thơ"},
+                { id: "VN-DN", text: "Đà Nẵng"},
+                { id: "VN-HN", text: "Hà Nội"},
+                { id: "VN-HP", text: "Hải Phòng"},
+                { id: "VN-SG", text: "Tp. Hồ Chí Minh"}
+            ];
+
+            var Laos = [
+                { id: "LA-AT", text: "Attapu"},
+                { id: "LA-BK", text: "Bokeo"},
+                { id: "LA-BL", text: "Bolikhamxai"},
+                { id: "LA-CH", text: "Champasak"},
+                { id: "LA-HO", text: "Houaphan"},
+                { id: "LA-KH", text: "Khammouan"},
+                { id: "LA-LM", text: "Louang Namtha"},
+                { id: "LA-LP", text: "Louangphrabang"},
+                { id: "LA-OU", text: "Oudômxai"},
+                { id: "LA-PH", text: "Phôngsali"},
+                { id: "LA-SL", text: "Saravan"},
+                { id: "LA-SV", text: "Savannakhét"},
+                { id: "LA-VI", text: "Vientiane"},
+                { id: "LA-VT", text: "Vientiane-Capital"},
+                { id: "LA-XA", text: "Xaignabouri"},
+                { id: "LA-XS", text: "Xaisômboun"},
+                { id: "LA-XE", text: "Xékong"},
+                { id: "LA-XI", text: "Xiangkhoang"}
+            ];
+
+            var Campuchia = [
+                { id: "KH-12", text: "Phnom Penh"},
+                { id: "KH-1", text: "Banteay Meanchey"},
+                { id: "KH-2", text: "Battambang"},
+                { id: "KH-3", text: "Kampong Cham"},
+                { id: "KH-4", text: "Kampong Chhnang"},
+                { id: "KH-5", text: "Kampong Speu"},
+                { id: "KH-6", text: "Kampong Thom"},
+                { id: "KH-7", text: "Kampot"},
+                { id: "KH-8", text: "Kandal"},
+                { id: "KH-9", text: "Koh Kong"},
+                { id: "KH-23", text: "Kep"},
+                { id: "KH-10", text: "Kratié"},
+                { id: "KH-11", text: "Mondulkiri"},
+                { id: "KH-22", text: "Oddar Meanchey"},
+                { id: "KH-24", text: "Pailin"},
+                { id: "KH-18", text: "Preah Sihanouk"},
+                { id: "KH-13", text: "Preah Vihear"},
+                { id: "KH-15", text: "Pursat"},
+                { id: "KH-14", text: "Prey Veng"},
+                { id: "KH-16", text: "Ratanakiri"},
+                { id: "KH-17", text: "Siem Reap"},
+                { id: "KH-19", text: "Stung Treng"},
+                { id: "KH-20", text: "Svay Rieng"},
+                { id: "KH-21", text: "Takéo"},
+                { id: "KH-25", text: "Tboung Khmum"}
+            ];
+            return {
+                Vietnam: Vietnam,
+                Laos: Laos,
+                Campuchia: Campuchia
+            }
+        })
+
+    ;
+
+})(jQuery);

@@ -1,0 +1,122 @@
+<div class="back-btn" ng-if="report">
+    <a class="btn btn-primary btn-x2 page-scroll" ui-sref="frontend.search-dna"><i class="fa fa-arrow-left"></i> Tìm kiếm</a>
+</div>
+<login-btn></login-btn>
+
+<div class="print-btn" uib-dropdown ng-if="report">
+    <a class="btn btn-info btn-x2 page-scroll" href="" uib-dropdown-toggle><i class="fa fa-print"></i> In kết quả</a>
+    <ul uib-dropdown-menu role="menu" aria-labelledby="single-button" style="left: auto; right: 0;">
+        <li role="menuitem"><a href="" print-btn="#print-content">In tất cả</a></li>
+        <li role="menuitem" ng-if="method == 'phylogenetic_distance' || method == 'maximum_likelihood' || method == 'maximum_parsimony'">
+            <a href="" print-btn=".tree-newick">In cây</a>
+        </li>
+        <li role="menuitem" ng-if="method == 'phylogenetic_distance' || method == 'maximum_likelihood' || method == 'maximum_parsimony'">
+            <a href="" print-btn=".hit-result">In kết quả Blast</a>
+        </li>
+    </ul>
+</div>
+
+<section id="print-content" ng-if="report">
+    <div class="container">
+        <div class="row" ng-if="report.hits.length > 0">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading">Kết quả tìm kiếm:</h2>
+                <hr class="primary">
+            </div>
+        </div>
+
+        <div class="center-element transparent-bg" ng-if="report.hits.length == 0">
+            <div class="text-center content" ng-if="!view.searching">
+                <hr class="primary" style="max-width: 400px; border-color: #31b0d5;">
+                <h2 class="section-heading">Không tìm thấy kết quả trên dữ liệu của dnatracker</h2>
+                <h3 class="section-heading" ng-if="method == 'blast'">Có muốn thử tìm kiếm trên dữ liệu của NCBI?</h3>
+                <h3 class="section-heading" ng-if="method == 'blast'">(Thời gian có thể từ 2-3 phút hoặc nhiều hơn)</h3>
+                <div class="list-button" ng-if="method == 'blast'">
+                    <a href="" class="btn btn-success btn-xl" ng-click="search()"><i class="fa fa-check"></i> Có</a>
+                    <a ui-sref="frontend.search-dna" class="btn btn-primary btn-xl"><i class="fa fa-times"></i> Không</a>
+                </div>
+                <hr class="primary" style="max-width: 400px; border-color: #31b0d5;">
+            </div>
+            <div class="text-center content" ng-if="view.searching">
+                <h3>Đang tìm kiếm</h3>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="black" style="height: 64px; width: 64px;">
+                    <path opacity=".25" d="M16 0 A16 16 0 0 0 16 32 A16 16 0 0 0 16 0 M16 4 A12 12 0 0 1 16 28 A12 12 0 0 1 16 4"/>
+                    <path d="M16 0 A16 16 0 0 1 32 16 L28 16 A12 12 0 0 0 16 4z" transform="rotate(137.871 16 16)">
+                        <animateTransform attributeName="transform" type="rotate" from="0 16 16" to="360 16 16" dur="0.8s" repeatCount="indefinite"/>
+                    </path>
+                </svg>
+            </div>
+        </div>
+
+        <div class="row tree-newick" ng-if="method == 'phylogenetic_distance' || method == 'maximum_likelihood' || method == 'maximum_parsimony'">
+            <div class="col-md-12">
+                <!--<div ng-if="message">{{message}}</div>-->
+                <div id="svgCanvas" ng-if="tree" tree newick="{{tree.newick}}" style="width: 100%;"></div>
+            </div>
+        </div>
+
+        <div class="hit-result tree-newick" ng-if="report.hits.length != 0" id="{{queryInfo.randomID}}">
+            <div class="row">
+                <div class="col-sm-8">
+                    <h4><strong>Thông tin chuỗi tìm kiếm</strong></h4>
+                    <p class="m-b-sm"><strong>Tên (thông tin):</strong> {{queryInfo.title}}</p>
+                    <p class="m-b-sm"><strong>Loại gen:</strong> {{queryInfo.typeGen}}</p>
+                    <p class="no-m-b"><strong>Chuỗi:</strong></p>
+                    <p class="m-b-sm" style="word-break: break-all;">{{queryInfo.seq}}</p>
+                    <p class="m-b-sm"><strong>Thời gian tìm kiếm:</strong> {{queryInfo.submitTime | momentFormat}}</p>
+                    <p class="m-b-sm" ng-if="method == 'phylogenetic_distance' || method == 'maximum_likelihood' || method == 'maximum_parsimony'">
+                        <strong>Cây Newick:</strong> {{tree.newick}}
+                    </p>
+                </div>
+
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+        <div id="{{hit.description[0].accession}}" class="hit-result" ng-repeat="hit in report.hits">
+            <div class="row" ng-if="view.searchNormal">
+                <div class="col-md-5" species-info>
+                    <h4><strong>Accession:</strong>
+                        <a href="{{'http://www.ncbi.nlm.nih.gov/nuccore/' + hit.description[0].accession}}" data-toggle="tooltip" data-placement="right" title="Link to NCBI">
+                            {{hit.description[0].accession}}
+                            <i class="fa fa-link"></i>
+                        </a>
+                    </h4>
+                    <a href="" ng-click="viewSpecies(data._id)">Xem thêm thông tin <i class="fa fa-search"></i></a>
+                    <span ng-if="isRole('admin curator') && seq.location.lat && seq.location.lng"> - </span>
+                    <a href="" ng-click="viewLocation(seq.location)" ng-if="isRole('admin curator') && seq.location.lat && seq.location.lng">Tọa độ <i class="fa fa-map-marker"></i></a>
+                    <p class="m-b-sm"><strong>Tên khoa học: </strong><span style="font-style: italic;">{{data.scientific_name}}</span></p>
+                    <p class="m-b-sm"><strong>Tên tiếng việt: </strong>{{data.vietnamese_name}}</p>
+                    <p class="m-b-sm"><strong>Loại gen: </strong>{{queryInfo.typeGen}}</p>
+                    <p class="m-b-sm"><strong>Length: </strong>{{hit.len}}</p>
+                </div>
+            </div>
+            <div class="row" ng-if="!view.searchNormal">
+                <div class="col-md-5">
+                    <h4>Accession: <a href="{{'http://www.ncbi.nlm.nih.gov/nuccore/' + hit.description[0].accession}}"
+                                      data-toggle="tooltip" data-placement="right" title="Link to NCBI">{{hit.description[0].accession}}
+                        <i class="fa fa-link"></i></a></p></h4>
+                    <p>Tên khoa học: {{hit.description[0].sciname}}</p>
+                </div>
+            </div>
+
+            <div class="row" ng-repeat="hsp in hit.hsps" ng-if="method == 'blast'">
+                <div class="col-md-12" >
+                    <div style="border-top: 1px solid #ccc; width: 100%; margin-bottom: 10px;"></div>
+                </div>
+                <div class="col-md-4" species-info>
+                    <p>Score = {{hsp.bit_score}} bits ({{hsp.score}}), Expect = {{hsp.evalue}}</p>
+                    <p>Identities = {{hsp.identity}}/{{hsp.align_len}}
+                        ({{((hsp.identity/hsp.align_len)*100).toFixed(2)}}%), Gaps =
+                        {{hsp.gaps}}/{{hsp.align_len}}
+                        ({{((hsp.gaps/hsp.align_len)*100).toFixed(2)}}%)</p>
+                    <p>Strand={{hsp.query_strand}}/{{hsp.hit_strand}}</p>
+                </div>
+                <div class="col-md-8 alignment">
+                    <alignment-result alignment="hsp"></alignment-result>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</section>

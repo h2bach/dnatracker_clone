@@ -1,0 +1,20 @@
+<td ng-if="!editting">{{user.username}}</td>
+<td ng-if="!editting">{{user.email}}</td>
+<td ng-if="!editting">{{user.role}}</td>
+<td ng-if="!editting && isRole('admin mentor')">
+    <i class="fa fa-pencil pointer" ng-click="edit()"></i>
+    <i class="fa fa-trash pointer" ng-click="delete()"></i>
+    <i class="fa fa-refresh pointer" ng-click="resetPassword(user._id)"></i>
+</td>
+
+<td ng-if="editting"><input type="text" ng-model="user.username"></td>
+<td ng-if="editting"><input type="text" ng-model="user.email"></td>
+<td ng-if="editting">
+    <select name="multipleSelect" id="multipleSelect" ng-model="user.role">
+        <option ng-repeat="role in roles track by $index" value="{{role}}">{{role}}</option>
+    </select>
+</td>
+<td ng-if="editting && isRole('admin mentor')">
+    <i class="fa fa-check pointer" ng-click="save()"></i>
+    <i class="fa fa-times pointer" ng-click="cancel()"></i>
+</td>
