@@ -38,22 +38,24 @@ module.exports = {
         var getSequences = function () {
             var defer = Q.defer();
 
-            Species.find().select("seqs").lean().exec(function (err, results) {
+            Species.find().select("seqs").lean().then(function (results) {
                 _.forEach(results, function (item) {
                     _.forEach(item.seqs, function (seq) {
-	                    if (seq.accession && seq.seq) {
-		                    if (seq.gen_type == "COI") {
-			                    fastaFiles.coi.seqs.push(seq);
-		                    } else {
-			                    fastaFiles.cytoB.seqs.push(seq);
-		                    }
-	                    }
-                    })
+                        if (seq.accession && seq.seq) {
+                            if (seq.gen_type == "COI") {
+                                fastaFiles.coi.seqs.push(seq);
+                            } else {
+                                fastaFiles.cytoB.seqs.push(seq);
+                            }
+                        }
+                    });
                 });
 
                 defer.resolve();
-
+            }).catch(function (err) {
+                defer.reject(err);
             });
+
             return defer.promise;
         };
 
@@ -66,10 +68,10 @@ module.exports = {
             console.log('Seq len', options.seqs.length);
 
             _.uniqBy(options.seqs, "accession").forEach(function (item) {
-	            if(item.accession && item.seq) {
-		            content += ">" + item.accession.replace("\n", "") + "\n";
-		            content += item.seq + "\n";
-	            }
+                if(item.accession && item.seq) {
+                    content += ">" + item.accession.replace("\n", "") + "\n";
+                    content += item.seq + "\n";
+                }
             });
 
             fs.writeFile(fastaFile, content, function (err) {
@@ -94,7 +96,7 @@ module.exports = {
 
                 _.forEach(fastaFiles, function (fastaFile) {
                     if (fastaFile.seqs.length > 0) {
-                        promises.push(MakeBlastDB(fastaFile.blast_config));
+                        // promises.push(MakeBlastDB(fastaFile.blast_config));
                     }
                 });
 

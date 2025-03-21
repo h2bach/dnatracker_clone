@@ -9,7 +9,7 @@ var Users = require('../app/models/user');
 var elasticConfig = require('../app/config/config.js').elasticsearch;
 var elastic = require('../app/libs/elasticsearch.js')(elasticConfig);
 
-var dbUri = process.env.MONGODB_URI
+var dbUri = "mongodb://localhost:27017/test"
 
 var prepareFastaData = function (fastaBuffer) {
     return function () {
@@ -27,47 +27,44 @@ var prepareFastaData = function (fastaBuffer) {
     };
 };
 
-var closeConnection = function (db) {
+var closeConnection = function () {
     return function () {
         var defer = Q.defer();
-        db.connection.close();
-        defer.resolve();
+        mongoose.disconnect().then(() => {
+            defer.resolve();
+        }).catch(err => {
+            console.log(err);
+            defer.reject();
+        });
         return defer.promise;
     }
 };
 
 var createDocs = function (Model, inputData) {
     var defer = Q.defer();
-    Model.remove({}, function (err) {
-        if (err) {
-            console.log(err);
-            defer.reject();
-        } else {
-            Model.create(inputData, function (err, results) {
-                if (err) {
-                    console.log(err);
-                    defer.reject();
-                } else {
-                    console.log("done");
-                    defer.resolve();
-                }
-            });
-        }
+    Model.deleteMany({}).then(() => {
+        return Model.create(inputData);
+    }).then(() => {
+        console.log("done");
+        defer.resolve();
+    }).catch(err => {
+        console.log(err);
+        defer.reject();
     });
     return defer.promise;
 };
 
 var addDocs = function (Model, inputData) {
     var defer = Q.defer();
-    Model.create(inputData, function (err, results) {
-        if (err) {
-            console.log(err);
-            defer.reject();
-        } else {
+    Model.create(inputData)
+        .then(() => {
             console.log("done");
             defer.resolve();
-        }
-    });
+        })
+        .catch(err => {
+            console.log(err);
+            defer.reject();
+        });
     return defer.promise;
 };
 

@@ -7,7 +7,7 @@
     "doc": "doc"
   },
   "scripts": {
-    "service": "concurrently \"elasticsearch\" \"mongod --dbpath=D:\\data\\db\"",
+    "service": "concurrently \"elasticsearch\" \"mongod --dbpath=F:\\DNATracker\\dnatracker_clone\\db",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -30,10 +30,9 @@
     "fasta2json": "^0.1.1",
     "fs-extra": "^0.26.7",
     "ftp": "^0.3.10",
-    "gulp": "^3.9.0",
     "jsonwebtoken": "^5.5.4",
     "lodash": "^4.3.0",
-    "mongoose": "^4.2.5",
+    "mongoose": "7.0.2",
     "multer": "^1.1.0",
     "q": "^1.4.1",
     "request": "^2.65.0",
@@ -43,6 +42,7 @@
     "yargs": "^3.30.0"
   },
   "devDependencies": {
+    "gulp": "^5.0.0",
     "gulp-nodemon": "^2.0.4"
   }
 }

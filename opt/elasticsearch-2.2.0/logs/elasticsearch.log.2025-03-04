@@ -1,0 +1,1086 @@
+[2025-03-04 00:03:00,227][INFO ][node                     ] [Ruckus] version[2.2.0], pid[24660], build[8ff36d1/2016-01-27T13:32:39Z]
+[2025-03-04 00:03:00,230][INFO ][node                     ] [Ruckus] initializing ...
+[2025-03-04 00:03:00,818][INFO ][plugins                  ] [Ruckus] modules [lang-expression, lang-groovy], plugins [elasticsearch-analysis-vietnamese], sites []
+[2025-03-04 00:03:00,853][INFO ][env                      ] [Ruckus] using [1] data paths, mounts [[VOL_U (F:)]], net usable_space [4.6gb], net total_space [116.1gb], spins? [unknown], types [NTFS]
+[2025-03-04 00:03:00,854][INFO ][env                      ] [Ruckus] heap size [1gb], compressed ordinary object pointers [true]
+[2025-03-04 00:03:03,667][INFO ][node                     ] [Ruckus] initialized
+[2025-03-04 00:03:03,668][INFO ][node                     ] [Ruckus] starting ...
+[2025-03-04 00:03:04,893][INFO ][transport                ] [Ruckus] publish_address {127.0.0.1:9300}, bound_addresses {127.0.0.1:9300}, {[::1]:9300}
+[2025-03-04 00:03:04,900][INFO ][discovery                ] [Ruckus] elasticsearch/IZR7YPzFT3iHD2rm2lFRxQ
+[2025-03-04 00:03:07,961][INFO ][cluster.service          ] [Ruckus] new_master {Ruckus}{IZR7YPzFT3iHD2rm2lFRxQ}{127.0.0.1}{127.0.0.1:9300}, reason: zen-disco-join(elected_as_master, [0] joins received)
+[2025-03-04 00:03:08,038][INFO ][gateway                  ] [Ruckus] recovered [1] indices into cluster_state
+[2025-03-04 00:03:08,339][WARN ][indices.cluster          ] [Ruckus] [[dna_tracker][4]] marking and sending shard failed due to [failed recovery]
+[dna_tracker][[dna_tracker][4]] IndexShardRecoveryException[failed to fetch index version after copying it over]; nested: IndexShardRecoveryException[shard allocated for local recovery (post api), should exist, but doesn't, current files: [corrupted_sYQyqDz1T56m6RXtjDDRTg, segments_6, write.lock, _0.cfe, _0.cfs, _0.si, _1.cfe, _1.cfs, _1.si]]; nested: CorruptIndexException[Hit unexpected exception while reading segment infos (resource=commit(null))]; nested: AccessControlException[access denied ("java.lang.RuntimePermission" "accessClassInPackage.jdk.internal.ref")];
+	at org.elasticsearch.index.shard.StoreRecoveryService.recoverFromStore(StoreRecoveryService.java:224)
+	at org.elasticsearch.index.shard.StoreRecoveryService.access$100(StoreRecoveryService.java:56)
+	at org.elasticsearch.index.shard.StoreRecoveryService$1.run(StoreRecoveryService.java:129)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: [dna_tracker][[dna_tracker][4]] IndexShardRecoveryException[shard allocated for local recovery (post api), should exist, but doesn't, current files: [corrupted_sYQyqDz1T56m6RXtjDDRTg, segments_6, write.lock, _0.cfe, _0.cfs, _0.si, _1.cfe, _1.cfs, _1.si]]; nested: CorruptIndexException[Hit unexpected exception while reading segment infos (resource=commit(null))]; nested: AccessControlException[access denied ("java.lang.RuntimePermission" "accessClassInPackage.jdk.internal.ref")];
+	at org.elasticsearch.index.shard.StoreRecoveryService.recoverFromStore(StoreRecoveryService.java:208)
+	... 5 more
+Caused by: org.apache.lucene.index.CorruptIndexException: Hit unexpected exception while reading segment infos (resource=commit(null))
+	at org.elasticsearch.index.store.Store.readSegmentsInfo(Store.java:170)
+	at org.elasticsearch.index.store.Store.readLastCommittedSegmentsInfo(Store.java:148)
+	at org.elasticsearch.index.shard.StoreRecoveryService.recoverFromStore(StoreRecoveryService.java:199)
+	... 5 more
+Caused by: java.security.AccessControlException: access denied ("java.lang.RuntimePermission" "accessClassInPackage.jdk.internal.ref")
+	at java.base/java.security.AccessControlContext.checkPermission(AccessControlContext.java:472)
+	at java.base/java.security.AccessController.checkPermission(AccessController.java:1043)
+	at java.base/java.lang.SecurityManager.checkPermission(SecurityManager.java:322)
+	at java.base/java.lang.SecurityManager.checkPackageAccess(SecurityManager.java:1238)
+	at java.base/java.lang.Class.checkPackageAccess(Class.java:2869)
+	at java.base/java.lang.Class.checkMemberAccess(Class.java:2850)
+	at java.base/java.lang.Class.getMethod(Class.java:2104)
+	at org.apache.lucene.store.MMapDirectory$2$1.run(MMapDirectory.java:325)
+	at org.apache.lucene.store.MMapDirectory$2$1.run(MMapDirectory.java:316)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:551)
+	at org.apache.lucene.store.MMapDirectory$2.freeBuffer(MMapDirectory.java:316)
+	at org.apache.lucene.store.ByteBufferIndexInput.freeBuffer(ByteBufferIndexInput.java:376)
+	at org.apache.lucene.store.ByteBufferIndexInput.close(ByteBufferIndexInput.java:355)
+	at org.apache.lucene.store.BufferedChecksumIndexInput.close(BufferedChecksumIndexInput.java:60)
+	at org.apache.lucene.codecs.lucene50.Lucene50SegmentInfoFormat.read(Lucene50SegmentInfoFormat.java:120)
+	at org.apache.lucene.index.SegmentInfos.readCommit(SegmentInfos.java:362)
+	at org.apache.lucene.index.SegmentInfos$1.doBody(SegmentInfos.java:493)
+	at org.apache.lucene.index.SegmentInfos$1.doBody(SegmentInfos.java:490)
+	at org.apache.lucene.index.SegmentInfos$FindSegmentsFile.run(SegmentInfos.java:731)
+	at org.apache.lucene.index.SegmentInfos$FindSegmentsFile.run(SegmentInfos.java:683)
+	at org.apache.lucene.index.SegmentInfos.readLatestCommit(SegmentInfos.java:490)
+	at org.elasticsearch.common.lucene.Lucene.readSegmentInfos(Lucene.java:95)
+	at org.elasticsearch.index.store.Store.readSegmentsInfo(Store.java:163)
+	... 7 more
+	Suppressed: java.security.AccessControlException: access denied ("java.lang.RuntimePermission" "accessClassInPackage.jdk.internal.ref")
+		at java.base/java.security.AccessControlContext.checkPermission(AccessControlContext.java:472)
+		at java.base/java.security.AccessController.checkPermission(AccessController.java:1043)
+		at java.base/java.lang.SecurityManager.checkPermission(SecurityManager.java:322)
+		at java.base/java.lang.SecurityManager.checkPackageAccess(SecurityManager.java:1238)
+		at java.base/java.lang.Class.checkPackageAccess(Class.java:2869)
+		at java.base/java.lang.Class.checkMemberAccess(Class.java:2850)
+		at java.base/java.lang.Class.getMethod(Class.java:2104)
+		at org.apache.lucene.store.MMapDirectory$2$1.run(MMapDirectory.java:325)
+		at org.apache.lucene.store.MMapDirectory$2$1.run(MMapDirectory.java:316)
+		at java.base/java.security.AccessController.doPrivileged(AccessController.java:551)
+		at org.apache.lucene.store.MMapDirectory$2.freeBuffer(MMapDirectory.java:316)
+		at org.apache.lucene.store.ByteBufferIndexInput.freeBuffer(ByteBufferIndexInput.java:376)
+		at org.apache.lucene.store.ByteBufferIndexInput.close(ByteBufferIndexInput.java:355)
+		at org.apache.lucene.store.BufferedChecksumIndexInput.close(BufferedChecksumIndexInput.java:60)
+		at org.apache.lucene.index.SegmentInfos.readCommit(SegmentInfos.java:459)
+		... 14 more
+[2025-03-04 00:03:08,348][WARN ][cluster.action.shard     ] [Ruckus] [dna_tracker][4] received shard failed for [dna_tracker][4], node[IZR7YPzFT3iHD2rm2lFRxQ], [P], v[9], s[INITIALIZING], a[id=t_a8UqBiRESuPq2KAnRy6Q], unassigned_info[[reason=CLUSTER_RECOVERED], at[2025-03-03T17:03:07.995Z]], indexUUID [P6onNjpMTRaWLEE0Oy3uvQ], message [failed recovery], failure [IndexShardRecoveryException[failed to fetch index version after copying it over]; nested: IndexShardRecoveryException[shard allocated for local recovery (post api), should exist, but doesn't, current files: [corrupted_sYQyqDz1T56m6RXtjDDRTg, segments_6, write.lock, _0.cfe, _0.cfs, _0.si, _1.cfe, _1.cfs, _1.si]]; nested: CorruptIndexException[Hit unexpected exception while reading segment infos (resource=commit(null))]; nested: AccessControlException[access denied ("java.lang.RuntimePermission" "accessClassInPackage.jdk.internal.ref")]; ]
+[dna_tracker][[dna_tracker][4]] IndexShardRecoveryException[failed to fetch index version after copying it over]; nested: IndexShardRecoveryException[shard allocated for local recovery (post api), should exist, but doesn't, current files: [corrupted_sYQyqDz1T56m6RXtjDDRTg, segments_6, write.lock, _0.cfe, _0.cfs, _0.si, _1.cfe, _1.cfs, _1.si]]; nested: CorruptIndexException[Hit unexpected exception while reading segment infos (resource=commit(null))]; nested: AccessControlException[access denied ("java.lang.RuntimePermission" "accessClassInPackage.jdk.internal.ref")];
+	at org.elasticsearch.index.shard.StoreRecoveryService.recoverFromStore(StoreRecoveryService.java:224)
+	at org.elasticsearch.index.shard.StoreRecoveryService.access$100(StoreRecoveryService.java:56)
+	at org.elasticsearch.index.shard.StoreRecoveryService$1.run(StoreRecoveryService.java:129)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: [dna_tracker][[dna_tracker][4]] IndexShardRecoveryException[shard allocated for local recovery (post api), should exist, but doesn't, current files: [corrupted_sYQyqDz1T56m6RXtjDDRTg, segments_6, write.lock, _0.cfe, _0.cfs, _0.si, _1.cfe, _1.cfs, _1.si]]; nested: CorruptIndexException[Hit unexpected exception while reading segment infos (resource=commit(null))]; nested: AccessControlException[access denied ("java.lang.RuntimePermission" "accessClassInPackage.jdk.internal.ref")];
+	at org.elasticsearch.index.shard.StoreRecoveryService.recoverFromStore(StoreRecoveryService.java:208)
+	... 5 more
+Caused by: org.apache.lucene.index.CorruptIndexException: Hit unexpected exception while reading segment infos (resource=commit(null))
+	at org.elasticsearch.index.store.Store.readSegmentsInfo(Store.java:170)
+	at org.elasticsearch.index.store.Store.readLastCommittedSegmentsInfo(Store.java:148)
+	at org.elasticsearch.index.shard.StoreRecoveryService.recoverFromStore(StoreRecoveryService.java:199)
+	... 5 more
+Caused by: java.security.AccessControlException: access denied ("java.lang.RuntimePermission" "accessClassInPackage.jdk.internal.ref")
+	at java.base/java.security.AccessControlContext.checkPermission(AccessControlContext.java:472)
+	at java.base/java.security.AccessController.checkPermission(AccessController.java:1043)
+	at java.base/java.lang.SecurityManager.checkPermission(SecurityManager.java:322)
+	at java.base/java.lang.SecurityManager.checkPackageAccess(SecurityManager.java:1238)
+	at java.base/java.lang.Class.checkPackageAccess(Class.java:2869)
+	at java.base/java.lang.Class.checkMemberAccess(Class.java:2850)
+	at java.base/java.lang.Class.getMethod(Class.java:2104)
+	at org.apache.lucene.store.MMapDirectory$2$1.run(MMapDirectory.java:325)
+	at org.apache.lucene.store.MMapDirectory$2$1.run(MMapDirectory.java:316)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:551)
+	at org.apache.lucene.store.MMapDirectory$2.freeBuffer(MMapDirectory.java:316)
+	at org.apache.lucene.store.ByteBufferIndexInput.freeBuffer(ByteBufferIndexInput.java:376)
+	at org.apache.lucene.store.ByteBufferIndexInput.close(ByteBufferIndexInput.java:355)
+	at org.apache.lucene.store.BufferedChecksumIndexInput.close(BufferedChecksumIndexInput.java:60)
+	at org.apache.lucene.codecs.lucene50.Lucene50SegmentInfoFormat.read(Lucene50SegmentInfoFormat.java:120)
+	at org.apache.lucene.index.SegmentInfos.readCommit(SegmentInfos.java:362)
+	at org.apache.lucene.index.SegmentInfos$1.doBody(SegmentInfos.java:493)
+	at org.apache.lucene.index.SegmentInfos$1.doBody(SegmentInfos.java:490)
+	at org.apache.lucene.index.SegmentInfos$FindSegmentsFile.run(SegmentInfos.java:731)
+	at org.apache.lucene.index.SegmentInfos$FindSegmentsFile.run(SegmentInfos.java:683)
+	at org.apache.lucene.index.SegmentInfos.readLatestCommit(SegmentInfos.java:490)
+	at org.elasticsearch.common.lucene.Lucene.readSegmentInfos(Lucene.java:95)
+	at org.elasticsearch.index.store.Store.readSegmentsInfo(Store.java:163)
+	... 7 more
+	Suppressed: java.security.AccessControlException: access denied ("java.lang.RuntimePermission" "accessClassInPackage.jdk.internal.ref")
+		at java.base/java.security.AccessControlContext.checkPermission(AccessControlContext.java:472)
+		at java.base/java.security.AccessController.checkPermission(AccessController.java:1043)
+		at java.base/java.lang.SecurityManager.checkPermission(SecurityManager.java:322)
+		at java.base/java.lang.SecurityManager.checkPackageAccess(SecurityManager.java:1238)
+		at java.base/java.lang.Class.checkPackageAccess(Class.java:2869)
+		at java.base/java.lang.Class.checkMemberAccess(Class.java:2850)
+		at java.base/java.lang.Class.getMethod(Class.java:2104)
+		at org.apache.lucene.store.MMapDirectory$2$1.run(MMapDirectory.java:325)
+		at org.apache.lucene.store.MMapDirectory$2$1.run(MMapDirectory.java:316)
+		at java.base/java.security.AccessController.doPrivileged(AccessController.java:551)
+		at org.apache.lucene.store.MMapDirectory$2.freeBuffer(MMapDirectory.java:316)
+		at org.apache.lucene.store.ByteBufferIndexInput.freeBuffer(ByteBufferIndexInput.java:376)
+		at org.apache.lucene.store.ByteBufferIndexInput.close(ByteBufferIndexInput.java:355)
+		at org.apache.lucene.store.BufferedChecksumIndexInput.close(BufferedChecksumIndexInput.java:60)
+		at org.apache.lucene.index.SegmentInfos.readCommit(SegmentInfos.java:459)
+		... 14 more
+[2025-03-04 00:03:08,355][WARN ][indices.cluster          ] [Ruckus] [[dna_tracker][3]] marking and sending shard failed due to [failed recovery]
+[dna_tracker][[dna_tracker][3]] IndexShardRecoveryException[failed to fetch index version after copying it over]; nested: IndexShardRecoveryException[shard allocated for local recovery (post api), should exist, but doesn't, current files: [corrupted_0ggIpHo3TMWnAQ6r8xQsdw, segments_6, write.lock, _0.cfe, _0.cfs, _0.si, _1.cfe, _1.cfs, _1.si]]; nested: CorruptIndexException[Hit unexpected exception while reading segment infos (resource=commit(null))]; nested: AccessControlException[access denied ("java.lang.RuntimePermission" "accessClassInPackage.jdk.internal.ref")];
+	at org.elasticsearch.index.shard.StoreRecoveryService.recoverFromStore(StoreRecoveryService.java:224)
+	at org.elasticsearch.index.shard.StoreRecoveryService.access$100(StoreRecoveryService.java:56)
+	at org.elasticsearch.index.shard.StoreRecoveryService$1.run(StoreRecoveryService.java:129)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: [dna_tracker][[dna_tracker][3]] IndexShardRecoveryException[shard allocated for local recovery (post api), should exist, but doesn't, current files: [corrupted_0ggIpHo3TMWnAQ6r8xQsdw, segments_6, write.lock, _0.cfe, _0.cfs, _0.si, _1.cfe, _1.cfs, _1.si]]; nested: CorruptIndexException[Hit unexpected exception while reading segment infos (resource=commit(null))]; nested: AccessControlException[access denied ("java.lang.RuntimePermission" "accessClassInPackage.jdk.internal.ref")];
+	at org.elasticsearch.index.shard.StoreRecoveryService.recoverFromStore(StoreRecoveryService.java:208)
+	... 5 more
+Caused by: org.apache.lucene.index.CorruptIndexException: Hit unexpected exception while reading segment infos (resource=commit(null))
+	at org.elasticsearch.index.store.Store.readSegmentsInfo(Store.java:170)
+	at org.elasticsearch.index.store.Store.readLastCommittedSegmentsInfo(Store.java:148)
+	at org.elasticsearch.index.shard.StoreRecoveryService.recoverFromStore(StoreRecoveryService.java:199)
+	... 5 more
+Caused by: java.security.AccessControlException: access denied ("java.lang.RuntimePermission" "accessClassInPackage.jdk.internal.ref")
+	at java.base/java.security.AccessControlContext.checkPermission(AccessControlContext.java:472)
+	at java.base/java.security.AccessController.checkPermission(AccessController.java:1043)
+	at java.base/java.lang.SecurityManager.checkPermission(SecurityManager.java:322)
+	at java.base/java.lang.SecurityManager.checkPackageAccess(SecurityManager.java:1238)
+	at java.base/java.lang.Class.checkPackageAccess(Class.java:2869)
+	at java.base/java.lang.Class.checkMemberAccess(Class.java:2850)
+	at java.base/java.lang.Class.getMethod(Class.java:2104)
+	at org.apache.lucene.store.MMapDirectory$2$1.run(MMapDirectory.java:325)
+	at org.apache.lucene.store.MMapDirectory$2$1.run(MMapDirectory.java:316)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:551)
+	at org.apache.lucene.store.MMapDirectory$2.freeBuffer(MMapDirectory.java:316)
+	at org.apache.lucene.store.ByteBufferIndexInput.freeBuffer(ByteBufferIndexInput.java:376)
+	at org.apache.lucene.store.ByteBufferIndexInput.close(ByteBufferIndexInput.java:355)
+	at org.apache.lucene.store.BufferedChecksumIndexInput.close(BufferedChecksumIndexInput.java:60)
+	at org.apache.lucene.codecs.lucene50.Lucene50SegmentInfoFormat.read(Lucene50SegmentInfoFormat.java:120)
+	at org.apache.lucene.index.SegmentInfos.readCommit(SegmentInfos.java:362)
+	at org.apache.lucene.index.SegmentInfos$1.doBody(SegmentInfos.java:493)
+	at org.apache.lucene.index.SegmentInfos$1.doBody(SegmentInfos.java:490)
+	at org.apache.lucene.index.SegmentInfos$FindSegmentsFile.run(SegmentInfos.java:731)
+	at org.apache.lucene.index.SegmentInfos$FindSegmentsFile.run(SegmentInfos.java:683)
+	at org.apache.lucene.index.SegmentInfos.readLatestCommit(SegmentInfos.java:490)
+	at org.elasticsearch.common.lucene.Lucene.readSegmentInfos(Lucene.java:95)
+	at org.elasticsearch.index.store.Store.readSegmentsInfo(Store.java:163)
+	... 7 more
+	Suppressed: java.security.AccessControlException: access denied ("java.lang.RuntimePermission" "accessClassInPackage.jdk.internal.ref")
+		at java.base/java.security.AccessControlContext.checkPermission(AccessControlContext.java:472)
+		at java.base/java.security.AccessController.checkPermission(AccessController.java:1043)
+		at java.base/java.lang.SecurityManager.checkPermission(SecurityManager.java:322)
+		at java.base/java.lang.SecurityManager.checkPackageAccess(SecurityManager.java:1238)
+		at java.base/java.lang.Class.checkPackageAccess(Class.java:2869)
+		at java.base/java.lang.Class.checkMemberAccess(Class.java:2850)
+		at java.base/java.lang.Class.getMethod(Class.java:2104)
+		at org.apache.lucene.store.MMapDirectory$2$1.run(MMapDirectory.java:325)
+		at org.apache.lucene.store.MMapDirectory$2$1.run(MMapDirectory.java:316)
+		at java.base/java.security.AccessController.doPrivileged(AccessController.java:551)
+		at org.apache.lucene.store.MMapDirectory$2.freeBuffer(MMapDirectory.java:316)
+		at org.apache.lucene.store.ByteBufferIndexInput.freeBuffer(ByteBufferIndexInput.java:376)
+		at org.apache.lucene.store.ByteBufferIndexInput.close(ByteBufferIndexInput.java:355)
+		at org.apache.lucene.store.BufferedChecksumIndexInput.close(BufferedChecksumIndexInput.java:60)
+		at org.apache.lucene.index.SegmentInfos.readCommit(SegmentInfos.java:459)
+		... 14 more
+[2025-03-04 00:03:08,361][WARN ][cluster.action.shard     ] [Ruckus] [dna_tracker][3] received shard failed for [dna_tracker][3], node[IZR7YPzFT3iHD2rm2lFRxQ], [P], v[9], s[INITIALIZING], a[id=Ahn16d56R0q2eNwDmw3wtA], unassigned_info[[reason=CLUSTER_RECOVERED], at[2025-03-03T17:03:07.995Z]], indexUUID [P6onNjpMTRaWLEE0Oy3uvQ], message [failed recovery], failure [IndexShardRecoveryException[failed to fetch index version after copying it over]; nested: IndexShardRecoveryException[shard allocated for local recovery (post api), should exist, but doesn't, current files: [corrupted_0ggIpHo3TMWnAQ6r8xQsdw, segments_6, write.lock, _0.cfe, _0.cfs, _0.si, _1.cfe, _1.cfs, _1.si]]; nested: CorruptIndexException[Hit unexpected exception while reading segment infos (resource=commit(null))]; nested: AccessControlException[access denied ("java.lang.RuntimePermission" "accessClassInPackage.jdk.internal.ref")]; ]
+[dna_tracker][[dna_tracker][3]] IndexShardRecoveryException[failed to fetch index version after copying it over]; nested: IndexShardRecoveryException[shard allocated for local recovery (post api), should exist, but doesn't, current files: [corrupted_0ggIpHo3TMWnAQ6r8xQsdw, segments_6, write.lock, _0.cfe, _0.cfs, _0.si, _1.cfe, _1.cfs, _1.si]]; nested: CorruptIndexException[Hit unexpected exception while reading segment infos (resource=commit(null))]; nested: AccessControlException[access denied ("java.lang.RuntimePermission" "accessClassInPackage.jdk.internal.ref")];
+	at org.elasticsearch.index.shard.StoreRecoveryService.recoverFromStore(StoreRecoveryService.java:224)
+	at org.elasticsearch.index.shard.StoreRecoveryService.access$100(StoreRecoveryService.java:56)
+	at org.elasticsearch.index.shard.StoreRecoveryService$1.run(StoreRecoveryService.java:129)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: [dna_tracker][[dna_tracker][3]] IndexShardRecoveryException[shard allocated for local recovery (post api), should exist, but doesn't, current files: [corrupted_0ggIpHo3TMWnAQ6r8xQsdw, segments_6, write.lock, _0.cfe, _0.cfs, _0.si, _1.cfe, _1.cfs, _1.si]]; nested: CorruptIndexException[Hit unexpected exception while reading segment infos (resource=commit(null))]; nested: AccessControlException[access denied ("java.lang.RuntimePermission" "accessClassInPackage.jdk.internal.ref")];
+	at org.elasticsearch.index.shard.StoreRecoveryService.recoverFromStore(StoreRecoveryService.java:208)
+	... 5 more
+Caused by: org.apache.lucene.index.CorruptIndexException: Hit unexpected exception while reading segment infos (resource=commit(null))
+	at org.elasticsearch.index.store.Store.readSegmentsInfo(Store.java:170)
+	at org.elasticsearch.index.store.Store.readLastCommittedSegmentsInfo(Store.java:148)
+	at org.elasticsearch.index.shard.StoreRecoveryService.recoverFromStore(StoreRecoveryService.java:199)
+	... 5 more
+Caused by: java.security.AccessControlException: access denied ("java.lang.RuntimePermission" "accessClassInPackage.jdk.internal.ref")
+	at java.base/java.security.AccessControlContext.checkPermission(AccessControlContext.java:472)
+	at java.base/java.security.AccessController.checkPermission(AccessController.java:1043)
+	at java.base/java.lang.SecurityManager.checkPermission(SecurityManager.java:322)
+	at java.base/java.lang.SecurityManager.checkPackageAccess(SecurityManager.java:1238)
+	at java.base/java.lang.Class.checkPackageAccess(Class.java:2869)
+	at java.base/java.lang.Class.checkMemberAccess(Class.java:2850)
+	at java.base/java.lang.Class.getMethod(Class.java:2104)
+	at org.apache.lucene.store.MMapDirectory$2$1.run(MMapDirectory.java:325)
+	at org.apache.lucene.store.MMapDirectory$2$1.run(MMapDirectory.java:316)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:551)
+	at org.apache.lucene.store.MMapDirectory$2.freeBuffer(MMapDirectory.java:316)
+	at org.apache.lucene.store.ByteBufferIndexInput.freeBuffer(ByteBufferIndexInput.java:376)
+	at org.apache.lucene.store.ByteBufferIndexInput.close(ByteBufferIndexInput.java:355)
+	at org.apache.lucene.store.BufferedChecksumIndexInput.close(BufferedChecksumIndexInput.java:60)
+	at org.apache.lucene.codecs.lucene50.Lucene50SegmentInfoFormat.read(Lucene50SegmentInfoFormat.java:120)
+	at org.apache.lucene.index.SegmentInfos.readCommit(SegmentInfos.java:362)
+	at org.apache.lucene.index.SegmentInfos$1.doBody(SegmentInfos.java:493)
+	at org.apache.lucene.index.SegmentInfos$1.doBody(SegmentInfos.java:490)
+	at org.apache.lucene.index.SegmentInfos$FindSegmentsFile.run(SegmentInfos.java:731)
+	at org.apache.lucene.index.SegmentInfos$FindSegmentsFile.run(SegmentInfos.java:683)
+	at org.apache.lucene.index.SegmentInfos.readLatestCommit(SegmentInfos.java:490)
+	at org.elasticsearch.common.lucene.Lucene.readSegmentInfos(Lucene.java:95)
+	at org.elasticsearch.index.store.Store.readSegmentsInfo(Store.java:163)
+	... 7 more
+	Suppressed: java.security.AccessControlException: access denied ("java.lang.RuntimePermission" "accessClassInPackage.jdk.internal.ref")
+		at java.base/java.security.AccessControlContext.checkPermission(AccessControlContext.java:472)
+		at java.base/java.security.AccessController.checkPermission(AccessController.java:1043)
+		at java.base/java.lang.SecurityManager.checkPermission(SecurityManager.java:322)
+		at java.base/java.lang.SecurityManager.checkPackageAccess(SecurityManager.java:1238)
+		at java.base/java.lang.Class.checkPackageAccess(Class.java:2869)
+		at java.base/java.lang.Class.checkMemberAccess(Class.java:2850)
+		at java.base/java.lang.Class.getMethod(Class.java:2104)
+		at org.apache.lucene.store.MMapDirectory$2$1.run(MMapDirectory.java:325)
+		at org.apache.lucene.store.MMapDirectory$2$1.run(MMapDirectory.java:316)
+		at java.base/java.security.AccessController.doPrivileged(AccessController.java:551)
+		at org.apache.lucene.store.MMapDirectory$2.freeBuffer(MMapDirectory.java:316)
+		at org.apache.lucene.store.ByteBufferIndexInput.freeBuffer(ByteBufferIndexInput.java:376)
+		at org.apache.lucene.store.ByteBufferIndexInput.close(ByteBufferIndexInput.java:355)
+		at org.apache.lucene.store.BufferedChecksumIndexInput.close(BufferedChecksumIndexInput.java:60)
+		at org.apache.lucene.index.SegmentInfos.readCommit(SegmentInfos.java:459)
+		... 14 more
+[2025-03-04 00:03:08,364][WARN ][indices.cluster          ] [Ruckus] [[dna_tracker][1]] marking and sending shard failed due to [failed recovery]
+[dna_tracker][[dna_tracker][1]] IndexShardRecoveryException[failed to fetch index version after copying it over]; nested: IndexShardRecoveryException[shard allocated for local recovery (post api), should exist, but doesn't, current files: [corrupted_6NCZKJoCRX-VFfluMjlV-g, segments_6, write.lock, _0.cfe, _0.cfs, _0.si, _1.cfe, _1.cfs, _1.si]]; nested: CorruptIndexException[Hit unexpected exception while reading segment infos (resource=commit(null))]; nested: AccessControlException[access denied ("java.lang.RuntimePermission" "accessClassInPackage.jdk.internal.ref")];
+	at org.elasticsearch.index.shard.StoreRecoveryService.recoverFromStore(StoreRecoveryService.java:224)
+	at org.elasticsearch.index.shard.StoreRecoveryService.access$100(StoreRecoveryService.java:56)
+	at org.elasticsearch.index.shard.StoreRecoveryService$1.run(StoreRecoveryService.java:129)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: [dna_tracker][[dna_tracker][1]] IndexShardRecoveryException[shard allocated for local recovery (post api), should exist, but doesn't, current files: [corrupted_6NCZKJoCRX-VFfluMjlV-g, segments_6, write.lock, _0.cfe, _0.cfs, _0.si, _1.cfe, _1.cfs, _1.si]]; nested: CorruptIndexException[Hit unexpected exception while reading segment infos (resource=commit(null))]; nested: AccessControlException[access denied ("java.lang.RuntimePermission" "accessClassInPackage.jdk.internal.ref")];
+	at org.elasticsearch.index.shard.StoreRecoveryService.recoverFromStore(StoreRecoveryService.java:208)
+	... 5 more
+Caused by: org.apache.lucene.index.CorruptIndexException: Hit unexpected exception while reading segment infos (resource=commit(null))
+	at org.elasticsearch.index.store.Store.readSegmentsInfo(Store.java:170)
+	at org.elasticsearch.index.store.Store.readLastCommittedSegmentsInfo(Store.java:148)
+	at org.elasticsearch.index.shard.StoreRecoveryService.recoverFromStore(StoreRecoveryService.java:199)
+	... 5 more
+Caused by: java.security.AccessControlException: access denied ("java.lang.RuntimePermission" "accessClassInPackage.jdk.internal.ref")
+	at java.base/java.security.AccessControlContext.checkPermission(AccessControlContext.java:472)
+	at java.base/java.security.AccessController.checkPermission(AccessController.java:1043)
+	at java.base/java.lang.SecurityManager.checkPermission(SecurityManager.java:322)
+	at java.base/java.lang.SecurityManager.checkPackageAccess(SecurityManager.java:1238)
+	at java.base/java.lang.Class.checkPackageAccess(Class.java:2869)
+	at java.base/java.lang.Class.checkMemberAccess(Class.java:2850)
+	at java.base/java.lang.Class.getMethod(Class.java:2104)
+	at org.apache.lucene.store.MMapDirectory$2$1.run(MMapDirectory.java:325)
+	at org.apache.lucene.store.MMapDirectory$2$1.run(MMapDirectory.java:316)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:551)
+	at org.apache.lucene.store.MMapDirectory$2.freeBuffer(MMapDirectory.java:316)
+	at org.apache.lucene.store.ByteBufferIndexInput.freeBuffer(ByteBufferIndexInput.java:376)
+	at org.apache.lucene.store.ByteBufferIndexInput.close(ByteBufferIndexInput.java:355)
+	at org.apache.lucene.store.BufferedChecksumIndexInput.close(BufferedChecksumIndexInput.java:60)
+	at org.apache.lucene.codecs.lucene50.Lucene50SegmentInfoFormat.read(Lucene50SegmentInfoFormat.java:120)
+	at org.apache.lucene.index.SegmentInfos.readCommit(SegmentInfos.java:362)
+	at org.apache.lucene.index.SegmentInfos$1.doBody(SegmentInfos.java:493)
+	at org.apache.lucene.index.SegmentInfos$1.doBody(SegmentInfos.java:490)
+	at org.apache.lucene.index.SegmentInfos$FindSegmentsFile.run(SegmentInfos.java:731)
+	at org.apache.lucene.index.SegmentInfos$FindSegmentsFile.run(SegmentInfos.java:683)
+	at org.apache.lucene.index.SegmentInfos.readLatestCommit(SegmentInfos.java:490)
+	at org.elasticsearch.common.lucene.Lucene.readSegmentInfos(Lucene.java:95)
+	at org.elasticsearch.index.store.Store.readSegmentsInfo(Store.java:163)
+	... 7 more
+	Suppressed: java.security.AccessControlException: access denied ("java.lang.RuntimePermission" "accessClassInPackage.jdk.internal.ref")
+		at java.base/java.security.AccessControlContext.checkPermission(AccessControlContext.java:472)
+		at java.base/java.security.AccessController.checkPermission(AccessController.java:1043)
+		at java.base/java.lang.SecurityManager.checkPermission(SecurityManager.java:322)
+		at java.base/java.lang.SecurityManager.checkPackageAccess(SecurityManager.java:1238)
+		at java.base/java.lang.Class.checkPackageAccess(Class.java:2869)
+		at java.base/java.lang.Class.checkMemberAccess(Class.java:2850)
+		at java.base/java.lang.Class.getMethod(Class.java:2104)
+		at org.apache.lucene.store.MMapDirectory$2$1.run(MMapDirectory.java:325)
+		at org.apache.lucene.store.MMapDirectory$2$1.run(MMapDirectory.java:316)
+		at java.base/java.security.AccessController.doPrivileged(AccessController.java:551)
+		at org.apache.lucene.store.MMapDirectory$2.freeBuffer(MMapDirectory.java:316)
+		at org.apache.lucene.store.ByteBufferIndexInput.freeBuffer(ByteBufferIndexInput.java:376)
+		at org.apache.lucene.store.ByteBufferIndexInput.close(ByteBufferIndexInput.java:355)
+		at org.apache.lucene.store.BufferedChecksumIndexInput.close(BufferedChecksumIndexInput.java:60)
+		at org.apache.lucene.index.SegmentInfos.readCommit(SegmentInfos.java:459)
+		... 14 more
+[2025-03-04 00:03:08,378][WARN ][cluster.action.shard     ] [Ruckus] [dna_tracker][1] received shard failed for [dna_tracker][1], node[IZR7YPzFT3iHD2rm2lFRxQ], [P], v[9], s[INITIALIZING], a[id=zvnVJ-uTTBeonkb30ivO7Q], unassigned_info[[reason=CLUSTER_RECOVERED], at[2025-03-03T17:03:07.995Z]], indexUUID [P6onNjpMTRaWLEE0Oy3uvQ], message [failed recovery], failure [IndexShardRecoveryException[failed to fetch index version after copying it over]; nested: IndexShardRecoveryException[shard allocated for local recovery (post api), should exist, but doesn't, current files: [corrupted_6NCZKJoCRX-VFfluMjlV-g, segments_6, write.lock, _0.cfe, _0.cfs, _0.si, _1.cfe, _1.cfs, _1.si]]; nested: CorruptIndexException[Hit unexpected exception while reading segment infos (resource=commit(null))]; nested: AccessControlException[access denied ("java.lang.RuntimePermission" "accessClassInPackage.jdk.internal.ref")]; ]
+[dna_tracker][[dna_tracker][1]] IndexShardRecoveryException[failed to fetch index version after copying it over]; nested: IndexShardRecoveryException[shard allocated for local recovery (post api), should exist, but doesn't, current files: [corrupted_6NCZKJoCRX-VFfluMjlV-g, segments_6, write.lock, _0.cfe, _0.cfs, _0.si, _1.cfe, _1.cfs, _1.si]]; nested: CorruptIndexException[Hit unexpected exception while reading segment infos (resource=commit(null))]; nested: AccessControlException[access denied ("java.lang.RuntimePermission" "accessClassInPackage.jdk.internal.ref")];
+	at org.elasticsearch.index.shard.StoreRecoveryService.recoverFromStore(StoreRecoveryService.java:224)
+	at org.elasticsearch.index.shard.StoreRecoveryService.access$100(StoreRecoveryService.java:56)
+	at org.elasticsearch.index.shard.StoreRecoveryService$1.run(StoreRecoveryService.java:129)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: [dna_tracker][[dna_tracker][1]] IndexShardRecoveryException[shard allocated for local recovery (post api), should exist, but doesn't, current files: [corrupted_6NCZKJoCRX-VFfluMjlV-g, segments_6, write.lock, _0.cfe, _0.cfs, _0.si, _1.cfe, _1.cfs, _1.si]]; nested: CorruptIndexException[Hit unexpected exception while reading segment infos (resource=commit(null))]; nested: AccessControlException[access denied ("java.lang.RuntimePermission" "accessClassInPackage.jdk.internal.ref")];
+	at org.elasticsearch.index.shard.StoreRecoveryService.recoverFromStore(StoreRecoveryService.java:208)
+	... 5 more
+Caused by: org.apache.lucene.index.CorruptIndexException: Hit unexpected exception while reading segment infos (resource=commit(null))
+	at org.elasticsearch.index.store.Store.readSegmentsInfo(Store.java:170)
+	at org.elasticsearch.index.store.Store.readLastCommittedSegmentsInfo(Store.java:148)
+	at org.elasticsearch.index.shard.StoreRecoveryService.recoverFromStore(StoreRecoveryService.java:199)
+	... 5 more
+Caused by: java.security.AccessControlException: access denied ("java.lang.RuntimePermission" "accessClassInPackage.jdk.internal.ref")
+	at java.base/java.security.AccessControlContext.checkPermission(AccessControlContext.java:472)
+	at java.base/java.security.AccessController.checkPermission(AccessController.java:1043)
+	at java.base/java.lang.SecurityManager.checkPermission(SecurityManager.java:322)
+	at java.base/java.lang.SecurityManager.checkPackageAccess(SecurityManager.java:1238)
+	at java.base/java.lang.Class.checkPackageAccess(Class.java:2869)
+	at java.base/java.lang.Class.checkMemberAccess(Class.java:2850)
+	at java.base/java.lang.Class.getMethod(Class.java:2104)
+	at org.apache.lucene.store.MMapDirectory$2$1.run(MMapDirectory.java:325)
+	at org.apache.lucene.store.MMapDirectory$2$1.run(MMapDirectory.java:316)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:551)
+	at org.apache.lucene.store.MMapDirectory$2.freeBuffer(MMapDirectory.java:316)
+	at org.apache.lucene.store.ByteBufferIndexInput.freeBuffer(ByteBufferIndexInput.java:376)
+	at org.apache.lucene.store.ByteBufferIndexInput.close(ByteBufferIndexInput.java:355)
+	at org.apache.lucene.store.BufferedChecksumIndexInput.close(BufferedChecksumIndexInput.java:60)
+	at org.apache.lucene.codecs.lucene50.Lucene50SegmentInfoFormat.read(Lucene50SegmentInfoFormat.java:120)
+	at org.apache.lucene.index.SegmentInfos.readCommit(SegmentInfos.java:362)
+	at org.apache.lucene.index.SegmentInfos$1.doBody(SegmentInfos.java:493)
+	at org.apache.lucene.index.SegmentInfos$1.doBody(SegmentInfos.java:490)
+	at org.apache.lucene.index.SegmentInfos$FindSegmentsFile.run(SegmentInfos.java:731)
+	at org.apache.lucene.index.SegmentInfos$FindSegmentsFile.run(SegmentInfos.java:683)
+	at org.apache.lucene.index.SegmentInfos.readLatestCommit(SegmentInfos.java:490)
+	at org.elasticsearch.common.lucene.Lucene.readSegmentInfos(Lucene.java:95)
+	at org.elasticsearch.index.store.Store.readSegmentsInfo(Store.java:163)
+	... 7 more
+	Suppressed: java.security.AccessControlException: access denied ("java.lang.RuntimePermission" "accessClassInPackage.jdk.internal.ref")
+		at java.base/java.security.AccessControlContext.checkPermission(AccessControlContext.java:472)
+		at java.base/java.security.AccessController.checkPermission(AccessController.java:1043)
+		at java.base/java.lang.SecurityManager.checkPermission(SecurityManager.java:322)
+		at java.base/java.lang.SecurityManager.checkPackageAccess(SecurityManager.java:1238)
+		at java.base/java.lang.Class.checkPackageAccess(Class.java:2869)
+		at java.base/java.lang.Class.checkMemberAccess(Class.java:2850)
+		at java.base/java.lang.Class.getMethod(Class.java:2104)
+		at org.apache.lucene.store.MMapDirectory$2$1.run(MMapDirectory.java:325)
+		at org.apache.lucene.store.MMapDirectory$2$1.run(MMapDirectory.java:316)
+		at java.base/java.security.AccessController.doPrivileged(AccessController.java:551)
+		at org.apache.lucene.store.MMapDirectory$2.freeBuffer(MMapDirectory.java:316)
+		at org.apache.lucene.store.ByteBufferIndexInput.freeBuffer(ByteBufferIndexInput.java:376)
+		at org.apache.lucene.store.ByteBufferIndexInput.close(ByteBufferIndexInput.java:355)
+		at org.apache.lucene.store.BufferedChecksumIndexInput.close(BufferedChecksumIndexInput.java:60)
+		at org.apache.lucene.index.SegmentInfos.readCommit(SegmentInfos.java:459)
+		... 14 more
+[2025-03-04 00:03:08,395][WARN ][cluster.action.shard     ] [Ruckus] [dna_tracker][3] received shard failed for [dna_tracker][3], node[IZR7YPzFT3iHD2rm2lFRxQ], [P], v[9], s[INITIALIZING], a[id=Ahn16d56R0q2eNwDmw3wtA], unassigned_info[[reason=CLUSTER_RECOVERED], at[2025-03-03T17:03:07.995Z]], indexUUID [P6onNjpMTRaWLEE0Oy3uvQ], message [master {Ruckus}{IZR7YPzFT3iHD2rm2lFRxQ}{127.0.0.1}{127.0.0.1:9300} marked shard as initializing, but shard is marked as failed, resend shard failure], failure [Unknown]
+[2025-03-04 00:03:08,406][WARN ][cluster.action.shard     ] [Ruckus] [dna_tracker][1] received shard failed for [dna_tracker][1], node[IZR7YPzFT3iHD2rm2lFRxQ], [P], v[9], s[INITIALIZING], a[id=zvnVJ-uTTBeonkb30ivO7Q], unassigned_info[[reason=CLUSTER_RECOVERED], at[2025-03-03T17:03:07.995Z]], indexUUID [P6onNjpMTRaWLEE0Oy3uvQ], message [master {Ruckus}{IZR7YPzFT3iHD2rm2lFRxQ}{127.0.0.1}{127.0.0.1:9300} marked shard as initializing, but shard is marked as failed, resend shard failure], failure [Unknown]
+[2025-03-04 00:03:08,410][WARN ][indices.cluster          ] [Ruckus] [[dna_tracker][0]] marking and sending shard failed due to [failed recovery]
+[dna_tracker][[dna_tracker][0]] IndexShardRecoveryException[failed to fetch index version after copying it over]; nested: IndexShardRecoveryException[shard allocated for local recovery (post api), should exist, but doesn't, current files: [corrupted_W0vkYUNBRhKFgfYeUPLOUA, segments_6, write.lock, _0.cfe, _0.cfs, _0.si, _1.cfe, _1.cfs, _1.si]]; nested: CorruptIndexException[Hit unexpected exception while reading segment infos (resource=commit(null))]; nested: AccessControlException[access denied ("java.lang.RuntimePermission" "accessClassInPackage.jdk.internal.ref")];
+	at org.elasticsearch.index.shard.StoreRecoveryService.recoverFromStore(StoreRecoveryService.java:224)
+	at org.elasticsearch.index.shard.StoreRecoveryService.access$100(StoreRecoveryService.java:56)
+	at org.elasticsearch.index.shard.StoreRecoveryService$1.run(StoreRecoveryService.java:129)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: [dna_tracker][[dna_tracker][0]] IndexShardRecoveryException[shard allocated for local recovery (post api), should exist, but doesn't, current files: [corrupted_W0vkYUNBRhKFgfYeUPLOUA, segments_6, write.lock, _0.cfe, _0.cfs, _0.si, _1.cfe, _1.cfs, _1.si]]; nested: CorruptIndexException[Hit unexpected exception while reading segment infos (resource=commit(null))]; nested: AccessControlException[access denied ("java.lang.RuntimePermission" "accessClassInPackage.jdk.internal.ref")];
+	at org.elasticsearch.index.shard.StoreRecoveryService.recoverFromStore(StoreRecoveryService.java:208)
+	... 5 more
+Caused by: org.apache.lucene.index.CorruptIndexException: Hit unexpected exception while reading segment infos (resource=commit(null))
+	at org.elasticsearch.index.store.Store.readSegmentsInfo(Store.java:170)
+	at org.elasticsearch.index.store.Store.readLastCommittedSegmentsInfo(Store.java:148)
+	at org.elasticsearch.index.shard.StoreRecoveryService.recoverFromStore(StoreRecoveryService.java:199)
+	... 5 more
+Caused by: java.security.AccessControlException: access denied ("java.lang.RuntimePermission" "accessClassInPackage.jdk.internal.ref")
+	at java.base/java.security.AccessControlContext.checkPermission(AccessControlContext.java:472)
+	at java.base/java.security.AccessController.checkPermission(AccessController.java:1043)
+	at java.base/java.lang.SecurityManager.checkPermission(SecurityManager.java:322)
+	at java.base/java.lang.SecurityManager.checkPackageAccess(SecurityManager.java:1238)
+	at java.base/java.lang.Class.checkPackageAccess(Class.java:2869)
+	at java.base/java.lang.Class.checkMemberAccess(Class.java:2850)
+	at java.base/java.lang.Class.getMethod(Class.java:2104)
+	at org.apache.lucene.store.MMapDirectory$2$1.run(MMapDirectory.java:325)
+	at org.apache.lucene.store.MMapDirectory$2$1.run(MMapDirectory.java:316)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:551)
+	at org.apache.lucene.store.MMapDirectory$2.freeBuffer(MMapDirectory.java:316)
+	at org.apache.lucene.store.ByteBufferIndexInput.freeBuffer(ByteBufferIndexInput.java:376)
+	at org.apache.lucene.store.ByteBufferIndexInput.close(ByteBufferIndexInput.java:355)
+	at org.apache.lucene.store.BufferedChecksumIndexInput.close(BufferedChecksumIndexInput.java:60)
+	at org.apache.lucene.codecs.lucene50.Lucene50SegmentInfoFormat.read(Lucene50SegmentInfoFormat.java:120)
+	at org.apache.lucene.index.SegmentInfos.readCommit(SegmentInfos.java:362)
+	at org.apache.lucene.index.SegmentInfos$1.doBody(SegmentInfos.java:493)
+	at org.apache.lucene.index.SegmentInfos$1.doBody(SegmentInfos.java:490)
+	at org.apache.lucene.index.SegmentInfos$FindSegmentsFile.run(SegmentInfos.java:731)
+	at org.apache.lucene.index.SegmentInfos$FindSegmentsFile.run(SegmentInfos.java:683)
+	at org.apache.lucene.index.SegmentInfos.readLatestCommit(SegmentInfos.java:490)
+	at org.elasticsearch.common.lucene.Lucene.readSegmentInfos(Lucene.java:95)
+	at org.elasticsearch.index.store.Store.readSegmentsInfo(Store.java:163)
+	... 7 more
+	Suppressed: java.security.AccessControlException: access denied ("java.lang.RuntimePermission" "accessClassInPackage.jdk.internal.ref")
+		at java.base/java.security.AccessControlContext.checkPermission(AccessControlContext.java:472)
+		at java.base/java.security.AccessController.checkPermission(AccessController.java:1043)
+		at java.base/java.lang.SecurityManager.checkPermission(SecurityManager.java:322)
+		at java.base/java.lang.SecurityManager.checkPackageAccess(SecurityManager.java:1238)
+		at java.base/java.lang.Class.checkPackageAccess(Class.java:2869)
+		at java.base/java.lang.Class.checkMemberAccess(Class.java:2850)
+		at java.base/java.lang.Class.getMethod(Class.java:2104)
+		at org.apache.lucene.store.MMapDirectory$2$1.run(MMapDirectory.java:325)
+		at org.apache.lucene.store.MMapDirectory$2$1.run(MMapDirectory.java:316)
+		at java.base/java.security.AccessController.doPrivileged(AccessController.java:551)
+		at org.apache.lucene.store.MMapDirectory$2.freeBuffer(MMapDirectory.java:316)
+		at org.apache.lucene.store.ByteBufferIndexInput.freeBuffer(ByteBufferIndexInput.java:376)
+		at org.apache.lucene.store.ByteBufferIndexInput.close(ByteBufferIndexInput.java:355)
+		at org.apache.lucene.store.BufferedChecksumIndexInput.close(BufferedChecksumIndexInput.java:60)
+		at org.apache.lucene.index.SegmentInfos.readCommit(SegmentInfos.java:459)
+		... 14 more
+[2025-03-04 00:03:08,431][WARN ][cluster.action.shard     ] [Ruckus] [dna_tracker][0] received shard failed for [dna_tracker][0], node[IZR7YPzFT3iHD2rm2lFRxQ], [P], v[9], s[INITIALIZING], a[id=d85K_PTOSzaylscKsp39-g], unassigned_info[[reason=CLUSTER_RECOVERED], at[2025-03-03T17:03:07.995Z]], indexUUID [P6onNjpMTRaWLEE0Oy3uvQ], message [failed recovery], failure [IndexShardRecoveryException[failed to fetch index version after copying it over]; nested: IndexShardRecoveryException[shard allocated for local recovery (post api), should exist, but doesn't, current files: [corrupted_W0vkYUNBRhKFgfYeUPLOUA, segments_6, write.lock, _0.cfe, _0.cfs, _0.si, _1.cfe, _1.cfs, _1.si]]; nested: CorruptIndexException[Hit unexpected exception while reading segment infos (resource=commit(null))]; nested: AccessControlException[access denied ("java.lang.RuntimePermission" "accessClassInPackage.jdk.internal.ref")]; ]
+[dna_tracker][[dna_tracker][0]] IndexShardRecoveryException[failed to fetch index version after copying it over]; nested: IndexShardRecoveryException[shard allocated for local recovery (post api), should exist, but doesn't, current files: [corrupted_W0vkYUNBRhKFgfYeUPLOUA, segments_6, write.lock, _0.cfe, _0.cfs, _0.si, _1.cfe, _1.cfs, _1.si]]; nested: CorruptIndexException[Hit unexpected exception while reading segment infos (resource=commit(null))]; nested: AccessControlException[access denied ("java.lang.RuntimePermission" "accessClassInPackage.jdk.internal.ref")];
+	at org.elasticsearch.index.shard.StoreRecoveryService.recoverFromStore(StoreRecoveryService.java:224)
+	at org.elasticsearch.index.shard.StoreRecoveryService.access$100(StoreRecoveryService.java:56)
+	at org.elasticsearch.index.shard.StoreRecoveryService$1.run(StoreRecoveryService.java:129)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: [dna_tracker][[dna_tracker][0]] IndexShardRecoveryException[shard allocated for local recovery (post api), should exist, but doesn't, current files: [corrupted_W0vkYUNBRhKFgfYeUPLOUA, segments_6, write.lock, _0.cfe, _0.cfs, _0.si, _1.cfe, _1.cfs, _1.si]]; nested: CorruptIndexException[Hit unexpected exception while reading segment infos (resource=commit(null))]; nested: AccessControlException[access denied ("java.lang.RuntimePermission" "accessClassInPackage.jdk.internal.ref")];
+	at org.elasticsearch.index.shard.StoreRecoveryService.recoverFromStore(StoreRecoveryService.java:208)
+	... 5 more
+Caused by: org.apache.lucene.index.CorruptIndexException: Hit unexpected exception while reading segment infos (resource=commit(null))
+	at org.elasticsearch.index.store.Store.readSegmentsInfo(Store.java:170)
+	at org.elasticsearch.index.store.Store.readLastCommittedSegmentsInfo(Store.java:148)
+	at org.elasticsearch.index.shard.StoreRecoveryService.recoverFromStore(StoreRecoveryService.java:199)
+	... 5 more
+Caused by: java.security.AccessControlException: access denied ("java.lang.RuntimePermission" "accessClassInPackage.jdk.internal.ref")
+	at java.base/java.security.AccessControlContext.checkPermission(AccessControlContext.java:472)
+	at java.base/java.security.AccessController.checkPermission(AccessController.java:1043)
+	at java.base/java.lang.SecurityManager.checkPermission(SecurityManager.java:322)
+	at java.base/java.lang.SecurityManager.checkPackageAccess(SecurityManager.java:1238)
+	at java.base/java.lang.Class.checkPackageAccess(Class.java:2869)
+	at java.base/java.lang.Class.checkMemberAccess(Class.java:2850)
+	at java.base/java.lang.Class.getMethod(Class.java:2104)
+	at org.apache.lucene.store.MMapDirectory$2$1.run(MMapDirectory.java:325)
+	at org.apache.lucene.store.MMapDirectory$2$1.run(MMapDirectory.java:316)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:551)
+	at org.apache.lucene.store.MMapDirectory$2.freeBuffer(MMapDirectory.java:316)
+	at org.apache.lucene.store.ByteBufferIndexInput.freeBuffer(ByteBufferIndexInput.java:376)
+	at org.apache.lucene.store.ByteBufferIndexInput.close(ByteBufferIndexInput.java:355)
+	at org.apache.lucene.store.BufferedChecksumIndexInput.close(BufferedChecksumIndexInput.java:60)
+	at org.apache.lucene.codecs.lucene50.Lucene50SegmentInfoFormat.read(Lucene50SegmentInfoFormat.java:120)
+	at org.apache.lucene.index.SegmentInfos.readCommit(SegmentInfos.java:362)
+	at org.apache.lucene.index.SegmentInfos$1.doBody(SegmentInfos.java:493)
+	at org.apache.lucene.index.SegmentInfos$1.doBody(SegmentInfos.java:490)
+	at org.apache.lucene.index.SegmentInfos$FindSegmentsFile.run(SegmentInfos.java:731)
+	at org.apache.lucene.index.SegmentInfos$FindSegmentsFile.run(SegmentInfos.java:683)
+	at org.apache.lucene.index.SegmentInfos.readLatestCommit(SegmentInfos.java:490)
+	at org.elasticsearch.common.lucene.Lucene.readSegmentInfos(Lucene.java:95)
+	at org.elasticsearch.index.store.Store.readSegmentsInfo(Store.java:163)
+	... 7 more
+	Suppressed: java.security.AccessControlException: access denied ("java.lang.RuntimePermission" "accessClassInPackage.jdk.internal.ref")
+		at java.base/java.security.AccessControlContext.checkPermission(AccessControlContext.java:472)
+		at java.base/java.security.AccessController.checkPermission(AccessController.java:1043)
+		at java.base/java.lang.SecurityManager.checkPermission(SecurityManager.java:322)
+		at java.base/java.lang.SecurityManager.checkPackageAccess(SecurityManager.java:1238)
+		at java.base/java.lang.Class.checkPackageAccess(Class.java:2869)
+		at java.base/java.lang.Class.checkMemberAccess(Class.java:2850)
+		at java.base/java.lang.Class.getMethod(Class.java:2104)
+		at org.apache.lucene.store.MMapDirectory$2$1.run(MMapDirectory.java:325)
+		at org.apache.lucene.store.MMapDirectory$2$1.run(MMapDirectory.java:316)
+		at java.base/java.security.AccessController.doPrivileged(AccessController.java:551)
+		at org.apache.lucene.store.MMapDirectory$2.freeBuffer(MMapDirectory.java:316)
+		at org.apache.lucene.store.ByteBufferIndexInput.freeBuffer(ByteBufferIndexInput.java:376)
+		at org.apache.lucene.store.ByteBufferIndexInput.close(ByteBufferIndexInput.java:355)
+		at org.apache.lucene.store.BufferedChecksumIndexInput.close(BufferedChecksumIndexInput.java:60)
+		at org.apache.lucene.index.SegmentInfos.readCommit(SegmentInfos.java:459)
+		... 14 more
+[2025-03-04 00:03:08,451][WARN ][cluster.action.shard     ] [Ruckus] [dna_tracker][0] received shard failed for [dna_tracker][0], node[IZR7YPzFT3iHD2rm2lFRxQ], [P], v[9], s[INITIALIZING], a[id=d85K_PTOSzaylscKsp39-g], unassigned_info[[reason=CLUSTER_RECOVERED], at[2025-03-03T17:03:07.995Z]], indexUUID [P6onNjpMTRaWLEE0Oy3uvQ], message [master {Ruckus}{IZR7YPzFT3iHD2rm2lFRxQ}{127.0.0.1}{127.0.0.1:9300} marked shard as initializing, but shard is marked as failed, resend shard failure], failure [Unknown]
+[2025-03-04 00:03:08,462][WARN ][indices.cluster          ] [Ruckus] [[dna_tracker][2]] marking and sending shard failed due to [failed recovery]
+[dna_tracker][[dna_tracker][2]] IndexShardRecoveryException[failed to fetch index version after copying it over]; nested: IndexShardRecoveryException[shard allocated for local recovery (post api), should exist, but doesn't, current files: [corrupted_Vf5dCv0PQW6Pzf2dvprTdg, segments_6, write.lock, _0.cfe, _0.cfs, _0.si, _1.cfe, _1.cfs, _1.si]]; nested: CorruptIndexException[Hit unexpected exception while reading segment infos (resource=commit(null))]; nested: AccessControlException[access denied ("java.lang.RuntimePermission" "accessClassInPackage.jdk.internal.ref")];
+	at org.elasticsearch.index.shard.StoreRecoveryService.recoverFromStore(StoreRecoveryService.java:224)
+	at org.elasticsearch.index.shard.StoreRecoveryService.access$100(StoreRecoveryService.java:56)
+	at org.elasticsearch.index.shard.StoreRecoveryService$1.run(StoreRecoveryService.java:129)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: [dna_tracker][[dna_tracker][2]] IndexShardRecoveryException[shard allocated for local recovery (post api), should exist, but doesn't, current files: [corrupted_Vf5dCv0PQW6Pzf2dvprTdg, segments_6, write.lock, _0.cfe, _0.cfs, _0.si, _1.cfe, _1.cfs, _1.si]]; nested: CorruptIndexException[Hit unexpected exception while reading segment infos (resource=commit(null))]; nested: AccessControlException[access denied ("java.lang.RuntimePermission" "accessClassInPackage.jdk.internal.ref")];
+	at org.elasticsearch.index.shard.StoreRecoveryService.recoverFromStore(StoreRecoveryService.java:208)
+	... 5 more
+Caused by: org.apache.lucene.index.CorruptIndexException: Hit unexpected exception while reading segment infos (resource=commit(null))
+	at org.elasticsearch.index.store.Store.readSegmentsInfo(Store.java:170)
+	at org.elasticsearch.index.store.Store.readLastCommittedSegmentsInfo(Store.java:148)
+	at org.elasticsearch.index.shard.StoreRecoveryService.recoverFromStore(StoreRecoveryService.java:199)
+	... 5 more
+Caused by: java.security.AccessControlException: access denied ("java.lang.RuntimePermission" "accessClassInPackage.jdk.internal.ref")
+	at java.base/java.security.AccessControlContext.checkPermission(AccessControlContext.java:472)
+	at java.base/java.security.AccessController.checkPermission(AccessController.java:1043)
+	at java.base/java.lang.SecurityManager.checkPermission(SecurityManager.java:322)
+	at java.base/java.lang.SecurityManager.checkPackageAccess(SecurityManager.java:1238)
+	at java.base/java.lang.Class.checkPackageAccess(Class.java:2869)
+	at java.base/java.lang.Class.checkMemberAccess(Class.java:2850)
+	at java.base/java.lang.Class.getMethod(Class.java:2104)
+	at org.apache.lucene.store.MMapDirectory$2$1.run(MMapDirectory.java:325)
+	at org.apache.lucene.store.MMapDirectory$2$1.run(MMapDirectory.java:316)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:551)
+	at org.apache.lucene.store.MMapDirectory$2.freeBuffer(MMapDirectory.java:316)
+	at org.apache.lucene.store.ByteBufferIndexInput.freeBuffer(ByteBufferIndexInput.java:376)
+	at org.apache.lucene.store.ByteBufferIndexInput.close(ByteBufferIndexInput.java:355)
+	at org.apache.lucene.store.BufferedChecksumIndexInput.close(BufferedChecksumIndexInput.java:60)
+	at org.apache.lucene.codecs.lucene50.Lucene50SegmentInfoFormat.read(Lucene50SegmentInfoFormat.java:120)
+	at org.apache.lucene.index.SegmentInfos.readCommit(SegmentInfos.java:362)
+	at org.apache.lucene.index.SegmentInfos$1.doBody(SegmentInfos.java:493)
+	at org.apache.lucene.index.SegmentInfos$1.doBody(SegmentInfos.java:490)
+	at org.apache.lucene.index.SegmentInfos$FindSegmentsFile.run(SegmentInfos.java:731)
+	at org.apache.lucene.index.SegmentInfos$FindSegmentsFile.run(SegmentInfos.java:683)
+	at org.apache.lucene.index.SegmentInfos.readLatestCommit(SegmentInfos.java:490)
+	at org.elasticsearch.common.lucene.Lucene.readSegmentInfos(Lucene.java:95)
+	at org.elasticsearch.index.store.Store.readSegmentsInfo(Store.java:163)
+	... 7 more
+	Suppressed: java.security.AccessControlException: access denied ("java.lang.RuntimePermission" "accessClassInPackage.jdk.internal.ref")
+		at java.base/java.security.AccessControlContext.checkPermission(AccessControlContext.java:472)
+		at java.base/java.security.AccessController.checkPermission(AccessController.java:1043)
+		at java.base/java.lang.SecurityManager.checkPermission(SecurityManager.java:322)
+		at java.base/java.lang.SecurityManager.checkPackageAccess(SecurityManager.java:1238)
+		at java.base/java.lang.Class.checkPackageAccess(Class.java:2869)
+		at java.base/java.lang.Class.checkMemberAccess(Class.java:2850)
+		at java.base/java.lang.Class.getMethod(Class.java:2104)
+		at org.apache.lucene.store.MMapDirectory$2$1.run(MMapDirectory.java:325)
+		at org.apache.lucene.store.MMapDirectory$2$1.run(MMapDirectory.java:316)
+		at java.base/java.security.AccessController.doPrivileged(AccessController.java:551)
+		at org.apache.lucene.store.MMapDirectory$2.freeBuffer(MMapDirectory.java:316)
+		at org.apache.lucene.store.ByteBufferIndexInput.freeBuffer(ByteBufferIndexInput.java:376)
+		at org.apache.lucene.store.ByteBufferIndexInput.close(ByteBufferIndexInput.java:355)
+		at org.apache.lucene.store.BufferedChecksumIndexInput.close(BufferedChecksumIndexInput.java:60)
+		at org.apache.lucene.index.SegmentInfos.readCommit(SegmentInfos.java:459)
+		... 14 more
+[2025-03-04 00:03:08,479][WARN ][cluster.action.shard     ] [Ruckus] [dna_tracker][2] received shard failed for [dna_tracker][2], node[IZR7YPzFT3iHD2rm2lFRxQ], [P], v[9], s[INITIALIZING], a[id=l9hoGv8ET1Sph45XduyJwQ], unassigned_info[[reason=CLUSTER_RECOVERED], at[2025-03-03T17:03:07.995Z]], indexUUID [P6onNjpMTRaWLEE0Oy3uvQ], message [failed recovery], failure [IndexShardRecoveryException[failed to fetch index version after copying it over]; nested: IndexShardRecoveryException[shard allocated for local recovery (post api), should exist, but doesn't, current files: [corrupted_Vf5dCv0PQW6Pzf2dvprTdg, segments_6, write.lock, _0.cfe, _0.cfs, _0.si, _1.cfe, _1.cfs, _1.si]]; nested: CorruptIndexException[Hit unexpected exception while reading segment infos (resource=commit(null))]; nested: AccessControlException[access denied ("java.lang.RuntimePermission" "accessClassInPackage.jdk.internal.ref")]; ]
+[dna_tracker][[dna_tracker][2]] IndexShardRecoveryException[failed to fetch index version after copying it over]; nested: IndexShardRecoveryException[shard allocated for local recovery (post api), should exist, but doesn't, current files: [corrupted_Vf5dCv0PQW6Pzf2dvprTdg, segments_6, write.lock, _0.cfe, _0.cfs, _0.si, _1.cfe, _1.cfs, _1.si]]; nested: CorruptIndexException[Hit unexpected exception while reading segment infos (resource=commit(null))]; nested: AccessControlException[access denied ("java.lang.RuntimePermission" "accessClassInPackage.jdk.internal.ref")];
+	at org.elasticsearch.index.shard.StoreRecoveryService.recoverFromStore(StoreRecoveryService.java:224)
+	at org.elasticsearch.index.shard.StoreRecoveryService.access$100(StoreRecoveryService.java:56)
+	at org.elasticsearch.index.shard.StoreRecoveryService$1.run(StoreRecoveryService.java:129)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: [dna_tracker][[dna_tracker][2]] IndexShardRecoveryException[shard allocated for local recovery (post api), should exist, but doesn't, current files: [corrupted_Vf5dCv0PQW6Pzf2dvprTdg, segments_6, write.lock, _0.cfe, _0.cfs, _0.si, _1.cfe, _1.cfs, _1.si]]; nested: CorruptIndexException[Hit unexpected exception while reading segment infos (resource=commit(null))]; nested: AccessControlException[access denied ("java.lang.RuntimePermission" "accessClassInPackage.jdk.internal.ref")];
+	at org.elasticsearch.index.shard.StoreRecoveryService.recoverFromStore(StoreRecoveryService.java:208)
+	... 5 more
+Caused by: org.apache.lucene.index.CorruptIndexException: Hit unexpected exception while reading segment infos (resource=commit(null))
+	at org.elasticsearch.index.store.Store.readSegmentsInfo(Store.java:170)
+	at org.elasticsearch.index.store.Store.readLastCommittedSegmentsInfo(Store.java:148)
+	at org.elasticsearch.index.shard.StoreRecoveryService.recoverFromStore(StoreRecoveryService.java:199)
+	... 5 more
+Caused by: java.security.AccessControlException: access denied ("java.lang.RuntimePermission" "accessClassInPackage.jdk.internal.ref")
+	at java.base/java.security.AccessControlContext.checkPermission(AccessControlContext.java:472)
+	at java.base/java.security.AccessController.checkPermission(AccessController.java:1043)
+	at java.base/java.lang.SecurityManager.checkPermission(SecurityManager.java:322)
+	at java.base/java.lang.SecurityManager.checkPackageAccess(SecurityManager.java:1238)
+	at java.base/java.lang.Class.checkPackageAccess(Class.java:2869)
+	at java.base/java.lang.Class.checkMemberAccess(Class.java:2850)
+	at java.base/java.lang.Class.getMethod(Class.java:2104)
+	at org.apache.lucene.store.MMapDirectory$2$1.run(MMapDirectory.java:325)
+	at org.apache.lucene.store.MMapDirectory$2$1.run(MMapDirectory.java:316)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:551)
+	at org.apache.lucene.store.MMapDirectory$2.freeBuffer(MMapDirectory.java:316)
+	at org.apache.lucene.store.ByteBufferIndexInput.freeBuffer(ByteBufferIndexInput.java:376)
+	at org.apache.lucene.store.ByteBufferIndexInput.close(ByteBufferIndexInput.java:355)
+	at org.apache.lucene.store.BufferedChecksumIndexInput.close(BufferedChecksumIndexInput.java:60)
+	at org.apache.lucene.codecs.lucene50.Lucene50SegmentInfoFormat.read(Lucene50SegmentInfoFormat.java:120)
+	at org.apache.lucene.index.SegmentInfos.readCommit(SegmentInfos.java:362)
+	at org.apache.lucene.index.SegmentInfos$1.doBody(SegmentInfos.java:493)
+	at org.apache.lucene.index.SegmentInfos$1.doBody(SegmentInfos.java:490)
+	at org.apache.lucene.index.SegmentInfos$FindSegmentsFile.run(SegmentInfos.java:731)
+	at org.apache.lucene.index.SegmentInfos$FindSegmentsFile.run(SegmentInfos.java:683)
+	at org.apache.lucene.index.SegmentInfos.readLatestCommit(SegmentInfos.java:490)
+	at org.elasticsearch.common.lucene.Lucene.readSegmentInfos(Lucene.java:95)
+	at org.elasticsearch.index.store.Store.readSegmentsInfo(Store.java:163)
+	... 7 more
+	Suppressed: java.security.AccessControlException: access denied ("java.lang.RuntimePermission" "accessClassInPackage.jdk.internal.ref")
+		at java.base/java.security.AccessControlContext.checkPermission(AccessControlContext.java:472)
+		at java.base/java.security.AccessController.checkPermission(AccessController.java:1043)
+		at java.base/java.lang.SecurityManager.checkPermission(SecurityManager.java:322)
+		at java.base/java.lang.SecurityManager.checkPackageAccess(SecurityManager.java:1238)
+		at java.base/java.lang.Class.checkPackageAccess(Class.java:2869)
+		at java.base/java.lang.Class.checkMemberAccess(Class.java:2850)
+		at java.base/java.lang.Class.getMethod(Class.java:2104)
+		at org.apache.lucene.store.MMapDirectory$2$1.run(MMapDirectory.java:325)
+		at org.apache.lucene.store.MMapDirectory$2$1.run(MMapDirectory.java:316)
+		at java.base/java.security.AccessController.doPrivileged(AccessController.java:551)
+		at org.apache.lucene.store.MMapDirectory$2.freeBuffer(MMapDirectory.java:316)
+		at org.apache.lucene.store.ByteBufferIndexInput.freeBuffer(ByteBufferIndexInput.java:376)
+		at org.apache.lucene.store.ByteBufferIndexInput.close(ByteBufferIndexInput.java:355)
+		at org.apache.lucene.store.BufferedChecksumIndexInput.close(BufferedChecksumIndexInput.java:60)
+		at org.apache.lucene.index.SegmentInfos.readCommit(SegmentInfos.java:459)
+		... 14 more
+[2025-03-04 00:03:08,481][WARN ][cluster.action.shard     ] [Ruckus] [dna_tracker][2] received shard failed for [dna_tracker][2], node[IZR7YPzFT3iHD2rm2lFRxQ], [P], v[9], s[INITIALIZING], a[id=l9hoGv8ET1Sph45XduyJwQ], unassigned_info[[reason=CLUSTER_RECOVERED], at[2025-03-03T17:03:07.995Z]], indexUUID [P6onNjpMTRaWLEE0Oy3uvQ], message [master {Ruckus}{IZR7YPzFT3iHD2rm2lFRxQ}{127.0.0.1}{127.0.0.1:9300} marked shard as initializing, but shard is marked as failed, resend shard failure], failure [Unknown]
+[2025-03-04 00:03:09,383][INFO ][http                     ] [Ruckus] publish_address {127.0.0.1:9200}, bound_addresses {127.0.0.1:9200}, {[::1]:9200}
+[2025-03-04 00:03:09,384][INFO ][node                     ] [Ruckus] started
+[2025-03-04 00:03:37,982][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.6gb[3.9%], shards will be relocated away from this node
+[2025-03-04 00:03:37,983][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 00:04:07,994][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.6gb[3.9%], shards will be relocated away from this node
+[2025-03-04 00:04:38,009][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.6gb[3.9%], shards will be relocated away from this node
+[2025-03-04 00:04:38,009][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 00:05:08,022][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.6gb[3.9%], shards will be relocated away from this node
+[2025-03-04 00:05:38,031][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.6gb[3.9%], shards will be relocated away from this node
+[2025-03-04 00:05:38,032][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 00:06:08,045][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.6gb[3.9%], shards will be relocated away from this node
+[2025-03-04 00:06:38,048][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.6gb[3.9%], shards will be relocated away from this node
+[2025-03-04 00:06:38,048][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 00:07:08,054][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.6gb[3.9%], shards will be relocated away from this node
+[2025-03-04 00:07:38,061][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.6gb[3.9%], shards will be relocated away from this node
+[2025-03-04 00:07:38,061][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 00:08:08,076][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.6gb[3.9%], shards will be relocated away from this node
+[2025-03-04 00:08:38,091][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.6gb[3.9%], shards will be relocated away from this node
+[2025-03-04 00:08:38,091][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 00:09:08,097][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.6gb[3.9%], shards will be relocated away from this node
+[2025-03-04 00:09:38,105][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.6gb[3.9%], shards will be relocated away from this node
+[2025-03-04 00:09:38,105][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 00:10:08,110][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.6gb[3.9%], shards will be relocated away from this node
+[2025-03-04 00:10:38,116][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.6gb[3.9%], shards will be relocated away from this node
+[2025-03-04 00:10:38,117][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 00:11:08,133][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.6gb[3.9%], shards will be relocated away from this node
+[2025-03-04 00:11:38,144][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.6gb[3.9%], shards will be relocated away from this node
+[2025-03-04 00:11:38,145][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 00:12:08,153][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.6gb[3.9%], shards will be relocated away from this node
+[2025-03-04 00:12:38,164][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.6gb[3.9%], shards will be relocated away from this node
+[2025-03-04 00:12:38,165][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 00:13:08,167][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.6gb[3.9%], shards will be relocated away from this node
+[2025-03-04 00:13:38,171][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.6gb[3.9%], shards will be relocated away from this node
+[2025-03-04 00:13:38,175][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 00:14:08,177][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.6gb[3.9%], shards will be relocated away from this node
+[2025-03-04 00:14:38,191][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.6gb[3.9%], shards will be relocated away from this node
+[2025-03-04 00:14:38,193][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 00:15:08,200][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.6gb[3.9%], shards will be relocated away from this node
+[2025-03-04 00:15:38,204][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.6gb[3.9%], shards will be relocated away from this node
+[2025-03-04 00:15:38,204][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 00:16:08,208][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.6gb[3.9%], shards will be relocated away from this node
+[2025-03-04 00:16:38,218][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.6gb[3.9%], shards will be relocated away from this node
+[2025-03-04 00:16:38,219][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 00:17:08,232][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.6gb[3.9%], shards will be relocated away from this node
+[2025-03-04 00:17:38,287][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.6gb[3.9%], shards will be relocated away from this node
+[2025-03-04 00:17:38,292][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 00:18:08,312][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.6gb[3.9%], shards will be relocated away from this node
+[2025-03-04 00:18:38,320][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.6gb[3.9%], shards will be relocated away from this node
+[2025-03-04 00:18:38,321][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 00:19:08,336][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.6gb[3.9%], shards will be relocated away from this node
+[2025-03-04 00:19:38,348][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.6gb[3.9%], shards will be relocated away from this node
+[2025-03-04 00:19:38,349][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 00:20:08,364][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.6gb[3.9%], shards will be relocated away from this node
+[2025-03-04 00:20:38,372][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.6gb[3.9%], shards will be relocated away from this node
+[2025-03-04 00:20:38,372][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 00:21:08,387][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.6gb[3.9%], shards will be relocated away from this node
+[2025-03-04 00:21:38,393][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.6gb[3.9%], shards will be relocated away from this node
+[2025-03-04 00:21:38,394][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 00:22:08,411][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.6gb[3.9%], shards will be relocated away from this node
+[2025-03-04 00:22:38,420][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.6gb[3.9%], shards will be relocated away from this node
+[2025-03-04 00:22:38,421][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 00:23:08,435][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.6gb[3.9%], shards will be relocated away from this node
+[2025-03-04 00:23:38,447][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.6gb[3.9%], shards will be relocated away from this node
+[2025-03-04 00:23:38,447][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 00:24:08,454][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.6gb[3.9%], shards will be relocated away from this node
+[2025-03-04 00:24:38,467][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.6gb[3.9%], shards will be relocated away from this node
+[2025-03-04 00:24:38,467][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 00:25:08,479][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.6gb[3.9%], shards will be relocated away from this node
+[2025-03-04 00:25:38,490][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.6gb[3.9%], shards will be relocated away from this node
+[2025-03-04 00:25:38,490][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 00:26:08,500][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.6gb[3.9%], shards will be relocated away from this node
+[2025-03-04 00:26:38,507][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.3gb[3.7%], shards will be relocated away from this node
+[2025-03-04 00:26:38,508][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 00:27:08,519][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.3gb[3.7%], shards will be relocated away from this node
+[2025-03-04 00:27:38,527][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.3gb[3.7%], shards will be relocated away from this node
+[2025-03-04 00:27:38,527][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 00:28:08,537][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.3gb[3.7%], shards will be relocated away from this node
+[2025-03-04 00:28:38,547][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.3gb[3.7%], shards will be relocated away from this node
+[2025-03-04 00:28:38,548][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 00:29:08,557][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.3gb[3.7%], shards will be relocated away from this node
+[2025-03-04 00:29:38,563][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.3gb[3.7%], shards will be relocated away from this node
+[2025-03-04 00:29:38,564][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 00:30:08,569][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.3gb[3.7%], shards will be relocated away from this node
+[2025-03-04 00:30:38,575][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.3gb[3.7%], shards will be relocated away from this node
+[2025-03-04 00:30:38,575][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 00:31:08,588][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.3gb[3.7%], shards will be relocated away from this node
+[2025-03-04 00:31:22,424][DEBUG][action.search.type       ] [Ruckus] All shards failed for phase: [query]
+[dna_tracker][[dna_tracker][4]] NoShardAvailableActionException[null]
+	at org.elasticsearch.action.search.type.TransportSearchTypeAction$BaseAsyncAction.start(TransportSearchTypeAction.java:151)
+	at org.elasticsearch.action.search.type.TransportSearchQueryThenFetchAction.doExecute(TransportSearchQueryThenFetchAction.java:64)
+	at org.elasticsearch.action.search.type.TransportSearchQueryThenFetchAction.doExecute(TransportSearchQueryThenFetchAction.java:53)
+	at org.elasticsearch.action.support.TransportAction.execute(TransportAction.java:70)
+	at org.elasticsearch.action.search.TransportSearchAction.doExecute(TransportSearchAction.java:99)
+	at org.elasticsearch.action.search.TransportSearchAction.doExecute(TransportSearchAction.java:44)
+	at org.elasticsearch.action.support.TransportAction.execute(TransportAction.java:70)
+	at org.elasticsearch.client.node.NodeClient.doExecute(NodeClient.java:58)
+	at org.elasticsearch.client.support.AbstractClient.execute(AbstractClient.java:351)
+	at org.elasticsearch.client.FilterClient.doExecute(FilterClient.java:52)
+	at org.elasticsearch.rest.BaseRestHandler$HeadersAndContextCopyClient.doExecute(BaseRestHandler.java:83)
+	at org.elasticsearch.client.support.AbstractClient.execute(AbstractClient.java:351)
+	at org.elasticsearch.client.support.AbstractClient.search(AbstractClient.java:574)
+	at org.elasticsearch.rest.action.search.RestSearchAction.handleRequest(RestSearchAction.java:84)
+	at org.elasticsearch.rest.BaseRestHandler.handleRequest(BaseRestHandler.java:54)
+	at org.elasticsearch.rest.RestController.executeHandler(RestController.java:207)
+	at org.elasticsearch.rest.RestController.dispatchRequest(RestController.java:166)
+	at org.elasticsearch.http.HttpServer.internalDispatchRequest(HttpServer.java:128)
+	at org.elasticsearch.http.HttpServer$Dispatcher.dispatchRequest(HttpServer.java:86)
+	at org.elasticsearch.http.netty.NettyHttpServerTransport.dispatchRequest(NettyHttpServerTransport.java:363)
+	at org.elasticsearch.http.netty.HttpRequestHandler.messageReceived(HttpRequestHandler.java:63)
+	at org.jboss.netty.channel.SimpleChannelUpstreamHandler.handleUpstream(SimpleChannelUpstreamHandler.java:70)
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564)
+	at org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:791)
+	at org.elasticsearch.http.netty.pipelining.HttpPipeliningHandler.messageReceived(HttpPipeliningHandler.java:60)
+	at org.jboss.netty.channel.SimpleChannelHandler.handleUpstream(SimpleChannelHandler.java:88)
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564)
+	at org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:791)
+	at org.jboss.netty.handler.codec.http.HttpChunkAggregator.messageReceived(HttpChunkAggregator.java:145)
+	at org.jboss.netty.channel.SimpleChannelUpstreamHandler.handleUpstream(SimpleChannelUpstreamHandler.java:70)
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564)
+	at org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:791)
+	at org.jboss.netty.handler.codec.http.HttpContentDecoder.messageReceived(HttpContentDecoder.java:108)
+	at org.jboss.netty.channel.SimpleChannelUpstreamHandler.handleUpstream(SimpleChannelUpstreamHandler.java:70)
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564)
+	at org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:791)
+	at org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:296)
+	at org.jboss.netty.handler.codec.frame.FrameDecoder.unfoldAndFireMessageReceived(FrameDecoder.java:459)
+	at org.jboss.netty.handler.codec.replay.ReplayingDecoder.callDecode(ReplayingDecoder.java:536)
+	at org.jboss.netty.handler.codec.replay.ReplayingDecoder.messageReceived(ReplayingDecoder.java:435)
+	at org.jboss.netty.channel.SimpleChannelUpstreamHandler.handleUpstream(SimpleChannelUpstreamHandler.java:70)
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564)
+	at org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:791)
+	at org.elasticsearch.common.netty.OpenChannelsHandler.handleUpstream(OpenChannelsHandler.java:75)
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564)
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:559)
+	at org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:268)
+	at org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:255)
+	at org.jboss.netty.channel.socket.nio.NioWorker.read(NioWorker.java:88)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.process(AbstractNioWorker.java:108)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:337)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.run(AbstractNioWorker.java:89)
+	at org.jboss.netty.channel.socket.nio.NioWorker.run(NioWorker.java:178)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+[2025-03-04 00:31:22,427][INFO ][rest.suppressed          ] /dna_tracker/_search Params: {q=fox fox, scroll=30s, index=dna_tracker}
+Failed to execute phase [query], all shards failed
+	at org.elasticsearch.action.search.type.TransportSearchTypeAction$BaseAsyncAction.onFirstPhaseResult(TransportSearchTypeAction.java:228)
+	at org.elasticsearch.action.search.type.TransportSearchTypeAction$BaseAsyncAction.start(TransportSearchTypeAction.java:151)
+	at org.elasticsearch.action.search.type.TransportSearchQueryThenFetchAction.doExecute(TransportSearchQueryThenFetchAction.java:64)
+	at org.elasticsearch.action.search.type.TransportSearchQueryThenFetchAction.doExecute(TransportSearchQueryThenFetchAction.java:53)
+	at org.elasticsearch.action.support.TransportAction.execute(TransportAction.java:70)
+	at org.elasticsearch.action.search.TransportSearchAction.doExecute(TransportSearchAction.java:99)
+	at org.elasticsearch.action.search.TransportSearchAction.doExecute(TransportSearchAction.java:44)
+	at org.elasticsearch.action.support.TransportAction.execute(TransportAction.java:70)
+	at org.elasticsearch.client.node.NodeClient.doExecute(NodeClient.java:58)
+	at org.elasticsearch.client.support.AbstractClient.execute(AbstractClient.java:351)
+	at org.elasticsearch.client.FilterClient.doExecute(FilterClient.java:52)
+	at org.elasticsearch.rest.BaseRestHandler$HeadersAndContextCopyClient.doExecute(BaseRestHandler.java:83)
+	at org.elasticsearch.client.support.AbstractClient.execute(AbstractClient.java:351)
+	at org.elasticsearch.client.support.AbstractClient.search(AbstractClient.java:574)
+	at org.elasticsearch.rest.action.search.RestSearchAction.handleRequest(RestSearchAction.java:84)
+	at org.elasticsearch.rest.BaseRestHandler.handleRequest(BaseRestHandler.java:54)
+	at org.elasticsearch.rest.RestController.executeHandler(RestController.java:207)
+	at org.elasticsearch.rest.RestController.dispatchRequest(RestController.java:166)
+	at org.elasticsearch.http.HttpServer.internalDispatchRequest(HttpServer.java:128)
+	at org.elasticsearch.http.HttpServer$Dispatcher.dispatchRequest(HttpServer.java:86)
+	at org.elasticsearch.http.netty.NettyHttpServerTransport.dispatchRequest(NettyHttpServerTransport.java:363)
+	at org.elasticsearch.http.netty.HttpRequestHandler.messageReceived(HttpRequestHandler.java:63)
+	at org.jboss.netty.channel.SimpleChannelUpstreamHandler.handleUpstream(SimpleChannelUpstreamHandler.java:70)
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564)
+	at org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:791)
+	at org.elasticsearch.http.netty.pipelining.HttpPipeliningHandler.messageReceived(HttpPipeliningHandler.java:60)
+	at org.jboss.netty.channel.SimpleChannelHandler.handleUpstream(SimpleChannelHandler.java:88)
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564)
+	at org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:791)
+	at org.jboss.netty.handler.codec.http.HttpChunkAggregator.messageReceived(HttpChunkAggregator.java:145)
+	at org.jboss.netty.channel.SimpleChannelUpstreamHandler.handleUpstream(SimpleChannelUpstreamHandler.java:70)
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564)
+	at org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:791)
+	at org.jboss.netty.handler.codec.http.HttpContentDecoder.messageReceived(HttpContentDecoder.java:108)
+	at org.jboss.netty.channel.SimpleChannelUpstreamHandler.handleUpstream(SimpleChannelUpstreamHandler.java:70)
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564)
+	at org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:791)
+	at org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:296)
+	at org.jboss.netty.handler.codec.frame.FrameDecoder.unfoldAndFireMessageReceived(FrameDecoder.java:459)
+	at org.jboss.netty.handler.codec.replay.ReplayingDecoder.callDecode(ReplayingDecoder.java:536)
+	at org.jboss.netty.handler.codec.replay.ReplayingDecoder.messageReceived(ReplayingDecoder.java:435)
+	at org.jboss.netty.channel.SimpleChannelUpstreamHandler.handleUpstream(SimpleChannelUpstreamHandler.java:70)
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564)
+	at org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:791)
+	at org.elasticsearch.common.netty.OpenChannelsHandler.handleUpstream(OpenChannelsHandler.java:75)
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564)
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:559)
+	at org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:268)
+	at org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:255)
+	at org.jboss.netty.channel.socket.nio.NioWorker.read(NioWorker.java:88)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.process(AbstractNioWorker.java:108)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:337)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.run(AbstractNioWorker.java:89)
+	at org.jboss.netty.channel.socket.nio.NioWorker.run(NioWorker.java:178)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+[2025-03-04 00:31:38,594][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.3gb[3.7%], shards will be relocated away from this node
+[2025-03-04 00:31:38,595][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 00:32:08,604][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.3gb[3.7%], shards will be relocated away from this node
+[2025-03-04 00:32:38,618][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.3gb[3.7%], shards will be relocated away from this node
+[2025-03-04 00:32:38,619][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 00:33:08,631][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.3gb[3.7%], shards will be relocated away from this node
+[2025-03-04 00:33:38,648][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.3gb[3.7%], shards will be relocated away from this node
+[2025-03-04 00:33:38,648][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 00:34:08,652][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.3gb[3.7%], shards will be relocated away from this node
+[2025-03-04 00:34:38,663][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.3gb[3.7%], shards will be relocated away from this node
+[2025-03-04 00:34:38,664][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 00:35:08,668][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.3gb[3.7%], shards will be relocated away from this node
+[2025-03-04 00:35:38,672][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.3gb[3.7%], shards will be relocated away from this node
+[2025-03-04 00:35:38,672][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 00:36:08,689][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.3gb[3.7%], shards will be relocated away from this node
+[2025-03-04 00:36:38,690][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.3gb[3.7%], shards will be relocated away from this node
+[2025-03-04 00:36:38,691][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 00:37:08,706][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.3gb[3.7%], shards will be relocated away from this node
+[2025-03-04 00:37:38,722][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.3gb[3.7%], shards will be relocated away from this node
+[2025-03-04 00:37:38,722][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 00:38:08,724][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.3gb[3.7%], shards will be relocated away from this node
+[2025-03-04 00:38:38,732][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.3gb[3.7%], shards will be relocated away from this node
+[2025-03-04 00:38:38,733][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 00:39:08,740][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.3gb[3.7%], shards will be relocated away from this node
+[2025-03-04 00:39:38,756][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.3gb[3.7%], shards will be relocated away from this node
+[2025-03-04 00:39:38,756][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 00:40:08,758][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.3gb[3.7%], shards will be relocated away from this node
+[2025-03-04 00:40:38,767][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.3gb[3.7%], shards will be relocated away from this node
+[2025-03-04 00:40:38,768][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 00:40:58,917][DEBUG][action.search.type       ] [Ruckus] All shards failed for phase: [query]
+[dna_tracker][[dna_tracker][4]] NoShardAvailableActionException[null]
+	at org.elasticsearch.action.search.type.TransportSearchTypeAction$BaseAsyncAction.start(TransportSearchTypeAction.java:151)
+	at org.elasticsearch.action.search.type.TransportSearchQueryThenFetchAction.doExecute(TransportSearchQueryThenFetchAction.java:64)
+	at org.elasticsearch.action.search.type.TransportSearchQueryThenFetchAction.doExecute(TransportSearchQueryThenFetchAction.java:53)
+	at org.elasticsearch.action.support.TransportAction.execute(TransportAction.java:70)
+	at org.elasticsearch.action.search.TransportSearchAction.doExecute(TransportSearchAction.java:99)
+	at org.elasticsearch.action.search.TransportSearchAction.doExecute(TransportSearchAction.java:44)
+	at org.elasticsearch.action.support.TransportAction.execute(TransportAction.java:70)
+	at org.elasticsearch.client.node.NodeClient.doExecute(NodeClient.java:58)
+	at org.elasticsearch.client.support.AbstractClient.execute(AbstractClient.java:351)
+	at org.elasticsearch.client.FilterClient.doExecute(FilterClient.java:52)
+	at org.elasticsearch.rest.BaseRestHandler$HeadersAndContextCopyClient.doExecute(BaseRestHandler.java:83)
+	at org.elasticsearch.client.support.AbstractClient.execute(AbstractClient.java:351)
+	at org.elasticsearch.client.support.AbstractClient.search(AbstractClient.java:574)
+	at org.elasticsearch.rest.action.search.RestSearchAction.handleRequest(RestSearchAction.java:84)
+	at org.elasticsearch.rest.BaseRestHandler.handleRequest(BaseRestHandler.java:54)
+	at org.elasticsearch.rest.RestController.executeHandler(RestController.java:207)
+	at org.elasticsearch.rest.RestController.dispatchRequest(RestController.java:166)
+	at org.elasticsearch.http.HttpServer.internalDispatchRequest(HttpServer.java:128)
+	at org.elasticsearch.http.HttpServer$Dispatcher.dispatchRequest(HttpServer.java:86)
+	at org.elasticsearch.http.netty.NettyHttpServerTransport.dispatchRequest(NettyHttpServerTransport.java:363)
+	at org.elasticsearch.http.netty.HttpRequestHandler.messageReceived(HttpRequestHandler.java:63)
+	at org.jboss.netty.channel.SimpleChannelUpstreamHandler.handleUpstream(SimpleChannelUpstreamHandler.java:70)
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564)
+	at org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:791)
+	at org.elasticsearch.http.netty.pipelining.HttpPipeliningHandler.messageReceived(HttpPipeliningHandler.java:60)
+	at org.jboss.netty.channel.SimpleChannelHandler.handleUpstream(SimpleChannelHandler.java:88)
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564)
+	at org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:791)
+	at org.jboss.netty.handler.codec.http.HttpChunkAggregator.messageReceived(HttpChunkAggregator.java:145)
+	at org.jboss.netty.channel.SimpleChannelUpstreamHandler.handleUpstream(SimpleChannelUpstreamHandler.java:70)
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564)
+	at org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:791)
+	at org.jboss.netty.handler.codec.http.HttpContentDecoder.messageReceived(HttpContentDecoder.java:108)
+	at org.jboss.netty.channel.SimpleChannelUpstreamHandler.handleUpstream(SimpleChannelUpstreamHandler.java:70)
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564)
+	at org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:791)
+	at org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:296)
+	at org.jboss.netty.handler.codec.frame.FrameDecoder.unfoldAndFireMessageReceived(FrameDecoder.java:459)
+	at org.jboss.netty.handler.codec.replay.ReplayingDecoder.callDecode(ReplayingDecoder.java:536)
+	at org.jboss.netty.handler.codec.replay.ReplayingDecoder.messageReceived(ReplayingDecoder.java:435)
+	at org.jboss.netty.channel.SimpleChannelUpstreamHandler.handleUpstream(SimpleChannelUpstreamHandler.java:70)
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564)
+	at org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:791)
+	at org.elasticsearch.common.netty.OpenChannelsHandler.handleUpstream(OpenChannelsHandler.java:75)
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564)
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:559)
+	at org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:268)
+	at org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:255)
+	at org.jboss.netty.channel.socket.nio.NioWorker.read(NioWorker.java:88)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.process(AbstractNioWorker.java:108)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:337)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.run(AbstractNioWorker.java:89)
+	at org.jboss.netty.channel.socket.nio.NioWorker.run(NioWorker.java:178)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+[2025-03-04 00:40:58,920][INFO ][rest.suppressed          ] /dna_tracker/_search Params: {q=fox fox, scroll=30s, index=dna_tracker}
+Failed to execute phase [query], all shards failed
+	at org.elasticsearch.action.search.type.TransportSearchTypeAction$BaseAsyncAction.onFirstPhaseResult(TransportSearchTypeAction.java:228)
+	at org.elasticsearch.action.search.type.TransportSearchTypeAction$BaseAsyncAction.start(TransportSearchTypeAction.java:151)
+	at org.elasticsearch.action.search.type.TransportSearchQueryThenFetchAction.doExecute(TransportSearchQueryThenFetchAction.java:64)
+	at org.elasticsearch.action.search.type.TransportSearchQueryThenFetchAction.doExecute(TransportSearchQueryThenFetchAction.java:53)
+	at org.elasticsearch.action.support.TransportAction.execute(TransportAction.java:70)
+	at org.elasticsearch.action.search.TransportSearchAction.doExecute(TransportSearchAction.java:99)
+	at org.elasticsearch.action.search.TransportSearchAction.doExecute(TransportSearchAction.java:44)
+	at org.elasticsearch.action.support.TransportAction.execute(TransportAction.java:70)
+	at org.elasticsearch.client.node.NodeClient.doExecute(NodeClient.java:58)
+	at org.elasticsearch.client.support.AbstractClient.execute(AbstractClient.java:351)
+	at org.elasticsearch.client.FilterClient.doExecute(FilterClient.java:52)
+	at org.elasticsearch.rest.BaseRestHandler$HeadersAndContextCopyClient.doExecute(BaseRestHandler.java:83)
+	at org.elasticsearch.client.support.AbstractClient.execute(AbstractClient.java:351)
+	at org.elasticsearch.client.support.AbstractClient.search(AbstractClient.java:574)
+	at org.elasticsearch.rest.action.search.RestSearchAction.handleRequest(RestSearchAction.java:84)
+	at org.elasticsearch.rest.BaseRestHandler.handleRequest(BaseRestHandler.java:54)
+	at org.elasticsearch.rest.RestController.executeHandler(RestController.java:207)
+	at org.elasticsearch.rest.RestController.dispatchRequest(RestController.java:166)
+	at org.elasticsearch.http.HttpServer.internalDispatchRequest(HttpServer.java:128)
+	at org.elasticsearch.http.HttpServer$Dispatcher.dispatchRequest(HttpServer.java:86)
+	at org.elasticsearch.http.netty.NettyHttpServerTransport.dispatchRequest(NettyHttpServerTransport.java:363)
+	at org.elasticsearch.http.netty.HttpRequestHandler.messageReceived(HttpRequestHandler.java:63)
+	at org.jboss.netty.channel.SimpleChannelUpstreamHandler.handleUpstream(SimpleChannelUpstreamHandler.java:70)
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564)
+	at org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:791)
+	at org.elasticsearch.http.netty.pipelining.HttpPipeliningHandler.messageReceived(HttpPipeliningHandler.java:60)
+	at org.jboss.netty.channel.SimpleChannelHandler.handleUpstream(SimpleChannelHandler.java:88)
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564)
+	at org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:791)
+	at org.jboss.netty.handler.codec.http.HttpChunkAggregator.messageReceived(HttpChunkAggregator.java:145)
+	at org.jboss.netty.channel.SimpleChannelUpstreamHandler.handleUpstream(SimpleChannelUpstreamHandler.java:70)
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564)
+	at org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:791)
+	at org.jboss.netty.handler.codec.http.HttpContentDecoder.messageReceived(HttpContentDecoder.java:108)
+	at org.jboss.netty.channel.SimpleChannelUpstreamHandler.handleUpstream(SimpleChannelUpstreamHandler.java:70)
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564)
+	at org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:791)
+	at org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:296)
+	at org.jboss.netty.handler.codec.frame.FrameDecoder.unfoldAndFireMessageReceived(FrameDecoder.java:459)
+	at org.jboss.netty.handler.codec.replay.ReplayingDecoder.callDecode(ReplayingDecoder.java:536)
+	at org.jboss.netty.handler.codec.replay.ReplayingDecoder.messageReceived(ReplayingDecoder.java:435)
+	at org.jboss.netty.channel.SimpleChannelUpstreamHandler.handleUpstream(SimpleChannelUpstreamHandler.java:70)
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564)
+	at org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:791)
+	at org.elasticsearch.common.netty.OpenChannelsHandler.handleUpstream(OpenChannelsHandler.java:75)
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:564)
+	at org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:559)
+	at org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:268)
+	at org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:255)
+	at org.jboss.netty.channel.socket.nio.NioWorker.read(NioWorker.java:88)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.process(AbstractNioWorker.java:108)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:337)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.run(AbstractNioWorker.java:89)
+	at org.jboss.netty.channel.socket.nio.NioWorker.run(NioWorker.java:178)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+[2025-03-04 00:41:08,769][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.3gb[3.7%], shards will be relocated away from this node
+[2025-03-04 00:41:38,772][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.3gb[3.7%], shards will be relocated away from this node
+[2025-03-04 00:41:38,772][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 00:42:08,774][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.3gb[3.7%], shards will be relocated away from this node
+[2025-03-04 00:42:38,784][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.3gb[3.7%], shards will be relocated away from this node
+[2025-03-04 00:42:38,785][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 00:43:08,789][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.3gb[3.7%], shards will be relocated away from this node
+[2025-03-04 00:43:38,790][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.3gb[3.7%], shards will be relocated away from this node
+[2025-03-04 00:43:38,791][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 00:44:08,796][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.3gb[3.7%], shards will be relocated away from this node
+[2025-03-04 00:44:38,808][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.3gb[3.7%], shards will be relocated away from this node
+[2025-03-04 00:44:38,808][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 00:45:08,821][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.3gb[3.7%], shards will be relocated away from this node
+[2025-03-04 00:45:38,836][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.3gb[3.7%], shards will be relocated away from this node
+[2025-03-04 00:45:38,837][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 00:46:08,852][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.3gb[3.7%], shards will be relocated away from this node
+[2025-03-04 00:46:38,862][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.3gb[3.7%], shards will be relocated away from this node
+[2025-03-04 00:46:38,862][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 00:47:08,873][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.3gb[3.7%], shards will be relocated away from this node
+[2025-03-04 00:47:38,884][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.3gb[3.7%], shards will be relocated away from this node
+[2025-03-04 00:47:38,884][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 00:48:08,892][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.3gb[3.7%], shards will be relocated away from this node
+[2025-03-04 00:48:38,894][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.3gb[3.7%], shards will be relocated away from this node
+[2025-03-04 00:48:38,895][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 00:49:08,897][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.3gb[3.7%], shards will be relocated away from this node
+[2025-03-04 00:49:38,911][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.3gb[3.7%], shards will be relocated away from this node
+[2025-03-04 00:49:38,912][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 00:50:08,920][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.3gb[3.7%], shards will be relocated away from this node
+[2025-03-04 00:50:38,933][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.3gb[3.7%], shards will be relocated away from this node
+[2025-03-04 00:50:38,934][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 00:51:08,935][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.3gb[3.7%], shards will be relocated away from this node
+[2025-03-04 00:51:38,951][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.3gb[3.7%], shards will be relocated away from this node
+[2025-03-04 00:51:38,951][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 00:52:08,956][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.3gb[3.7%], shards will be relocated away from this node
+[2025-03-04 00:52:38,971][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.3gb[3.7%], shards will be relocated away from this node
+[2025-03-04 00:52:38,971][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 00:53:08,987][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.3gb[3.7%], shards will be relocated away from this node
+[2025-03-04 00:53:39,004][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.3gb[3.7%], shards will be relocated away from this node
+[2025-03-04 00:53:39,004][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 00:54:09,015][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.3gb[3.7%], shards will be relocated away from this node
+[2025-03-04 00:54:39,024][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.3gb[3.7%], shards will be relocated away from this node
+[2025-03-04 00:54:39,024][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 00:55:09,036][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.3gb[3.7%], shards will be relocated away from this node
+[2025-03-04 00:55:39,042][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.3gb[3.7%], shards will be relocated away from this node
+[2025-03-04 00:55:39,042][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 00:56:09,048][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.3gb[3.7%], shards will be relocated away from this node
+[2025-03-04 00:56:39,052][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.3gb[3.7%], shards will be relocated away from this node
+[2025-03-04 00:56:39,052][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 00:57:09,054][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.3gb[3.7%], shards will be relocated away from this node
+[2025-03-04 00:57:39,058][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.3gb[3.7%], shards will be relocated away from this node
+[2025-03-04 00:57:39,059][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 00:58:09,065][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.3gb[3.7%], shards will be relocated away from this node
+[2025-03-04 00:58:39,069][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.3gb[3.7%], shards will be relocated away from this node
+[2025-03-04 00:58:39,070][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 00:59:09,074][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.3gb[3.7%], shards will be relocated away from this node
+[2025-03-04 00:59:39,085][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.3gb[3.7%], shards will be relocated away from this node
+[2025-03-04 00:59:39,089][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 01:00:09,101][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.3gb[3.7%], shards will be relocated away from this node
+[2025-03-04 01:00:39,115][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.3gb[3.7%], shards will be relocated away from this node
+[2025-03-04 01:00:39,116][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 01:01:09,132][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.3gb[3.7%], shards will be relocated away from this node
+[2025-03-04 01:01:39,136][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.4gb[3.8%], shards will be relocated away from this node
+[2025-03-04 01:01:39,136][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 01:02:09,142][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.4gb[3.8%], shards will be relocated away from this node
+[2025-03-04 01:02:39,144][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.4gb[3.8%], shards will be relocated away from this node
+[2025-03-04 01:02:39,145][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 01:03:09,149][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.4gb[3.8%], shards will be relocated away from this node
+[2025-03-04 01:03:39,154][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.4gb[3.8%], shards will be relocated away from this node
+[2025-03-04 01:03:39,154][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 01:04:09,158][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.4gb[3.8%], shards will be relocated away from this node
+[2025-03-04 01:04:39,162][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.4gb[3.8%], shards will be relocated away from this node
+[2025-03-04 01:04:39,163][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 01:05:09,176][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.4gb[3.8%], shards will be relocated away from this node
+[2025-03-04 01:05:39,188][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.4gb[3.8%], shards will be relocated away from this node
+[2025-03-04 01:05:39,188][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 01:06:09,192][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.4gb[3.8%], shards will be relocated away from this node
+[2025-03-04 01:06:39,204][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.4gb[3.8%], shards will be relocated away from this node
+[2025-03-04 01:06:39,204][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 01:07:09,222][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.4gb[3.8%], shards will be relocated away from this node
+[2025-03-04 01:07:39,235][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.4gb[3.8%], shards will be relocated away from this node
+[2025-03-04 01:07:39,235][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 01:08:09,252][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.4gb[3.8%], shards will be relocated away from this node
+[2025-03-04 01:08:39,259][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.4gb[3.8%], shards will be relocated away from this node
+[2025-03-04 01:08:39,259][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 01:09:09,269][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.4gb[3.8%], shards will be relocated away from this node
+[2025-03-04 01:09:39,275][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.4gb[3.8%], shards will be relocated away from this node
+[2025-03-04 01:09:39,276][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 01:10:09,285][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.4gb[3.8%], shards will be relocated away from this node
+[2025-03-04 01:10:39,301][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.4gb[3.8%], shards will be relocated away from this node
+[2025-03-04 01:10:39,301][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 01:11:09,305][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.4gb[3.8%], shards will be relocated away from this node
+[2025-03-04 01:11:39,318][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.4gb[3.8%], shards will be relocated away from this node
+[2025-03-04 01:11:39,318][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 01:12:09,331][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.4gb[3.8%], shards will be relocated away from this node
+[2025-03-04 01:12:39,344][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.4gb[3.8%], shards will be relocated away from this node
+[2025-03-04 01:12:39,344][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 01:13:09,359][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.4gb[3.8%], shards will be relocated away from this node
+[2025-03-04 01:13:39,368][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.4gb[3.8%], shards will be relocated away from this node
+[2025-03-04 01:13:39,368][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 01:14:09,377][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.4gb[3.8%], shards will be relocated away from this node
+[2025-03-04 01:14:39,385][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.4gb[3.8%], shards will be relocated away from this node
+[2025-03-04 01:14:39,385][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 01:15:09,394][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.4gb[3.8%], shards will be relocated away from this node
+[2025-03-04 01:15:39,412][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.4gb[3.8%], shards will be relocated away from this node
+[2025-03-04 01:15:39,412][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 01:16:09,421][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.4gb[3.8%], shards will be relocated away from this node
+[2025-03-04 01:16:39,430][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.4gb[3.8%], shards will be relocated away from this node
+[2025-03-04 01:16:39,430][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 01:17:09,436][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.4gb[3.8%], shards will be relocated away from this node
+[2025-03-04 01:17:39,449][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.4gb[3.8%], shards will be relocated away from this node
+[2025-03-04 01:17:39,449][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 01:18:09,451][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.4gb[3.8%], shards will be relocated away from this node
+[2025-03-04 01:18:39,459][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.4gb[3.8%], shards will be relocated away from this node
+[2025-03-04 01:18:39,459][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 01:19:09,466][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.4gb[3.8%], shards will be relocated away from this node
+[2025-03-04 01:19:39,479][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.4gb[3.8%], shards will be relocated away from this node
+[2025-03-04 01:19:39,480][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 01:20:09,488][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.4gb[3.8%], shards will be relocated away from this node
+[2025-03-04 01:20:39,608][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.4gb[3.8%], shards will be relocated away from this node
+[2025-03-04 01:20:39,857][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 01:21:10,000][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.4gb[3.8%], shards will be relocated away from this node
+[2025-03-04 01:21:40,013][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.4gb[3.8%], shards will be relocated away from this node
+[2025-03-04 01:21:40,013][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 01:22:10,020][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.4gb[3.8%], shards will be relocated away from this node
+[2025-03-04 01:22:40,026][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.4gb[3.8%], shards will be relocated away from this node
+[2025-03-04 01:22:40,026][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 01:23:10,041][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.4gb[3.8%], shards will be relocated away from this node
+[2025-03-04 01:23:40,054][WARN ][cluster.routing.allocation.decider] [Ruckus] high disk watermark [90%] exceeded on [IZR7YPzFT3iHD2rm2lFRxQ][Ruckus][F:\DNATracker\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0] free: 4.4gb[3.8%], shards will be relocated away from this node
+[2025-03-04 01:23:40,054][INFO ][cluster.routing.allocation.decider] [Ruckus] rerouting shards: [high disk watermark exceeded on one or more nodes]
+[2025-03-04 01:23:57,006][INFO ][bootstrap                ] running graceful exit on windows
+[2025-03-04 01:23:57,007][INFO ][node                     ] [Ruckus] stopping ...
+[2025-03-04 01:23:57,151][INFO ][node                     ] [Ruckus] stopped
+[2025-03-04 01:23:57,154][INFO ][node                     ] [Ruckus] closing ...
+[2025-03-04 01:23:57,224][INFO ][node                     ] [Ruckus] closed
