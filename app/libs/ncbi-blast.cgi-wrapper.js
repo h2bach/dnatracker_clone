@@ -16,6 +16,8 @@ var putRequestBlastCgi = function (url) {
     request(url, function (error, response, body) {
         if (!error && response.statusCode == 200) {
             defer.resolve(getInfoFromHtml(body));
+        } else {
+            defer.reject(error || "Request failed");
         }
     });
     return defer.promise;
@@ -35,6 +37,8 @@ var getFileResult = function (requestInfo) {
                         getInfo();
                     }, 1000 * 5);
                 }
+            } else {
+                defer.reject(error || "Failed to get results");
             }
         });
     };
@@ -43,6 +47,53 @@ var getFileResult = function (requestInfo) {
         getInfo();
     }, 1000 * (parseInt(requestInfo.rtoe)));
     return defer.promise;
+};
+
+// Hàm parse kết quả NCBI để tương thích với local BLAST
+var parseNcbiResult = function(jsonResult) {
+    try {
+        var data = JSON.parse(jsonResult);
+        var search = data.BlastOutput2[0].report.results.search;
+        
+        // Chuyển đổi format để tương thích với local BLAST
+        var hits = search.hits.map(function(hit) {
+            return {
+                description: [{
+                    accession: hit.description[0].accession,
+                    sciname: hit.description[0].sciname || hit.description[0].title,
+                    id: hit.description[0].id
+                }],
+                hsps: hit.hsps.map(function(hsp) {
+                    return {
+                        bit_score: hsp.bit_score,
+                        score: hsp.score,
+                        evalue: hsp.evalue,
+                        identity: hsp.identity,
+                        align_len: hsp.align_len,
+                        gaps: hsp.gaps || 0,
+                        query_strand: hsp.query_strand,
+                        hit_strand: hsp.hit_strand,
+                        qseq: hsp.qseq,
+                        hseq: hsp.hseq,
+                        midline: hsp.midline,
+                        query_from: hsp.query_from,
+                        query_to: hsp.query_to,
+                        hit_from: hsp.hit_from,
+                        hit_to: hsp.hit_to
+                    };
+                }),
+                len: hit.len
+            };
+        });
+
+        return {
+            hits: hits,
+            query_len: search.query_len,
+            query_title: search.query_title
+        };
+    } catch (e) {
+        throw new Error("Failed to parse NCBI result: " + e.message);
+    }
 };
 
 module.exports = {
@@ -54,6 +105,7 @@ module.exports = {
         
         return putRequestBlastCgi(urlApi)
             .then(getFileResult)
+            .then(parseNcbiResult);
     },
     
     search: function (querySeq) {

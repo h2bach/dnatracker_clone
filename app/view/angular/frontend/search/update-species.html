@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cập nhật Thông tin Loài</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+        .form-section {
+            margin-bottom: 2rem;
+            padding: 2rem;
+            border: 1px solid #dee2e6;
+            border-radius: 0.5rem;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .form-section h2 {
+            margin-bottom: 1.5rem;
+            color: #0d6efd;
+            font-size: 16pt;
+            font-weight: 600;
+        }
+        .form-label {
+            font-size: 14pt;
+        }
+        .form-control, .form-select {
+            font-size: 14pt;
+        }
+        .btn {
+            font-size: 14pt;
+        }
+        .form-text {
+            font-size: 14pt;
+        }
+        /* CSS cho dropdown box */
+        .form-select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            background-size: 16px 12px;
+            padding-right: 2.5rem;
+        }
+        .form-select:focus {
+            border-color: #86b7fe;
+            box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+        }
+        /* CSS cho multiple select */
+        .form-select[multiple] {
+            height: auto;
+            min-height: 120px;
+            padding-right: 0.75rem;
+            background-image: none;
+        }
+        .form-select[multiple] option {
+            padding: 0.5rem;
+            margin: 2px 0;
+            border-radius: 4px;
+        }
+        .form-select[multiple] option:checked {
+            background: #0d6efd linear-gradient(0deg, #0d6efd 0%, #0d6efd 100%);
+            color: white;
+        }
+        /* CSS cho reference links */
+        .reference-link-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        .reference-link-item .btn-remove {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-4">
+        <h1 class="mb-4" style="font-size: 18pt;">Cập nhật Thông tin Loài</h1>
+
+        <!-- Phần 1: Form cập nhật thủ công -->
+        <div class="form-section">
+            <h2>1. Cập nhật Thông tin Thủ công</h2>
+            <form id="manualUpdateForm" class="needs-validation" novalidate ng-submit="handleManualUpdate($event)">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="scientific_name" class="form-label">Tên khoa học</label>
+                        <input type="text" class="form-control" id="scientific_name" name="scientific_name" ng-model="species.scientific_name" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="english_name" class="form-label">Tên tiếng Anh</label>
+                        <input type="text" class="form-control" id="english_name" name="english_name" ng-model="species.english_name">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label for="vietnamese_name" class="form-label">Tên tiếng Việt</label>
+                        <input type="text" class="form-control" id="vietnamese_name" name="vietnamese_name" ng-model="species.vietnamese_name">
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="laos_name" class="form-label">Tên tiếng Lào</label>
+                        <input type="text" class="form-control" id="laos_name" name="laos_name" ng-model="species.laos_name">
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="campuchia_name" class="form-label">Tên tiếng Campuchia</label>
+                        <input type="text" class="form-control" id="campuchia_name" name="campuchia_name" ng-model="species.campuchia_name">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <label for="countries" class="form-label">Quốc gia</label>
+                        <select class="form-select" id="countries" name="countries" ng-model="species.countries" multiple>
+                            <option value="Vietnam">Việt Nam</option>
+                            <option value="Laos">Lào</option>
+                            <option value="Campuchia">Campuchia</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Thay đổi phần chọn tỉnh phân bố thành input text -->
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <label for="distributionInputText" class="form-label">Phân bố (Tỉnh/Thành)</label>
+                        <input type="text" class="form-control" id="distributionInputText" name="distributionInputText" ng-model="distributionInputText" placeholder="Nhập tên tỉnh, cách nhau bởi dấu | (ví dụ: Hà Nội | Tp. Hồ Chí Minh | Đà Nẵng)">
+                        <div class="form-text">Nhập chính xác tên tỉnh/thành phố, phân tách bằng dấu "|".</div>
+                    </div>
+                </div>
+                <!-- Kết thúc phần input text tỉnh phân bố -->
+
+                <div class="mb-3">
+                    <label for="conservation_status" class="form-label">Trạng thái bảo tồn</label>
+                    <input type="text" class="form-control" id="conservation_status" name="conservation_status" ng-model="species.conservation_status">
+                </div>
+
+                <div class="mb-3">
+                    <label for="description" class="form-label">Mô tả</label>
+                    <textarea class="form-control" id="description" name="description" rows="3" ng-model="species.description"></textarea>
+                </div>
+
+                <!-- Reference Links - Thay đổi để hỗ trợ nhiều link -->
+                <div class="mb-3">
+                    <label class="form-label">Liên kết tham khảo</label>
+                    <div class="reference-links-container">
+                        <!-- Danh sách link đã thêm -->
+                        <div class="reference-link-item" ng-repeat="link in species.reference_link track by $index">
+                            <input type="text" class="form-control" ng-model="species.reference_link[$index]" placeholder="https://...">
+                            <button type="button" class="btn btn-danger btn-sm btn-remove" ng-click="removeReferenceLink($index)">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        
+                        <!-- Thêm link mới -->
+                        <div class="input-group mt-2">
+                            <input type="text" class="form-control" ng-model="newReferenceLink" placeholder="Thêm liên kết mới https://...">
+                            <button type="button" class="btn btn-outline-secondary" ng-click="addReferenceLink()">
+                                <i class="fas fa-plus"></i> Thêm
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="iucn_class" class="form-label">Phân loại IUCN</label>
+                        <input type="text" class="form-control" id="iucn_class" name="iucn_class" ng-model="species.iucn_class">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="vn_redbook_class" class="form-label">Phân loại Sách đỏ Việt Nam</label>
+                        <input type="text" class="form-control" id="vn_redbook_class" name="vn_redbook_class" ng-model="species.vn_redbook_class">
+                    </div>
+                </div>
+
+                <!-- Thêm phần upload hình ảnh -->
+                <div class="mb-3">
+                    <label for="species_images" class="form-label">Hình ảnh loài</label>
+                    <input type="file" class="form-control" id="species_images" name="species_images" multiple accept="image/*" onchange="angular.element(this).scope().handleImageUpload(event)">
+                    <div class="form-text">Chọn một hoặc nhiều file hình ảnh. Định dạng hỗ trợ: JPG, PNG, GIF.</div>
+                </div>
+
+                <!-- Thêm phần cập nhật chuỗi DNA/RNA -->
+                <div class="form-section mt-4">
+                    <h3 class="mb-3" style="font-size: 16pt; color: #0d6efd;">Thông tin chuỗi DNA/RNA</h3>
+                    <div id="seqsContainer">
+                        <div class="seq-item mb-4 p-3 border rounded" ng-repeat="seq in species.seqs">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Accession Number</label>
+                                    <input type="text" class="form-control" ng-model="seq.accession" placeholder="Nhập accession number">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Loại gen</label>
+                                    <select class="form-select" ng-model="seq.gen_type">
+                                        <option value="COI">COI</option>
+                                        <option value="Cytochrome B">Cytochrome B</option>
+                                        <option value="cytb">cytb</option>
+                                        <option value="ND4">ND4</option>
+                                        <option value="16S">16S</option>
+                                        <option value="12S">12S</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Chuỗi DNA/RNA</label>
+                                <textarea class="form-control" ng-model="seq.seq" rows="3" placeholder="Nhập chuỗi DNA/RNA"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-secondary" ng-click="addNewSeq()">
+                        <i class="fas fa-plus"></i> Thêm chuỗi mới
+                    </button>
+                </div>
+
+                <button type="submit" class="btn btn-primary mt-3">Cập nhật</button>
+            </form>
+        </div>
+
+        <!-- Phần 2: Form upload CSV -->
+        <div class="form-section">
+            <h2>2. Cập nhật Thông tin qua File CSV</h2>
+            <form id="csvUploadForm" class="needs-validation" novalidate>
+                <div class="mb-3">
+                    <label for="csvFile" class="form-label">Chọn file CSV</label>
+                    <input type="file" class="form-control" id="csvFile" name="csvFile" accept=".csv" onchange="angular.element(this).scope().handleCsvUpload(event)">
+                    <div class="form-text">
+                        File CSV phải có các cột tương ứng với các trường thông tin của loài.
+                        <a href="/templates/species_template.csv" download>Download mẫu file CSV</a>
+                    </div>
+                    <div class="mt-2">
+                        <button type="button" class="btn btn-info" ng-click="previewCsvData()">
+                            <i class="fas fa-eye"></i> Xem trước dữ liệu
+                        </button>
+                        <button type="button" class="btn btn-success" ng-click="updateFromCsv()" ng-disabled="!csvData">
+                            <i class="fas fa-upload"></i> Cập nhật dữ liệu
+                        </button>
+                    </div>
+                    <div ng-if="uploadSuccess" class="alert alert-success mt-2">
+                        {{uploadMessage}}
+                    </div>
+                    <div ng-if="uploadError" class="alert alert-danger mt-2">
+                        {{uploadMessage}}
+                    </div>
+                </div>
+
+                <!-- Thêm phần hiển thị dữ liệu CSV -->
+                <div class="mt-4" ng-if="csvData && csvData.length > 0">
+                    <h3 class="mb-3">Dữ liệu CSV</h3>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th ng-repeat="(key, value) in csvData[0]">{{key}}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="row in csvData">
+                                    <td ng-repeat="(key, value) in row">{{value}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- Nút điều hướng -->
+        <div class="text-center mt-4 mb-4">
+            <a href="#/search-species" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> Quay lại trang tìm kiếm
+            </a>
+        </div>
+    </div>
+</body>
+</html> 

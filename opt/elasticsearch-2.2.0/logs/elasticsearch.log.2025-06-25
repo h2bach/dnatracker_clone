@@ -1,0 +1,73 @@
+[2025-04-17 10:39:07,959][INFO ][node                     ] [David Cannon] version[2.2.0], pid[22896], build[8ff36d1/2016-01-27T13:32:39Z]
+[2025-04-17 10:39:07,962][INFO ][node                     ] [David Cannon] initializing ...
+[2025-04-17 10:39:10,267][INFO ][plugins                  ] [David Cannon] modules [lang-expression, lang-groovy], plugins [elasticsearch-analysis-vietnamese], sites []
+[2025-04-17 10:39:10,315][INFO ][env                      ] [David Cannon] using [1] data paths, mounts [[VOL_U (F:)]], net usable_space [85.5gb], net total_space [116.1gb], spins? [unknown], types [NTFS]
+[2025-04-17 10:39:10,315][INFO ][env                      ] [David Cannon] heap size [910.5mb], compressed ordinary object pointers [true]
+[2025-04-17 10:39:13,513][INFO ][node                     ] [David Cannon] initialized
+[2025-04-17 10:39:13,514][INFO ][node                     ] [David Cannon] starting ...
+[2025-04-17 10:39:14,897][INFO ][transport                ] [David Cannon] publish_address {127.0.0.1:9300}, bound_addresses {127.0.0.1:9300}, {[::1]:9300}
+[2025-04-17 10:39:14,931][INFO ][discovery                ] [David Cannon] elasticsearch/5ki-H2maRnihiDot_GJUqg
+[2025-04-17 10:39:19,505][INFO ][cluster.service          ] [David Cannon] new_master {David Cannon}{5ki-H2maRnihiDot_GJUqg}{127.0.0.1}{127.0.0.1:9300}, reason: zen-disco-join(elected_as_master, [0] joins received)
+[2025-04-17 10:39:19,630][INFO ][gateway                  ] [David Cannon] recovered [1] indices into cluster_state
+[2025-04-17 10:39:21,059][INFO ][cluster.routing.allocation] [David Cannon] Cluster health status changed from [RED] to [YELLOW] (reason: [shards started [[dna_tracker][3]] ...]).
+[2025-04-17 10:39:21,436][INFO ][http                     ] [David Cannon] publish_address {127.0.0.1:9200}, bound_addresses {127.0.0.1:9200}, {[::1]:9200}
+[2025-04-17 10:39:21,436][INFO ][node                     ] [David Cannon] started
+[2025-04-17 10:42:49,998][INFO ][cluster.metadata         ] [David Cannon] [dna_tracker] creating index, cause [api], templates [], shards [5]/[1], mappings []
+[2025-04-17 10:42:50,082][INFO ][cluster.metadata         ] [David Cannon] [dna_tracker] create_mapping [species]
+[2025-04-17 10:42:50,089][INFO ][cluster.routing.allocation] [David Cannon] Cluster health status changed from [RED] to [YELLOW] (reason: [shards started [[dna_tracker][4]] ...]).
+[2025-04-17 10:42:51,200][INFO ][cluster.metadata         ] [David Cannon] [dna_tracker] update_mapping [species]
+[2025-06-25 22:55:22,730][INFO ][node                     ] [Book] version[2.2.0], pid[49676], build[8ff36d1/2016-01-27T13:32:39Z]
+[2025-06-25 22:55:22,731][INFO ][node                     ] [Book] initializing ...
+[2025-06-25 22:55:24,439][INFO ][plugins                  ] [Book] modules [lang-expression, lang-groovy], plugins [elasticsearch-analysis-vietnamese], sites []
+[2025-06-25 22:55:24,463][INFO ][env                      ] [Book] using [1] data paths, mounts [[VOL_U (F:)]], net usable_space [79gb], net total_space [116.1gb], spins? [unknown], types [NTFS]
+[2025-06-25 22:55:24,463][INFO ][env                      ] [Book] heap size [910.5mb], compressed ordinary object pointers [true]
+[2025-06-25 22:55:27,623][INFO ][node                     ] [Book] initialized
+[2025-06-25 22:55:27,624][INFO ][node                     ] [Book] starting ...
+[2025-06-25 22:55:28,624][INFO ][transport                ] [Book] publish_address {127.0.0.1:9301}, bound_addresses {127.0.0.1:9301}, {[::1]:9301}
+[2025-06-25 22:55:28,633][INFO ][discovery                ] [Book] elasticsearch/bAhXuwOlSTKWcyGJw8V4Iw
+[2025-06-25 22:55:33,275][INFO ][cluster.service          ] [Book] detected_master {Meltdown}{cQt63cfbTJ296cmu4O2FrQ}{127.0.0.1}{127.0.0.1:9300}, added {{Meltdown}{cQt63cfbTJ296cmu4O2FrQ}{127.0.0.1}{127.0.0.1:9300},}, reason: zen-disco-receive(from master [{Meltdown}{cQt63cfbTJ296cmu4O2FrQ}{127.0.0.1}{127.0.0.1:9300}])
+[2025-06-25 22:55:33,533][WARN ][index                    ] [Book] [dna_tracker] [dna_tracker][1] found shard on path: [F:\DNATracker\dnatracker_2\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0\indices\dna_tracker\1] with a different index UUID - this shard seems to be leftover from a different index with the same name. Remove the leftover shard in order to reuse the path with the current index
+[2025-06-25 22:55:33,534][WARN ][index                    ] [Book] [dna_tracker] [dna_tracker][1] failed to load shard path, trying to remove leftover
+[2025-06-25 22:55:33,536][WARN ][index                    ] [Book] [dna_tracker] [dna_tracker][1] deleting leftover shard on path: [F:\DNATracker\dnatracker_2\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0\indices\dna_tracker\1] with a different index UUID
+[2025-06-25 22:55:33,703][WARN ][index                    ] [Book] [dna_tracker] [dna_tracker][0] found shard on path: [F:\DNATracker\dnatracker_2\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0\indices\dna_tracker\0] with a different index UUID - this shard seems to be leftover from a different index with the same name. Remove the leftover shard in order to reuse the path with the current index
+[2025-06-25 22:55:33,703][WARN ][index                    ] [Book] [dna_tracker] [dna_tracker][0] failed to load shard path, trying to remove leftover
+[2025-06-25 22:55:33,704][WARN ][index                    ] [Book] [dna_tracker] [dna_tracker][0] deleting leftover shard on path: [F:\DNATracker\dnatracker_2\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0\indices\dna_tracker\0] with a different index UUID
+[2025-06-25 22:55:33,949][WARN ][index                    ] [Book] [dna_tracker] [dna_tracker][2] found shard on path: [F:\DNATracker\dnatracker_2\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0\indices\dna_tracker\2] with a different index UUID - this shard seems to be leftover from a different index with the same name. Remove the leftover shard in order to reuse the path with the current index
+[2025-06-25 22:55:33,949][WARN ][index                    ] [Book] [dna_tracker] [dna_tracker][2] failed to load shard path, trying to remove leftover
+[2025-06-25 22:55:33,953][WARN ][index                    ] [Book] [dna_tracker] [dna_tracker][2] deleting leftover shard on path: [F:\DNATracker\dnatracker_2\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0\indices\dna_tracker\2] with a different index UUID
+[2025-06-25 22:55:34,333][WARN ][index                    ] [Book] [dna_tracker] [dna_tracker][3] found shard on path: [F:\DNATracker\dnatracker_2\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0\indices\dna_tracker\3] with a different index UUID - this shard seems to be leftover from a different index with the same name. Remove the leftover shard in order to reuse the path with the current index
+[2025-06-25 22:55:34,334][WARN ][index                    ] [Book] [dna_tracker] [dna_tracker][3] failed to load shard path, trying to remove leftover
+[2025-06-25 22:55:34,335][WARN ][index                    ] [Book] [dna_tracker] [dna_tracker][3] deleting leftover shard on path: [F:\DNATracker\dnatracker_2\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0\indices\dna_tracker\3] with a different index UUID
+[2025-06-25 22:55:34,597][WARN ][index                    ] [Book] [dna_tracker] [dna_tracker][4] found shard on path: [F:\DNATracker\dnatracker_2\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0\indices\dna_tracker\4] with a different index UUID - this shard seems to be leftover from a different index with the same name. Remove the leftover shard in order to reuse the path with the current index
+[2025-06-25 22:55:34,598][WARN ][index                    ] [Book] [dna_tracker] [dna_tracker][4] failed to load shard path, trying to remove leftover
+[2025-06-25 22:55:34,599][WARN ][index                    ] [Book] [dna_tracker] [dna_tracker][4] deleting leftover shard on path: [F:\DNATracker\dnatracker_2\dnatracker_clone\opt\elasticsearch-2.2.0\data\elasticsearch\nodes\0\indices\dna_tracker\4] with a different index UUID
+[2025-06-25 22:55:34,857][INFO ][http                     ] [Book] publish_address {127.0.0.1:9201}, bound_addresses {127.0.0.1:9201}, {[::1]:9201}
+[2025-06-25 22:55:34,858][INFO ][node                     ] [Book] started
+[2025-06-25 22:55:39,245][INFO ][node                     ] [Book] stopping ...
+[2025-06-25 22:55:39,350][INFO ][node                     ] [Book] stopped
+[2025-06-25 22:55:39,350][INFO ][node                     ] [Book] closing ...
+[2025-06-25 22:55:39,356][INFO ][node                     ] [Book] closed
+[2025-06-25 22:55:57,505][INFO ][node                     ] [Kamo Tharnn] version[2.2.0], pid[13864], build[8ff36d1/2016-01-27T13:32:39Z]
+[2025-06-25 22:55:57,506][INFO ][node                     ] [Kamo Tharnn] initializing ...
+[2025-06-25 22:55:57,982][INFO ][plugins                  ] [Kamo Tharnn] modules [lang-expression, lang-groovy], plugins [elasticsearch-analysis-vietnamese], sites []
+[2025-06-25 22:55:58,003][INFO ][env                      ] [Kamo Tharnn] using [1] data paths, mounts [[VOL_U (F:)]], net usable_space [79gb], net total_space [116.1gb], spins? [unknown], types [NTFS]
+[2025-06-25 22:55:58,003][INFO ][env                      ] [Kamo Tharnn] heap size [910.5mb], compressed ordinary object pointers [true]
+[2025-06-25 22:56:00,259][INFO ][node                     ] [Kamo Tharnn] initialized
+[2025-06-25 22:56:00,260][INFO ][node                     ] [Kamo Tharnn] starting ...
+[2025-06-25 22:56:01,253][INFO ][transport                ] [Kamo Tharnn] publish_address {127.0.0.1:9300}, bound_addresses {127.0.0.1:9300}, {[::1]:9300}
+[2025-06-25 22:56:01,274][INFO ][discovery                ] [Kamo Tharnn] elasticsearch/JTgL46LsRtODQe-2wWo-ew
+[2025-06-25 22:56:05,839][INFO ][cluster.service          ] [Kamo Tharnn] new_master {Kamo Tharnn}{JTgL46LsRtODQe-2wWo-ew}{127.0.0.1}{127.0.0.1:9300}, reason: zen-disco-join(elected_as_master, [0] joins received)
+[2025-06-25 22:56:05,927][INFO ][gateway                  ] [Kamo Tharnn] recovered [2] indices into cluster_state
+[2025-06-25 22:56:06,899][INFO ][http                     ] [Kamo Tharnn] publish_address {127.0.0.1:9200}, bound_addresses {127.0.0.1:9200}, {[::1]:9200}
+[2025-06-25 22:56:06,899][INFO ][node                     ] [Kamo Tharnn] started
+[2025-06-25 22:59:42,030][INFO ][cluster.metadata         ] [Kamo Tharnn] [dna_tracker] creating index, cause [api], templates [], shards [5]/[1], mappings []
+[2025-06-25 22:59:42,132][INFO ][cluster.metadata         ] [Kamo Tharnn] [dna_tracker] create_mapping [species]
+[2025-06-25 22:59:43,275][INFO ][cluster.metadata         ] [Kamo Tharnn] [dna_tracker] update_mapping [species]
+[2025-06-25 22:59:55,390][INFO ][cluster.metadata         ] [Kamo Tharnn] [dna_tracker] creating index, cause [api], templates [], shards [5]/[1], mappings []
+[2025-06-25 22:59:55,433][INFO ][cluster.metadata         ] [Kamo Tharnn] [dna_tracker] create_mapping [species]
+[2025-06-25 23:01:31,792][INFO ][cluster.metadata         ] [Kamo Tharnn] [dna_tracker] creating index, cause [api], templates [], shards [5]/[1], mappings []
+[2025-06-25 23:01:32,058][INFO ][cluster.metadata         ] [Kamo Tharnn] [dna_tracker] create_mapping [species]
+[2025-06-25 23:05:49,813][INFO ][node                     ] [Kamo Tharnn] stopping ...
+[2025-06-25 23:05:49,854][INFO ][node                     ] [Kamo Tharnn] stopped
+[2025-06-25 23:05:49,855][INFO ][node                     ] [Kamo Tharnn] closing ...
+[2025-06-25 23:05:49,860][INFO ][node                     ] [Kamo Tharnn] closed

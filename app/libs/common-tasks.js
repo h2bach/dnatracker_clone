@@ -20,7 +20,12 @@ module.exports = {
                     "-title": StaticConfig.db_name_coi,
                     "-parse_seqids": ""
                 },
-                seqs: []
+                seqs: [],
+                dbFiles: [
+                    StaticConfig.db_folder + "/" + StaticConfig.db_name_coi + ".nhr",
+                    StaticConfig.db_folder + "/" + StaticConfig.db_name_coi + ".nin",
+                    StaticConfig.db_folder + "/" + StaticConfig.db_name_coi + ".nsq"
+                ]
             },
             cytoB: {
                 fileName: "./db/" + StaticConfig.db_name_cytoB + ".fa",
@@ -31,8 +36,35 @@ module.exports = {
                     "-title": StaticConfig.db_name_cytoB,
                     "-parse_seqids": ""
                 },
-                seqs: []
+                seqs: [],
+                dbFiles: [
+                    StaticConfig.db_folder + "/" + StaticConfig.db_name_cytoB + ".nhr",
+                    StaticConfig.db_folder + "/" + StaticConfig.db_name_cytoB + ".nin",
+                    StaticConfig.db_folder + "/" + StaticConfig.db_name_cytoB + ".nsq"
+                ]
             }
+        };
+
+        // Kiểm tra BLAST database đã tồn tại chưa
+        var checkBlastDatabaseExists = function (dbFiles) {
+            var defer = Q.defer();
+            var allFilesExist = true;
+            
+            _.forEach(dbFiles, function (file) {
+                if (!fs.existsSync(file)) {
+                    allFilesExist = false;
+                    console.log("File BLAST database không tồn tại:", file);
+                }
+            });
+            
+            if (allFilesExist) {
+                console.log("BLAST database đã tồn tại, bỏ qua việc tạo mới");
+            } else {
+                console.log("BLAST database chưa tồn tại, sẽ tạo mới");
+            }
+            
+            defer.resolve(allFilesExist);
+            return defer.promise;
         };
 
         var getSequences = function () {
@@ -82,7 +114,6 @@ module.exports = {
             return defer.promise;
         };
 
-
         return getSequences()
             .then(function () {
                 var genFileFastaPromises = _.map(fastaFiles, function (item) {
@@ -96,22 +127,31 @@ module.exports = {
 
                 _.forEach(fastaFiles, function (fastaFile) {
                     if (fastaFile.seqs.length > 0) {
-                        // promises.push(MakeBlastDB(fastaFile.blast_config));
+                        // Kiểm tra database đã tồn tại chưa
+                        checkBlastDatabaseExists(fastaFile.dbFiles)
+                            .then(function (exists) {
+                                if (!exists) {
+                                    console.log("Tạo BLAST database cho:", fastaFile.blast_config["-title"]);
+                                    return MakeBlastDB(fastaFile.blast_config);
+                                } else {
+                                    console.log("Bỏ qua tạo database cho:", fastaFile.blast_config["-title"]);
+                                    return Q.resolve();
+                                }
+                            })
+                            .then(function () {
+                                // Xóa file FASTA tạm thời
+                                if (fastaFile.fileName && fs.existsSync(fastaFile.fileName)) {
+                                    fs.unlinkSync(fastaFile.fileName);
+                                }
+                            })
+                            .catch(function (err) {
+                                console.error("Lỗi khi xử lý database:", fastaFile.blast_config["-title"], err);
+                                throw err;
+                            });
                     }
                 });
 
-                if (promises.length > 0) {
-                    Q.all(promises).then(function () {
-                        _.forEach(fastaFiles, function (item) {
-                            if(item.fileName) {
-                                fs.unlink(item.fileName);
-                            }
-                        });
-                        defer.resolve();
-                    }, defer.reject);
-                } else {
-                    defer.resolve();
-                }
+                defer.resolve();
                 return defer.promise;
             });
     }

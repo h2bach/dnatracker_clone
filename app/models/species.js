@@ -95,7 +95,7 @@ SpeciesSchema.post('remove', function (species) {
     elastic.deleteDocument(species._id);
     _.forEach(species.images, function (imageName) {
 	    if(imageName){
-		    fs.unlink(StaticConfig.upload.image.location + "/" + imageName);
+		    fs.unlinkSync(StaticConfig.upload.image.location + "/" + imageName);
 	    }
     });
 });
@@ -103,7 +103,7 @@ SpeciesSchema.post('findOneAndRemove', function (species) {
     elastic.deleteDocument(species._id);
     _.forEach(species.images, function (imageName) {
         if(imageName){
-            fs.unlink(StaticConfig.upload.image.location + "/" + imageName);
+            fs.unlinkSync(StaticConfig.upload.image.location + "/" + imageName);
         }
     });
 });

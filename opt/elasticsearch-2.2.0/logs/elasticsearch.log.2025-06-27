@@ -1,0 +1,67 @@
+[2025-06-27 14:09:10,941][INFO ][node                     ] [Scarecrow II] version[2.2.0], pid[17524], build[8ff36d1/2016-01-27T13:32:39Z]
+[2025-06-27 14:09:10,944][INFO ][node                     ] [Scarecrow II] initializing ...
+[2025-06-27 14:09:12,888][INFO ][plugins                  ] [Scarecrow II] modules [lang-expression, lang-groovy], plugins [elasticsearch-analysis-vietnamese], sites []
+[2025-06-27 14:09:12,920][INFO ][env                      ] [Scarecrow II] using [1] data paths, mounts [[VOL_U (F:)]], net usable_space [79gb], net total_space [116.1gb], spins? [unknown], types [NTFS]
+[2025-06-27 14:09:12,921][INFO ][env                      ] [Scarecrow II] heap size [910.5mb], compressed ordinary object pointers [true]
+[2025-06-27 14:09:16,069][INFO ][node                     ] [Scarecrow II] initialized
+[2025-06-27 14:09:16,069][INFO ][node                     ] [Scarecrow II] starting ...
+[2025-06-27 14:09:17,154][INFO ][transport                ] [Scarecrow II] publish_address {127.0.0.1:9301}, bound_addresses {127.0.0.1:9301}, {[::1]:9301}
+[2025-06-27 14:09:17,163][INFO ][discovery                ] [Scarecrow II] elasticsearch/GjGNC0csQhOZWa4yT3E3qg
+[2025-06-27 14:09:19,008][INFO ][node                     ] [Scarecrow II] stopping ...
+[2025-06-27 14:09:19,219][WARN ][discovery.zen.ping.unicast] [Scarecrow II] [1] failed send ping to {#zen_unicast_9#}{::1}{[::1]:9303}
+java.lang.IllegalStateException: can't add nodes to a stopped transport
+	at org.elasticsearch.transport.netty.NettyTransport.connectToNode(NettyTransport.java:881)
+	at org.elasticsearch.transport.netty.NettyTransport.connectToNodeLight(NettyTransport.java:871)
+	at org.elasticsearch.transport.TransportService.connectToNodeLight(TransportService.java:250)
+	at org.elasticsearch.discovery.zen.ping.unicast.UnicastZenPing$3.run(UnicastZenPing.java:395)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+[2025-06-27 14:09:19,222][WARN ][discovery.zen.ping.unicast] [Scarecrow II] [1] failed send ping to {#zen_unicast_3#}{127.0.0.1}{127.0.0.1:9302}
+java.lang.IllegalStateException: can't add nodes to a stopped transport
+	at org.elasticsearch.transport.netty.NettyTransport.connectToNode(NettyTransport.java:891)
+	at org.elasticsearch.transport.netty.NettyTransport.connectToNodeLight(NettyTransport.java:871)
+	at org.elasticsearch.transport.TransportService.connectToNodeLight(TransportService.java:250)
+	at org.elasticsearch.discovery.zen.ping.unicast.UnicastZenPing$3.run(UnicastZenPing.java:395)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+[2025-06-27 14:09:19,221][WARN ][discovery.zen.ping.unicast] [Scarecrow II] [1] failed send ping to {#zen_unicast_4#}{127.0.0.1}{127.0.0.1:9303}
+java.lang.IllegalStateException: can't add nodes to a stopped transport
+	at org.elasticsearch.transport.netty.NettyTransport.connectToNode(NettyTransport.java:891)
+	at org.elasticsearch.transport.netty.NettyTransport.connectToNodeLight(NettyTransport.java:871)
+	at org.elasticsearch.transport.TransportService.connectToNodeLight(TransportService.java:250)
+	at org.elasticsearch.discovery.zen.ping.unicast.UnicastZenPing$3.run(UnicastZenPing.java:395)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+[2025-06-27 14:09:19,221][WARN ][discovery.zen.ping.unicast] [Scarecrow II] [1] failed send ping to {#zen_unicast_8#}{::1}{[::1]:9302}
+java.lang.IllegalStateException: can't add nodes to a stopped transport
+	at org.elasticsearch.transport.netty.NettyTransport.connectToNode(NettyTransport.java:891)
+	at org.elasticsearch.transport.netty.NettyTransport.connectToNodeLight(NettyTransport.java:871)
+	at org.elasticsearch.transport.TransportService.connectToNodeLight(TransportService.java:250)
+	at org.elasticsearch.discovery.zen.ping.unicast.UnicastZenPing$3.run(UnicastZenPing.java:395)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+[2025-06-27 14:09:19,220][WARN ][discovery.zen.ping.unicast] [Scarecrow II] [1] failed send ping to {#zen_unicast_10#}{::1}{[::1]:9304}
+java.lang.IllegalStateException: can't add nodes to a stopped transport
+	at org.elasticsearch.transport.netty.NettyTransport.connectToNode(NettyTransport.java:881)
+	at org.elasticsearch.transport.netty.NettyTransport.connectToNodeLight(NettyTransport.java:871)
+	at org.elasticsearch.transport.TransportService.connectToNodeLight(TransportService.java:250)
+	at org.elasticsearch.discovery.zen.ping.unicast.UnicastZenPing$3.run(UnicastZenPing.java:395)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+[2025-06-27 14:09:19,219][WARN ][discovery.zen.ping.unicast] [Scarecrow II] [1] failed send ping to {#zen_unicast_5#}{127.0.0.1}{127.0.0.1:9304}
+java.lang.IllegalStateException: can't add nodes to a stopped transport
+	at org.elasticsearch.transport.netty.NettyTransport.connectToNode(NettyTransport.java:891)
+	at org.elasticsearch.transport.netty.NettyTransport.connectToNodeLight(NettyTransport.java:871)
+	at org.elasticsearch.transport.TransportService.connectToNodeLight(TransportService.java:250)
+	at org.elasticsearch.discovery.zen.ping.unicast.UnicastZenPing$3.run(UnicastZenPing.java:395)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+[2025-06-27 14:09:19,243][INFO ][node                     ] [Scarecrow II] stopped
+[2025-06-27 14:09:19,244][INFO ][node                     ] [Scarecrow II] closing ...
+[2025-06-27 14:09:19,255][INFO ][node                     ] [Scarecrow II] closed

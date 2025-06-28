@@ -47,23 +47,35 @@ UserSchema.methods = {
 UserSchema.statics = {
     authenticate: function (options, cb) {
         options.select = options.select || "email username role admin";
-        return this.findOne(options.criteria).select(options.select).exec(function (err, user) {
-            if (!user) {
-                err = { message: 'Unknown user' };
-            } else if (!user.checkPassword(options.password)) {
-                err = { message: 'Invalid password' };
-            }
-            cb(err, _.pick(user, "username role admin _id".split(" ")));
-        });
+        return this.findOne(options.criteria).select(options.select).exec()
+            .then(function (user) {
+                if (!user) {
+                    throw { message: 'Unknown user' };
+                } else if (!user.checkPassword(options.password)) {
+                    throw { message: 'Invalid password' };
+                }
+                return _.pick(user, "username role admin _id".split(" "));
+            })
+            .then(function (userData) {
+                cb(null, userData);
+            })
+            .catch(function (err) {
+                cb(err, null);
+            });
     },
     resetPassword: function (user_id, cb) {
-        this.findOne({_id: user_id}, function (err, user) {
-            var newpass = shortid.generate();
-            user.password = newpass;
-            user.save(function (err) {
-                cb(err, newpass);
+        this.findOne({_id: user_id})
+            .then(function (user) {
+                var newpass = shortid.generate();
+                user.password = newpass;
+                return user.save();
             })
-        })
+            .then(function () {
+                cb(null, newpass);
+            })
+            .catch(function (err) {
+                cb(err, null);
+            });
     }
 };
 

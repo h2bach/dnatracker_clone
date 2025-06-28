@@ -143,7 +143,7 @@ module.exports = function (gulp) {
 
 	gulp.task('clear-db', function () {
 		var db = mongoose.connect(dbUri);
-        return Species.remove().exec(closeConnection(db));
+        return Species.deleteMany({}).exec().then(closeConnection(db));
 	});
 
     function createRawData(options) {

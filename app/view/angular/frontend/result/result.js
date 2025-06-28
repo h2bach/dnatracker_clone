@@ -11,17 +11,7 @@
                 .state("frontend.result-dna", {
                     url: "result-dna",
                     templateUrl: "angular/frontend/result/result-dna.html",
-                    params: {
-                        result: null,
-                        method: null,
-                        seq: null
-                    },
-                    controller: "result-dna.ctrl",
-                    resolve: {
-                        result: ['$stateParams', function ($stateParams) {
-                            return $stateParams.result;
-                        }]
-                    }
+                    controller: "result-dna.ctrl"
                 })
                 .state("frontend.result-species", {
                     url: "result-species",
@@ -39,7 +29,14 @@
             modalSpeciesProvider.state("frontend.result-dna.species");
         }])
 
-        .controller("result-dna.ctrl", function ($scope, $state, SearchApi, result, previewSpeciesModal, User, MapModal) {
+        .controller("result-dna.ctrl", function ($scope, $state, SearchApi, previewSpeciesModal, User, MapModal) {
+            // Đọc dữ liệu từ sessionStorage
+            var resultData = sessionStorage.getItem('searchResult');
+            if (resultData) {
+                var result = JSON.parse(resultData);
+                sessionStorage.removeItem('searchResult'); // Xóa sau khi đọc
+            }
+            
             if (!result) {
                 $state.go("frontend.search-dna");
                 return;
@@ -61,14 +58,28 @@
                 $scope.view.searching = true;
                 $scope.view.searchNormal = false;
                 var handleResult = function (resp) {
-                    window.location = resp.data.data.url;
+                    // Cập nhật dữ liệu với kết quả mới
+                    if (resp.data.data) {
+                        $scope.report = resp.data.data.report;
+                        $scope.tree = resp.data.data.tree;
+                        $scope.message = resp.data.data.message;
+                        $scope.queryInfo = resp.data.data.queryInfo;
+                    }
+                    $scope.view.searching = false;
+                    $scope.view.searchNormal = true;
                 };
 
                 var info = angular.copy($scope.queryInfo);
                 delete info.submitTime;
 
+                // Sử dụng NCBI cho tất cả các method
                 SearchApi.search(info, $scope.method, $scope.queryInfo.typeGen, true)
-                    .then(handleResult);
+                    .then(handleResult)
+                    .catch(function(err) {
+                        console.error("Search failed:", err);
+                        $scope.view.searching = false;
+                        $scope.view.searchNormal = true;
+                    });
             };
 
 	        $scope.viewSpecies = function (species_id) {
@@ -177,12 +188,19 @@
             return {
                 restrict: "A",
                 link: function($scope, elem, attrs) {
-                    speciesApi.getOneByAccession($scope.hit.description[0].id).then(function (resp) {
-                        $scope.data = resp.data.data;
-                        $scope.seq = _.find($scope.data.seqs, function (seq) {
-                            return seq.accession == $scope.hit.description[0].accession;
-                        })
-                    });
+                    if ($scope.report && $scope.report.source !== 'ncbi') {
+                        speciesApi.getOneByAccession($scope.hit.description[0].accession).then(function (resp) {
+                            $scope.data = resp.data.data;
+                            $scope.seq = _.find($scope.data.seqs, function (seq) {
+                                return seq.accession == $scope.hit.description[0].accession;
+                            })
+                        }).catch(function(err) {
+                            console.log("Không tìm thấy thông tin species cho accession:", $scope.hit.description[0].accession);
+                            $scope.data = null;
+                        });
+                    } else {
+                        $scope.data = null;
+                    }
                 }
             };
         })

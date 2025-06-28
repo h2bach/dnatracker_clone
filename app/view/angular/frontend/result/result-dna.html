@@ -21,17 +21,26 @@
         <div class="row" ng-if="report.hits.length > 0">
             <div class="col-lg-12 text-center">
                 <h2 class="section-heading">Kết quả tìm kiếm:</h2>
+                <div ng-if="report.source === 'ncbi'" class="alert alert-info">
+                    <i class="fa fa-info-circle"></i> 
+                    <strong>Thông báo:</strong> 
+                    <span ng-if="method == 'blast'">Không tìm thấy kết quả trong cơ sở dữ liệu local. Kết quả này được tìm kiếm từ NCBI BLAST.</span>
+                    <span ng-if="method == 'phylogenetic_distance' || method == 'maximum_likelihood' || method == 'maximum_parsimony'">Không tìm thấy kết quả trong cơ sở dữ liệu local. Kết quả này được tìm kiếm từ NCBI BLAST và dựng cây phát sinh chủng loại.</span>
+                </div>
                 <hr class="primary">
             </div>
         </div>
 
-        <div class="center-element transparent-bg" ng-if="report.hits.length == 0">
+        <div class="center-element transparent-bg" ng-if="report.hits.length == 0 || (message && message.indexOf('Alignment must have at least') >= 0)">
             <div class="text-center content" ng-if="!view.searching">
                 <hr class="primary" style="max-width: 400px; border-color: #31b0d5;">
-                <h2 class="section-heading">Không tìm thấy kết quả trên dữ liệu của dnatracker</h2>
+                <h2 class="section-heading" ng-if="report.hits.length == 0">Không tìm thấy kết quả trên dữ liệu của dnatracker</h2>
+                <h2 class="section-heading" ng-if="message && message.indexOf('Alignment must have at least') >= 0">Không đủ sequence để dựng cây phát sinh chủng loại</h2>
                 <h3 class="section-heading" ng-if="method == 'blast'">Có muốn thử tìm kiếm trên dữ liệu của NCBI?</h3>
+                <h3 class="section-heading" ng-if="method == 'maximum_likelihood' || method == 'maximum_parsimony' || method == 'phylogenetic_distance'">Có muốn thử tìm kiếm trên dữ liệu của NCBI và dựng cây phát sinh chủng loại?</h3>
                 <h3 class="section-heading" ng-if="method == 'blast'">(Thời gian có thể từ 2-3 phút hoặc nhiều hơn)</h3>
-                <div class="list-button" ng-if="method == 'blast'">
+                <h3 class="section-heading" ng-if="method == 'maximum_likelihood' || method == 'maximum_parsimony' || method == 'phylogenetic_distance'">(Thời gian có thể từ 3-5 phút hoặc nhiều hơn)</h3>
+                <div class="list-button" ng-if="method == 'blast' || method == 'maximum_likelihood' || method == 'maximum_parsimony' || method == 'phylogenetic_distance'">
                     <a href="" class="btn btn-success btn-xl" ng-click="search()"><i class="fa fa-check"></i> Có</a>
                     <a ui-sref="frontend.search-dna" class="btn btn-primary btn-xl"><i class="fa fa-times"></i> Không</a>
                 </div>
@@ -82,13 +91,19 @@
                             <i class="fa fa-link"></i>
                         </a>
                     </h4>
-                    <a href="" ng-click="viewSpecies(data._id)">Xem thêm thông tin <i class="fa fa-search"></i></a>
-                    <span ng-if="isRole('admin curator') && seq.location.lat && seq.location.lng"> - </span>
-                    <a href="" ng-click="viewLocation(seq.location)" ng-if="isRole('admin curator') && seq.location.lat && seq.location.lng">Tọa độ <i class="fa fa-map-marker"></i></a>
-                    <p class="m-b-sm"><strong>Tên khoa học: </strong><span style="font-style: italic;">{{data.scientific_name}}</span></p>
-                    <p class="m-b-sm"><strong>Tên tiếng việt: </strong>{{data.vietnamese_name}}</p>
+                    <a href="" ng-click="viewSpecies(data._id)" ng-if="data && report.source !== 'ncbi'">Xem thêm thông tin <i class="fa fa-search"></i></a>
+                    <span ng-if="isRole('admin curator') && seq && seq.location.lat && seq.location.lng && report.source !== 'ncbi'"> - </span>
+                    <a href="" ng-click="viewLocation(seq.location)" ng-if="isRole('admin curator') && seq && seq.location.lat && seq.location.lng && report.source !== 'ncbi'">Tọa độ <i class="fa fa-map-marker"></i></a>
+                    <p class="m-b-sm" ng-if="data && data.scientific_name && report.source !== 'ncbi'"><strong>Tên khoa học: </strong><span style="font-style: italic;">{{data.scientific_name}}</span></p>
+                    <p class="m-b-sm" ng-if="data && data.vietnamese_name && report.source !== 'ncbi'"><strong>Tên tiếng việt: </strong>{{data.vietnamese_name}}</p>
+                    <p class="m-b-sm" ng-if="data && data.english_name && report.source !== 'ncbi'"><strong>Tên tiếng Anh: </strong>{{data.english_name}}</p>
+                    <p class="m-b-sm" ng-if="data && data.laos_name && report.source !== 'ncbi'"><strong>Tên tiếng Lào: </strong>{{data.laos_name}}</p>
+                    <p class="m-b-sm" ng-if="data && data.campuchia_name && report.source !== 'ncbi'"><strong>Tên tiếng Campuchia: </strong>{{data.campuchia_name}}</p>
+                    <p class="m-b-sm" ng-if="report.source === 'ncbi' && hit.description[0].sciname"><strong>Tên khoa học: </strong><span style="font-style: italic;">{{hit.description[0].sciname}}</span></p>
                     <p class="m-b-sm"><strong>Loại gen: </strong>{{queryInfo.typeGen}}</p>
                     <p class="m-b-sm"><strong>Length: </strong>{{hit.len}}</p>
+                    <p class="m-b-sm" ng-if="!data && report.source !== 'ncbi'"><em>Không có thông tin chi tiết trong cơ sở dữ liệu</em></p>
+                    <p class="m-b-sm" ng-if="report.source === 'ncbi'"><em>Thông tin từ NCBI BLAST - không có dữ liệu chi tiết trong cơ sở dữ liệu local</em></p>
                 </div>
             </div>
             <div class="row" ng-if="!view.searchNormal">

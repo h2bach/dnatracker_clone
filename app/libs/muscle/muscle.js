@@ -43,10 +43,10 @@ var muscle = function (input, inputOptions) {
                 });
                 return data;
             })();
-            fs.unlink(inputCmd.args["-in"]);
+            fs.unlinkSync(inputCmd.args["-in"]);
             if (options.deleteAfterRun) {
                 options.getData.forEach(function (file) {
-                    fs.unlink(file);
+                    fs.unlinkSync(file);
                 });
             }
             defer.resolve(returnData);

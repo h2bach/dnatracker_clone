@@ -12,7 +12,7 @@ var iqtree = function (inputFile, deleteAfterRun) {
         result
     ];
     var inputCmd = {
-        exec: "iqtree",
+        exec: "iqtree2",
         args: {
             "-s": inputFile
         }
@@ -23,10 +23,10 @@ var iqtree = function (inputFile, deleteAfterRun) {
             var returnTree = fs.readFileSync(result).toString();
             if(deleteAfterRun) {
                 outfiles.forEach(function (file) {
-                    fs.unlink(file);
+                    fs.unlinkSync(file);
                 });
             }
-            fs.unlink(inputFile);
+            fs.unlinkSync(inputFile);
             defer.resolve(returnTree);
         }, function (stdErr) {
             defer.reject(stdErr);

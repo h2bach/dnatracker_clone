@@ -15,6 +15,11 @@
                     templateUrl: "angular/frontend/search/search-species.html",
                     controller: "search-species.ctrl"
                 })
+                .state("frontend.update-species", {
+                    url: "update-species",
+                    templateUrl: "angular/frontend/search/update-species.html",
+                    controller: "UpdateSpeciesController"
+                })
             ;
         }])
 
@@ -48,7 +53,8 @@
                 $scope.view.searching = true;
                 var handleResult = function (data) {
                     CacheService.data = _.cloneDeep($scope.input);
-                    $state.go("frontend.result-dna", {result: data});
+                    sessionStorage.setItem('searchResult', JSON.stringify(data));
+                    $state.go("frontend.result-dna");
                 };
                 if ($scope.input.file) {
                     SearchApi.searchWithFile({fasta: $scope.input.file}, type, $scope.input.typeGen).then(function (resp) {

@@ -55,13 +55,17 @@ module.exports = function (app) {
             next();
         };
         return function (err, req, res, next) {
-            if (err.name === 'UnauthorizedError') {
-                res.jsonFail("UnauthorizedError");
+            if (err && err.name === 'UnauthorizedError') {
+                if (!res.headersSent) {
+                    return res.jsonFail("UnauthorizedError");
+                }
             }
             if(req.user) {
-                roles.indexOf(req.user.role) >= 0 ? next() : res.jsonFail("Access deny");
+                roles.indexOf(req.user.role) >= 0 ? next() : (res.headersSent ? null : res.jsonFail("Access deny"));
             } else {
-                res.jsonFail("UnauthorizedError");
+                if (!res.headersSent) {
+                    res.jsonFail("UnauthorizedError");
+                }
             }
         }
     });
@@ -84,4 +88,22 @@ module.exports = function (app) {
     app.use("/angular", longCache);
 
     app.use("/species-image", longCache, express.static("./uploads/img"));
+
+    // Middleware xử lý lỗi chung
+    app.use(function(err, req, res, next) {
+        console.error('Error:', err);
+        if (!res.headersSent) {
+            if (err.name === 'UnauthorizedError') {
+                res.status(401).json({
+                    status: 0,
+                    data: "UnauthorizedError"
+                });
+            } else {
+                res.status(500).json({
+                    status: 0,
+                    data: "Internal Server Error"
+                });
+            }
+        }
+    });
 };
