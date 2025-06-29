@@ -21,9 +21,50 @@ module.exports = function (app) {
                 filename: function (req, file, cb) {
                     cb(null, options.fileName(file));
                 }
-            })
+            }),
+            fileFilter: function (req, file, cb) {
+                // Chấp nhận tất cả file
+                cb(null, true);
+            }
         });
-        return upload[type](name);
+        
+        var middleware = upload[type](name);
+        
+        // Wrap middleware để xử lý lỗi
+        return function(req, res, next) {
+            middleware(req, res, function(err) {
+                if (err instanceof multer.MulterError) {
+                    console.error('Multer error in middleware:', err);
+                    if (!res.headersSent) {
+                        if (err.code === 'LIMIT_FILE_SIZE') {
+                            return res.status(413).json({
+                                status: 0,
+                                data: "File quá lớn"
+                            });
+                        } else if (err.code === 'LIMIT_FILE_COUNT') {
+                            return res.status(413).json({
+                                status: 0,
+                                data: "Quá nhiều file"
+                            });
+                        } else if (err.code === 'LIMIT_UNEXPECTED_FILE') {
+                            return res.status(400).json({
+                                status: 0,
+                                data: "Field name không đúng: " + err.field + ". Expected: " + name
+                            });
+                        } else {
+                            return res.status(400).json({
+                                status: 0,
+                                data: "Lỗi upload file: " + err.message
+                            });
+                        }
+                    }
+                } else if (err) {
+                    return next(err);
+                } else {
+                    next();
+                }
+            });
+        };
     });
 
     app.use("/api", function(req, res, next) {
@@ -101,7 +142,7 @@ module.exports = function (app) {
             } else {
                 res.status(500).json({
                     status: 0,
-                    data: "Internal Server Error"
+                    data: "Internal Server Error: " + err.message
                 });
             }
         }

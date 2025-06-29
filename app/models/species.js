@@ -5,7 +5,7 @@ var vi = require('../libs/vi.js');
 var StaticConfig = require("../config/config.js");
 var elastic = require('../libs/elasticsearch.js')(StaticConfig.elasticsearch);
 
-var types = ["COI", "Cytochrome B"];
+var types = ["COI", "Cytochrome B", "12S", "16S", "18S", "28S","ND2", "ND4", "Cytb", "cytb", "R35"]
 var countries = ["Vietnam", "Laos", "Campuchia"];
 
 function validatorCountry (values) {

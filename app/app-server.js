@@ -4,18 +4,25 @@ var mongoose = require("mongoose");
 var upDateBlastDb = require("./libs/common-tasks").upDateBlastDb;
 var _ = require("lodash");
 var Q = require("q");
+var path = require("path");
+var FolderChecker = require('./utils/folder-checker.js');
 
 var Species = require('./models/species');
 var config = require("./config/config.js");
 
 var dbUri = "mongodb://localhost:27017/test";
 console.log(dbUri)
+
 module.exports = {
     initServer: function () {
         var initDeferred = Q.defer();
         console.log("Init Server...");
 
-        mongoose.connect(dbUri, { useNewUrlParser: true, useUnifiedTopology: true })
+        // Khởi tạo thư mục cần thiết
+        FolderChecker.initializeFolders()
+            .then(function() {
+                return mongoose.connect(dbUri, { useNewUrlParser: true, useUnifiedTopology: true });
+            })
             .then(() => {
                 console.log("Database connected successfully");
                 return upDateBlastDb();
@@ -31,12 +38,16 @@ module.exports = {
                 initDeferred.reject(err);
             });
 
-        // check 2 folder uploads and tmp
         return initDeferred.promise;
     },
     startServer: function () {
         console.log('Server start');
-        mongoose.connect(dbUri, { useNewUrlParser: true, useUnifiedTopology: true })
+        
+        // Khởi tạo thư mục cần thiết trước khi khởi động server
+        FolderChecker.initializeFolders()
+            .then(function() {
+                return mongoose.connect(dbUri, { useNewUrlParser: true, useUnifiedTopology: true });
+            })
             .then(() => {
                 console.log("Database connected successfully");
                 var app = express();

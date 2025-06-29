@@ -193,10 +193,13 @@
                                     <select class="form-select" ng-model="seq.gen_type">
                                         <option value="COI">COI</option>
                                         <option value="Cytochrome B">Cytochrome B</option>
-                                        <option value="cytb">cytb</option>
-                                        <option value="ND4">ND4</option>
-                                        <option value="16S">16S</option>
                                         <option value="12S">12S</option>
+                                        <option value="16S">16S</option>
+                                        <option value="18S">18S</option>
+                                        <option value="28S">28S</option>
+                                        <option value="ND2">ND2</option>
+                                        <option value="ND4">ND4</option>
+                                        <option value="R35">R35</option>
                                     </select>
                                 </div>
                             </div>
@@ -223,7 +226,8 @@
                     <label for="csvFile" class="form-label">Chọn file CSV</label>
                     <input type="file" class="form-control" id="csvFile" name="csvFile" accept=".csv" onchange="angular.element(this).scope().handleCsvUpload(event)">
                     <div class="form-text">
-                        File CSV phải có các cột tương ứng với các trường thông tin của loài.
+                        File CSV phải có các cột: Tên thông thường, Tên khoa học, Tên tiếng Anh, Đoạn gen, Trình tự, 
+                        Phân hạng IUCN, Link IUCN, Phân hạng Danh lục Đỏ Việt Nam, Encyclopedia of Life, gbif, Vùng phân bố, Mô tả.
                         <a href="/templates/species_template.csv" download>Download mẫu file CSV</a>
                     </div>
                     <div class="mt-2">

@@ -1,6 +1,7 @@
 var _ = require("lodash");
 var jwt = require('jsonwebtoken');
 var StaticConfig = require("../config/config.js");
+var UserChecker = require('../utils/user-checker.js');
 
 var Users = require('../models/user.js');
 
@@ -50,6 +51,19 @@ module.exports = [
                 message: "valid token",
                 user: req.user
             });
+        }
+    },
+    {
+        method: "get",
+        path: "/check-user",
+        handler: function checkUser(req, res) {
+            UserChecker.checkUserFromRequest(req)
+                .then(function(result) {
+                    res.jsonSuccess(result);
+                })
+                .catch(function(err) {
+                    res.jsonFail("Lỗi khi kiểm tra user: " + err.message);
+                });
         }
     },
     {

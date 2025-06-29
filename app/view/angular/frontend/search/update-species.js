@@ -133,6 +133,7 @@ app.controller("UpdateSpeciesController", ["$scope", "$http", "$state", "species
             console.log("Đã đọc xong file CSV");
             var csvText = e.target.result;
             $scope.csvText = csvText;
+            $scope.csvFileName = file.name; // Lưu tên file vào scope
             $scope.$apply(); // Cập nhật scope sau khi đọc file
         };
         reader.onerror = function(error) {
@@ -157,19 +158,22 @@ app.controller("UpdateSpeciesController", ["$scope", "$http", "$state", "species
         try {
             // Parse CSV text thành mảng objects
             var lines = $scope.csvText.split('\n');
-            var headers = lines[0].split(',').map(header => header.trim());
+            var headers = lines[0].split('|').map(header => header.trim());
             $scope.csvData = [];
 
             for (var i = 1; i < lines.length; i++) {
                 if (!lines[i].trim()) continue; // Bỏ qua dòng trống
                 
-                var values = lines[i].split(',').map(value => value.trim());
+                var values = lines[i].split('|').map(value => value.trim());
                 var row = {};
                 
                 headers.forEach((header, index) => {
                     row[header] = values[index] || '';
                 });
-                
+                // Nếu có trường 'Vùng phân bố', split bằng dấu ';'
+                if (row['Vùng phân bố']) {
+                    row['Vùng phân bố'] = row['Vùng phân bố'].split(';').map(x => x.trim()).filter(x => x).toString();
+                }
                 $scope.csvData.push(row);
             }
 
@@ -195,23 +199,24 @@ app.controller("UpdateSpeciesController", ["$scope", "$http", "$state", "species
 
         var formData = new FormData();
         var csvBlob = new Blob([$scope.csvText], { type: 'text/csv' });
-        formData.append('file', csvBlob, 'species.csv');
+        var fileName = $scope.csvFileName || 'species.csv';
+        formData.append('file', csvBlob, fileName);
+
+        // Debug: Log FormData
+        console.log("FormData entries:");
+        for (var pair of formData.entries()) {
+            console.log(pair[0] + ': ' + pair[1]);
+        }
 
         console.log("Chuẩn bị gửi request cập nhật");
         
-        // Lấy token từ localStorage
-        var token = localStorage.getItem('token');
         var headers = {
             'Content-Type': undefined
         };
         
-        if (token) {
-            headers['Authorization'] = 'Bearer ' + token;
-        }
-        
         $http({
             method: 'POST',
-            url: '/api/species/upload-csv',
+            url: '/api/upload-csv',
             data: formData,
             headers: headers,
             transformRequest: angular.identity
@@ -255,13 +260,6 @@ app.controller("UpdateSpeciesController", ["$scope", "$http", "$state", "species
             } else if (error.status === 415) {
                 console.log("Lỗi 415: Định dạng không được hỗ trợ");
                 $scope.uploadMessage = "Định dạng không được hỗ trợ";
-            } else if (error.status === 401) {
-                console.log("Lỗi 401: Không có quyền thực hiện");
-                $scope.uploadMessage = "Bạn không có quyền thực hiện thao tác này. Vui lòng đăng nhập lại.";
-                // Redirect về trang login
-                setTimeout(function() {
-                    $state.go("backend.login");
-                }, 2000);
             } else {
                 console.log("Lỗi khác:", error.data ? error.data.message : "Lỗi không xác định");
                 $scope.uploadMessage = error.data ? error.data.message : "Có lỗi xảy ra khi cập nhật dữ liệu";

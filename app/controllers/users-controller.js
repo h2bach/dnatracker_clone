@@ -1,6 +1,7 @@
 var _ = require("lodash");
 var shortid = require('shortid');
 var Users = require('../models/user.js');
+var UserChecker = require('../utils/user-checker.js');
 
 module.exports = [
     {
@@ -75,6 +76,60 @@ module.exports = [
                 })
                 .catch(function (err) {
                     res.jsonFail(err);
+                });
+        }
+    },
+    {
+        method: "get",
+        path: "/users/current/info",
+        handler: function getCurrentUserInfo(req, res) {
+            // Sử dụng UserChecker để kiểm tra user hiện tại
+            UserChecker.checkUserFromRequest(req)
+                .then(function(result) {
+                    if (result.isLoggedIn) {
+                        res.jsonSuccess({
+                            message: "Thông tin user hiện tại",
+                            user: result.user,
+                            role: result.role,
+                            isAdmin: result.isAdmin,
+                            isCurator: result.isCurator
+                        });
+                    } else {
+                        res.jsonFail("Bạn chưa đăng nhập");
+                    }
+                })
+                .catch(function(err) {
+                    res.jsonFail("Lỗi khi lấy thông tin user: " + err.message);
+                });
+        }
+    },
+    {
+        method: "get",
+        path: "/users/current/permissions",
+        handler: function getCurrentUserPermissions(req, res) {
+            // Sử dụng UserChecker để kiểm tra quyền của user hiện tại
+            UserChecker.checkUserFromRequest(req)
+                .then(function(result) {
+                    if (result.isLoggedIn) {
+                        var permissions = {
+                            canManageUsers: UserChecker.isAdmin(result.user),
+                            canManageSpecies: UserChecker.isAdminOrCurator(result.user),
+                            canViewAdminPanel: UserChecker.isAdmin(result.user),
+                            canEditData: UserChecker.isAdminOrCurator(result.user),
+                            canDeleteData: UserChecker.isAdmin(result.user)
+                        };
+                        
+                        res.jsonSuccess({
+                            message: "Quyền của user hiện tại",
+                            user: result.user,
+                            permissions: permissions
+                        });
+                    } else {
+                        res.jsonFail("Bạn chưa đăng nhập");
+                    }
+                })
+                .catch(function(err) {
+                    res.jsonFail("Lỗi khi kiểm tra quyền: " + err.message);
                 });
         }
     }

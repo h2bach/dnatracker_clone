@@ -2,7 +2,10 @@
 
 (function () {
 
-    angular.module("dna-tracker.frontend.search", [])
+    angular.module("dna-tracker.frontend.search", [
+        "dna-tracker.common.user-role",
+        "dna-tracker.api.security"
+    ])
         .config(["$stateProvider", function ($stateProvider) {
             $stateProvider
                 .state("frontend.search-dna", {
@@ -68,12 +71,41 @@
             }
         })
 
-        .controller("search-species.ctrl", function($scope, $state) {
+        .controller("search-species.ctrl", function($scope, $state, UserRole, User) {
             $scope.view = {
-                keyWord: ""
+                keyWord: "",
+                searching: false
             };
 
+            // Khởi tạo User service
+            $scope.User = User;
+            $scope.UserRole = UserRole;
+
+            // Kiểm tra trạng thái user khi controller được load
+            $scope.checkUserStatus = function() {
+                UserRole.checkUserStatus().then(function(result) {
+                    console.log('Trạng thái user:', result);
+                    $scope.userStatus = result;
+                }).catch(function(err) {
+                    console.error('Lỗi khi kiểm tra user:', err);
+                    $scope.userStatus = {
+                        isLoggedIn: false,
+                        user: null,
+                        role: null
+                    };
+                });
+            };
+
+            // Kiểm tra xem user có quyền admin hoặc curator không
+            $scope.canUpdateSpecies = function() {
+                return UserRole.isAdmin() || UserRole.isCurator();
+            };
+
+            // Kiểm tra trạng thái user ngay khi controller được khởi tạo
+            $scope.checkUserStatus();
+
             $scope.search = function () {
+                $scope.view.searching = true;
                 $state.go("frontend.result-species", {inputSearch: $scope.view.keyWord});
             };
 

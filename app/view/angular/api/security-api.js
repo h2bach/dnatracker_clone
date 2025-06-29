@@ -10,6 +10,9 @@
                 checkToken: function () {
                     return Api.get("/api/check-token");
                 },
+                checkUser: function () {
+                    return Api.get("/api/check-user");
+                },
                 authenticate: function (info) {
                     return Api.post("/api/authenticate", info);
                 }

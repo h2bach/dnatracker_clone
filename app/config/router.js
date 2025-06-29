@@ -28,4 +28,10 @@ module.exports = function (app) {
     });
 
     app.use("/api", router);
+
+    router.stack.forEach(function(r){
+        if (r.route && r.route.path){
+            console.log(r.route.stack[0].method.toUpperCase(), '/api' + r.route.path);
+        }
+    });
 };
