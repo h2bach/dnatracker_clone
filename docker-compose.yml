@@ -1,0 +1,60 @@
+version: "4"
+
+services:
+  db:
+    image: mongo:8.0.5
+    restart: always
+    networks:
+      - app_networks
+    volumes:
+      - db-data:/data/db
+
+  es:
+    image: dnatracker-es:2.2.0
+    restart: always
+    networks:
+      - app_networks
+    volumes:
+      - es-data:/usr/share/elasticsearch/data
+    user: "1000:1000"
+
+  web:
+    image: dnatracker-web:2.0.1
+    restart: always
+    ports:
+      - 8480:3000
+    environment:
+      - MONGODB_URI=mongodb://db:27017/test
+      - ES_HOST=es:9200
+    networks:
+      - app_networks
+    depends_on:
+      - db
+      - es
+
+  restore-es:
+    image: dnatracker-web:2.0.1
+    command: bash -c "cd tasks && \
+      gulp create-mapping-es && \
+      gulp create-db-from-backup && \
+      gulp create-mock-db-users && \
+      gulp update-species-images"
+    environment:
+      - MONGODB_URI=mongodb://db/dna-tracker
+      - ES_HOST=es:9200
+    networks:
+      - app_networks
+    depends_on:
+      - es
+      - db
+    profiles:
+      - restore
+
+volumes:
+  db-data:
+    driver: local
+  es-data:
+    driver: local
+
+networks:
+  app_networks:

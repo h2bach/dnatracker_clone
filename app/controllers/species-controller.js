@@ -124,10 +124,13 @@ module.exports = [
                 addImageToData();
                 _.forEach(deletedImages, function (imageName) {
                     if (imageName) {
-                        try {
-                            fs.unlinkSync(StaticConfig.upload.image.location + "/" + imageName);
-                        } catch (e) {
-                            console.error(e);
+                        var filePath = StaticConfig.upload.image.location + "/" + imageName;
+                        if (fs.existsSync(filePath)) {
+                            try {
+                                fs.unlinkSync(filePath);
+                            } catch (e) {
+                                console.error(e);
+                            }
                         }
                     }
                 });
@@ -184,7 +187,7 @@ module.exports = [
         path: "/export-db",
         handler: function exportDB(req, res) {
             console.log("start exporting");
-            Species.find({}).select("accession seq img_source lat_lng scientific_name vietnamese_name english_name laos_name campuchia_name distribution conservation_status gen_type").lean().exec()
+            Species.find({}).lean().exec()
                 .then(function (species) {
                     var timeStamp = Date.now();
                     var workingFolder = "./tmp";

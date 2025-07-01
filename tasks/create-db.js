@@ -3,6 +3,7 @@ var Q = require("q");
 var _ = require("lodash");
 var mongoose = require("mongoose");
 var xlsxRows = require('xlsx-rows');
+var path = require('path');
 
 var Species = require('../app/models/species.js');
 var Users = require('../app/models/user');
@@ -82,7 +83,7 @@ module.exports = function (gulp) {
 
   gulp.task('create-db-from-backup', function () {
             var db = mongoose.connect(dbUri);
-            var speciesData = JSON.parse(fs.readFileSync('./backup/a.json', 'utf8'));
+            var speciesData = JSON.parse(fs.readFileSync('./backup/backup-species-data.json', 'utf8'));
             return elastic.indexExists().then(function (exists) {
                               if (exists) {
                                                     return elastic.deleteIndex();
@@ -131,7 +132,7 @@ module.exports = function (gulp) {
                 return {
                     email: role + "@" + role + ".com",
                     username: role,
-                    password: "12345",
+                    password: role,
                     role: role
                 }
             })
@@ -317,4 +318,52 @@ module.exports = function (gulp) {
                 return addDocs(Species, species);
             }).then(closeConnection(db));
 	})
+
+    gulp.task('update-species-images', function () {
+        var db = mongoose.connect(dbUri);
+        return updateSpeciesImagesFromFolder('./backup/img', './uploads/img')
+            .then(closeConnection(db));
+    });
 };
+
+function updateSpeciesImagesFromFolder(imgFolderPath, uploadImgFolderPath) {
+    var defer = Q.defer();
+    // Tạo thư mục uploads/img nếu chưa có
+    if (!fs.existsSync(uploadImgFolderPath)) {
+        fs.mkdirSync(uploadImgFolderPath, { recursive: true });
+    }
+    var imgFiles = fs.readdirSync(imgFolderPath);
+
+    Species.find({}).then(speciesList => {
+        var updatePromises = speciesList.map(species => {
+            var sciName = species.scientific_name.replace(/\s+/g, ' ').trim();
+            var escapedName = sciName.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+            var regex = new RegExp('^' + escapedName + '(-\\d+)?\\.jpg$', 'i');
+            var matchedFiles = imgFiles.filter(f => regex.test(f));
+            if (matchedFiles.length > 0) {
+                // Copy file và lưu path mới
+                var newPaths = [];
+                matchedFiles.forEach(fileName => {
+                    var src = path.join(imgFolderPath, fileName);
+                    var dest = path.join(uploadImgFolderPath, fileName);
+                    // Chỉ copy nếu chưa tồn tại ở uploads/img
+                    if (!fs.existsSync(dest)) {
+                        fs.copyFileSync(src, dest);
+                    }
+                    newPaths.push(fileName);
+                });
+                species.images = newPaths;
+                return species.save();
+            }
+            return Promise.resolve();
+        });
+        return Promise.all(updatePromises);
+    }).then(() => {
+        console.log('Cập nhật ảnh thành công!');
+        defer.resolve();
+    }).catch(err => {
+        console.log(err);
+        defer.reject();
+    });
+    return defer.promise;
+}

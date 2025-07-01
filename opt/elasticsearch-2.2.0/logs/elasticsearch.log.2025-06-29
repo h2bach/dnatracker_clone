@@ -1,0 +1,21 @@
+[2025-06-29 15:50:29,414][INFO ][node                     ] [Man-Wolf] stopping ...
+[2025-06-29 15:50:29,695][INFO ][node                     ] [Man-Wolf] stopped
+[2025-06-29 15:50:29,695][INFO ][node                     ] [Man-Wolf] closing ...
+[2025-06-29 15:50:29,728][INFO ][node                     ] [Man-Wolf] closed
+[2025-06-29 15:50:48,047][INFO ][node                     ] [Super-Skrull] version[2.2.0], pid[50580], build[8ff36d1/2016-01-27T13:32:39Z]
+[2025-06-29 15:50:48,083][INFO ][node                     ] [Super-Skrull] initializing ...
+[2025-06-29 15:50:49,279][INFO ][plugins                  ] [Super-Skrull] modules [lang-expression, lang-groovy], plugins [elasticsearch-analysis-vietnamese], sites []
+[2025-06-29 15:50:49,331][INFO ][env                      ] [Super-Skrull] using [1] data paths, mounts [[VOL_U (F:)]], net usable_space [78.3gb], net total_space [116.1gb], spins? [unknown], types [NTFS]
+[2025-06-29 15:50:49,331][INFO ][env                      ] [Super-Skrull] heap size [910.5mb], compressed ordinary object pointers [true]
+[2025-06-29 15:50:55,190][INFO ][node                     ] [Super-Skrull] initialized
+[2025-06-29 15:50:55,191][INFO ][node                     ] [Super-Skrull] starting ...
+[2025-06-29 15:50:57,926][INFO ][transport                ] [Super-Skrull] publish_address {127.0.0.1:9300}, bound_addresses {127.0.0.1:9300}, {[::1]:9300}
+[2025-06-29 15:50:57,952][INFO ][discovery                ] [Super-Skrull] elasticsearch/3kDE7uaZRRODr4T0AGhBag
+[2025-06-29 15:51:02,604][INFO ][cluster.service          ] [Super-Skrull] new_master {Super-Skrull}{3kDE7uaZRRODr4T0AGhBag}{127.0.0.1}{127.0.0.1:9300}, reason: zen-disco-join(elected_as_master, [0] joins received)
+[2025-06-29 15:51:03,026][INFO ][gateway                  ] [Super-Skrull] recovered [2] indices into cluster_state
+[2025-06-29 15:51:09,368][INFO ][http                     ] [Super-Skrull] publish_address {127.0.0.1:9200}, bound_addresses {127.0.0.1:9200}, {[::1]:9200}
+[2025-06-29 15:51:09,369][INFO ][node                     ] [Super-Skrull] started
+[2025-06-29 17:01:39,573][INFO ][node                     ] [Super-Skrull] stopping ...
+[2025-06-29 17:01:39,708][INFO ][node                     ] [Super-Skrull] stopped
+[2025-06-29 17:01:39,708][INFO ][node                     ] [Super-Skrull] closing ...
+[2025-06-29 17:01:39,730][INFO ][node                     ] [Super-Skrull] closed
