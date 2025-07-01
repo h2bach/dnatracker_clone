@@ -10,7 +10,7 @@ var Users = require('../app/models/user');
 var elasticConfig = require('../app/config/config.js').elasticsearch;
 var elastic = require('../app/libs/elasticsearch.js')(elasticConfig);
 
-var dbUri = "mongodb://localhost:27017/test"
+var dbUri = process.env.MONGODB_URI || "mongodb://localhost:27017/test"
 
 var prepareFastaData = function (fastaBuffer) {
     return function () {

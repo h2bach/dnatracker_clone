@@ -10,7 +10,7 @@ var FolderChecker = require('./utils/folder-checker.js');
 var Species = require('./models/species');
 var config = require("./config/config.js");
 
-var dbUri = "mongodb://localhost:27017/test";
+var dbUri = process.env.MONGODB_URI || "mongodb://localhost:27017/test";
 console.log(dbUri)
 
 module.exports = {

@@ -1,75 +1,119 @@
-version: "4"
+version: "3.8"
 
 services:
-  db:
-    image: mongo:8.0.5
-    restart: always
-    networks:
-      - app_networks
-    volumes:
-      - db-data:/data/db
-
-  init-permission:
-    image: alpine:3.18
-    volumes:
-      - ./esdata:/mnt/data
-    command: >
-      sh -c "mkdir -p /mnt/data && chmod 777 /mnt/data"
-    entrypoint: /bin/sh
-    restart: "no"
-  es:
-    image: dnatracker-es:2.2.0
-    container_name: es
-    user: "1000:1000"  # Đảm bảo user phù hợp với UID của elasticsearch trong container
-    networks:
-      - app_networks
-    volumes:
-      - es-data:/usr/share/elasticsearch/data
-      - ./eslogs:/opt/elasticsearch/logs
-      - ./esplugins:/opt/elasticsearch/plugins
-      - ./esconfig:/opt/elasticsearch/config
-    environment:
-      - ES_JAVA_OPTS=-Xms1g -Xmx1g
-    depends_on:
-      - init-permission
-
-  web:
-    image: dnatracker-web:2.0.1
+  mongodb:
+    image: mongo:5.0
     restart: always
     ports:
-      - 8480:3000
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+      - ./backup:/backup
     environment:
-      - MONGODB_URI=mongodb://db:27017/test
-      - ES_HOST=es:9200
+      MONGO_INITDB_DATABASE: test
     networks:
-      - app_networks
-    depends_on:
-      - db
-      - es
+      - dnatracker_network
 
-  restore-es:
-    image: dnatracker-web:2.0.1
-    command: bash -c "cd tasks && \
-      gulp create-mapping-es && \
-      gulp create-db-from-backup && \
-      gulp create-mock-db-users && \
-      gulp update-species-images"
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:2.4.6
+    restart: always
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    volumes:
+      - elasticsearch_data:/usr/share/elasticsearch/data
+      - ./eslogs:/usr/share/elasticsearch/logs
     environment:
-      - MONGODB_URI=mongodb://db/dna-tracker
-      - ES_HOST=es:9200
+      - cluster.name=dnatracker-cluster
+      - node.name=dnatracker-node
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - xpack.security.enabled=false
+      - network.host=0.0.0.0
+      - discovery.type=single-node
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
     networks:
-      - app_networks
+      - dnatracker_network
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:9200/_cluster/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  dnatracker:
+    build: .
+    restart: always
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./uploads:/app/uploads
+      - ./tmp:/app/tmp
+      - ./db:/app/db
+      - ./backup:/app/backup
+      - ./eslogs:/app/eslogs
+    environment:
+      - NODE_ENV=dev
+      - MONGODB_URI=mongodb://mongodb:27017/test
+      - ELASTICSEARCH_HOST=elasticsearch:9200
     depends_on:
-      - es
-      - db
+      elasticsearch:
+        condition: service_healthy
+      mongodb:
+        condition: service_started
+    networks:
+      - dnatracker_network
+    command: >
+      bash -c "
+        echo 'Waiting for services to be ready...' &&
+        sleep 30 &&
+        echo 'Starting DNA Tracker application...' &&
+        node dna-tracker.js
+      "
+
+  # Service để khôi phục dữ liệu (chạy một lần)
+  restore-data:
+    build: .
+    volumes:
+      - ./uploads:/app/uploads
+      - ./tmp:/app/tmp
+      - ./db:/app/db
+      - ./backup:/app/backup
+      - ./eslogs:/app/eslogs
+    environment:
+      - NODE_ENV=dev
+      - MONGODB_URI=mongodb://mongodb:27017/test
+      - ELASTICSEARCH_HOST=elasticsearch:9200
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+      mongodb:
+        condition: service_started
+    networks:
+      - dnatracker_network
     profiles:
       - restore
+    command: >
+      bash -c "
+        echo 'Waiting for services to be ready...' &&
+        sleep 30 &&
+        echo 'Starting data restoration...' &&
+        cd tasks &&
+        ../node_modules/.bin/gulp create-mapping-es &&
+        ../node_modules/.bin/gulp create-db-from-backup &&
+        ../node_modules/.bin/gulp create-mock-db-users &&
+        ../node_modules/.bin/gulp update-species-images &&
+        echo 'Data restoration completed!'
+      "
 
 volumes:
-  db-data:
+  mongodb_data:
     driver: local
-  es-data:
+  elasticsearch_data:
     driver: local
 
 networks:
-  app_networks:
+  dnatracker_network:
+    driver: bridge

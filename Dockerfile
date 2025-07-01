@@ -1,6 +1,6 @@
 FROM ubuntu:22.04
 
-WORKDIR /src
+WORKDIR /app
 
 # Không hỏi khi cài đặt
 ENV DEBIAN_FRONTEND=noninteractive
@@ -18,27 +18,36 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libssl-dev \
     wget \
     openjdk-8-jdk \
+    python3 \
+    python3-pip \
     && rm -rf /var/lib/apt/lists/*
 
 # Cài đặt Node.js 22.x và npm
 RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - && \
     apt-get install -y nodejs
 
+# Copy package.json và package-lock.json trước để cache layer cài đặt
+COPY package*.json ./
+
+# Cài đặt dependencies Node.js
+RUN npm install
+
+# Copy toàn bộ source code vào image
+COPY . .
+
+# Thiết lập quyền thực thi cho các tools
+RUN find ./opt -name "*.sh" -exec chmod +x {} \; || true
+RUN find ./opt -type d -name "bin" -exec chmod -R +x {}/\* \; || true
+
 # Thiết lập biến môi trường cho các tool ngoài
-ENV EXTERN_TOOLS_DIR /src/opt
+ENV EXTERN_TOOLS_DIR /app/opt
 ENV PATH $EXTERN_TOOLS_DIR/elasticsearch-2.2.0/bin:$PATH
 ENV PATH $EXTERN_TOOLS_DIR/iqtree-1.3.13-Linux/bin:$PATH
 ENV PATH $EXTERN_TOOLS_DIR/ufbootmp-sse-1.0.0-Linux/bin:$PATH
 ENV PATH $EXTERN_TOOLS_DIR/ncbi-blast-2.3.0+/bin:$PATH
 
-# Copy package.json và package-lock.json trước để cache layer cài đặt
-COPY package*.json ./
-
-# Cài đặt dependencies Node.js
-RUN npm install --production
-
-# Copy toàn bộ source code vào image
-COPY . .
+# Tạo các thư mục cần thiết
+RUN mkdir -p tmp uploads/img db backup eslogs
 
 # Expose port cho app Node.js
 EXPOSE 3000
