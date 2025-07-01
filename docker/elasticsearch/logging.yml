@@ -1,0 +1,21 @@
+# Logging configuration for Elasticsearch 2.2.0
+rootLogger: INFO, console, file
+
+# Console appender
+appender.console.type: console
+appender.console.layout.type: consolePattern
+appender.console.layout.conversionPattern: [%d{ISO8601}][%-5p][%-25c] %m%n
+
+# File appender
+appender.file.type: dailyRollingFile
+appender.file.file: /usr/share/elasticsearch/logs/elasticsearch.log
+appender.file.datePattern: "'.'yyyy-MM-dd"
+appender.file.layout.type: pattern
+appender.file.layout.conversionPattern: [%d{ISO8601}][%-5p][%-25c] %m%n
+
+# Specific logger levels
+logger.action: DEBUG
+logger.com.amazonaws: WARN
+logger.org.apache.http: INFO
+logger.index.search.slowlog: TRACE, index_search_slow_log_file
+logger.index.indexing.slowlog: TRACE, index_indexing_slow_log_file

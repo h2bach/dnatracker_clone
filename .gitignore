@@ -9,3 +9,7 @@ uploads
 *.nhr
 tmp
 .vagrant
+.env
+.DS_Store
+*.log
+node_modules/

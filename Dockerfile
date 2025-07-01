@@ -49,8 +49,12 @@ ENV PATH $EXTERN_TOOLS_DIR/ncbi-blast-2.3.0+/bin:$PATH
 # Tạo các thư mục cần thiết
 RUN mkdir -p tmp uploads/img db backup eslogs
 
+# Copy và set permission cho entrypoint script  
+COPY docker-entrypoint.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+
 # Expose port cho app Node.js
 EXPOSE 3000
 
 # Lệnh khởi động ứng dụng
-CMD ["node", "dna-tracker.js"]
+ENTRYPOINT ["docker-entrypoint.sh"]

@@ -1,0 +1,59 @@
+# Node modules
+node_modules
+npm-debug.log*
+
+# Environment files
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Logs
+logs
+*.log
+eslogs/*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Dependency directories
+.npm
+.eslintcache
+
+# Optional npm cache directory
+.npm
+.npm-cache
+
+# Docker
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Git
+.git
+.gitignore
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary files
+tmp/*
+uploads/*
+backup/*
+
+# Database
+db/*
+
+# Documentation
+*.md
+!README.md
