@@ -9,14 +9,29 @@ services:
     volumes:
       - db-data:/data/db
 
+  init-permission:
+    image: alpine:3.18
+    volumes:
+      - ./esdata:/mnt/data
+    command: >
+      sh -c "mkdir -p /mnt/data && chmod 777 /mnt/data"
+    entrypoint: /bin/sh
+    restart: "no"
   es:
     image: dnatracker-es:2.2.0
-    restart: always
+    container_name: es
+    user: "1000:1000"  # Đảm bảo user phù hợp với UID của elasticsearch trong container
     networks:
       - app_networks
     volumes:
       - es-data:/usr/share/elasticsearch/data
-    user: "1000:1000"
+      - ./eslogs:/opt/elasticsearch/logs
+      - ./esplugins:/opt/elasticsearch/plugins
+      - ./esconfig:/opt/elasticsearch/config
+    environment:
+      - ES_JAVA_OPTS=-Xms1g -Xmx1g
+    depends_on:
+      - init-permission
 
   web:
     image: dnatracker-web:2.0.1
