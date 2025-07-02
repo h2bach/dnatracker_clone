@@ -1,0 +1,17 @@
+[2025-07-01 15:57:02,249][INFO ][node                     ] [Krang] version[2.2.0], pid[14492], build[8ff36d1/2016-01-27T13:32:39Z]
+[2025-07-01 15:57:02,254][INFO ][node                     ] [Krang] initializing ...
+[2025-07-01 15:57:04,171][INFO ][plugins                  ] [Krang] modules [lang-expression, lang-groovy], plugins [elasticsearch-analysis-vietnamese], sites []
+[2025-07-01 15:57:04,200][INFO ][env                      ] [Krang] using [1] data paths, mounts [[VOL_U (F:)]], net usable_space [78.9gb], net total_space [116.1gb], spins? [unknown], types [NTFS]
+[2025-07-01 15:57:04,201][INFO ][env                      ] [Krang] heap size [910.5mb], compressed ordinary object pointers [true]
+[2025-07-01 15:57:07,208][INFO ][node                     ] [Krang] initialized
+[2025-07-01 15:57:07,208][INFO ][node                     ] [Krang] starting ...
+[2025-07-01 15:57:08,651][INFO ][transport                ] [Krang] publish_address {127.0.0.1:9300}, bound_addresses {127.0.0.1:9300}, {[::1]:9300}
+[2025-07-01 15:57:08,661][INFO ][discovery                ] [Krang] elasticsearch/gqIL68jwQvOpFs_e69zPFg
+[2025-07-01 15:57:13,222][INFO ][cluster.service          ] [Krang] new_master {Krang}{gqIL68jwQvOpFs_e69zPFg}{127.0.0.1}{127.0.0.1:9300}, reason: zen-disco-join(elected_as_master, [0] joins received)
+[2025-07-01 15:57:13,316][INFO ][gateway                  ] [Krang] recovered [2] indices into cluster_state
+[2025-07-01 15:57:14,895][INFO ][http                     ] [Krang] publish_address {127.0.0.1:9200}, bound_addresses {127.0.0.1:9200}, {[::1]:9200}
+[2025-07-01 15:57:14,895][INFO ][node                     ] [Krang] started
+[2025-07-01 15:57:45,730][INFO ][node                     ] [Krang] stopping ...
+[2025-07-01 15:57:45,822][INFO ][node                     ] [Krang] stopped
+[2025-07-01 15:57:45,823][INFO ][node                     ] [Krang] closing ...
+[2025-07-01 15:57:45,832][INFO ][node                     ] [Krang] closed

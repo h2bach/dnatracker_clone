@@ -51,10 +51,14 @@ RUN mkdir -p tmp uploads/img db backup eslogs
 
 # Copy và set permission cho entrypoint script  
 COPY docker-entrypoint.sh /usr/local/bin/
+RUN ls -l /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
-
+# Copy script restore-data.sh cho service restore-data
+COPY restore-data.sh /usr/local/bin/restore-data.sh
+RUN chmod +x /usr/local/bin/restore-data.sh
 # Expose port cho app Node.js
 EXPOSE 3000
 
 # Lệnh khởi động ứng dụng
-ENTRYPOINT ["docker-entrypoint.sh"]
+# ENTRYPOINT ["docker-entrypoint.sh"]
+ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]

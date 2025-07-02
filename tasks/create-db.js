@@ -8,6 +8,9 @@ var path = require('path');
 var Species = require('../app/models/species.js');
 var Users = require('../app/models/user');
 var elasticConfig = require('../app/config/config.js').elasticsearch;
+console.log("ELASTICSEARCH_HOST env:", process.env.ELASTICSEARCH_HOST);
+elasticConfig.host = process.env.ELASTICSEARCH_HOST || elasticConfig.host;
+console.log("elasticConfig.host:", elasticConfig.host);
 var elastic = require('../app/libs/elasticsearch.js')(elasticConfig);
 
 var dbUri = process.env.MONGODB_URI || "mongodb://localhost:27017/test"

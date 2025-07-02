@@ -50,7 +50,7 @@ docker compose --profile restore run --rm restore-data
 # Dừng tất cả services
 docker compose down
 
-# Dừng và xóa volumes (CẨTHẬN: sẽ mất dữ liệu)
+# Dừng và xóa volumes (CẨN THẬN: sẽ mất dữ liệu)
 docker compose down -v
 ```
 

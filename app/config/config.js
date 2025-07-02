@@ -54,7 +54,7 @@ module.exports = {
     elasticsearch: {
         indexName: "dna_tracker",
         typeName: "species",
-        host: "127.0.0.1:9200",
+        host: process.env.ELASTICSEARCH_HOST || "127.0.0.1:9200",
         "settings": {
             "analysis": {
                 "filter": {
@@ -118,7 +118,7 @@ module.exports = {
     env: {
         dev: {
             port: 3000,
-            elasticsearch: "localhost:9200",
+            elasticsearch: process.env.ELASTICSEARCH_HOST || "localhost:9200",
             staticFolder: "./app/view"
         },
         production: {

@@ -37,7 +37,9 @@ services:
       retries: 5
 
   dnatracker:
-    build: .
+    build:
+      context: ./
+      dockerfile: Dockerfile
     restart: always
     ports:
       - "3000:3000"
@@ -81,18 +83,7 @@ services:
       - dnatracker_network
     profiles:
       - restore
-    command: >
-      bash -c "
-        echo 'Waiting for services to be ready...' &&
-        sleep 30 &&
-        echo 'Starting data restoration...' &&
-        cd tasks &&
-        ../node_modules/.bin/gulp create-mapping-es &&
-        ../node_modules/.bin/gulp create-db-from-backup &&
-        ../node_modules/.bin/gulp create-mock-db-users &&
-        ../node_modules/.bin/gulp update-species-images &&
-        echo 'Data restoration completed!'
-      "
+    entrypoint: ["/usr/local/bin/restore-data.sh"]
 
 volumes:
   mongodb_data:
