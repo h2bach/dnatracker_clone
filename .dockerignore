@@ -52,7 +52,7 @@ uploads/*
 backup/*
 
 # Database
-db/*
+# db/*
 
 # Documentation
 *.md

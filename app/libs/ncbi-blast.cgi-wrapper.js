@@ -3,7 +3,7 @@ var _ = require("lodash");
 var Q = require("q");
 var request = require("request");
 
-var hostUrl = "http://www.ncbi.nlm.nih.gov/blast/Blast.cgi?";
+var hostUrl = "https://www.ncbi.nlm.nih.gov/blast/Blast.cgi?";
 
 var putRequestBlastCgi = function (url) {
     var defer = Q.defer();

@@ -4,7 +4,7 @@ var _ = require("lodash");
 var Blastn = require("../libs/blast.js")().blastn;
 var BlastCgi = require("../libs/ncbi-blast.cgi-wrapper").query;
 var StaticConfig = require("../config/config.js");
-var muscle = require("../libs/muscle/muscle.js");
+var muscle = require("../../opt/muscle/muscle.js");
 var iqtree = require("../libs/iqtree.js");
 var ufbootmp = require("../libs/ufboot-mp.js");
 
@@ -28,8 +28,41 @@ var genFastaFile = function (hits, qseq, inputFile) {
     return defer.promise;
 };
 
+// var parseBlastnResult = function (output) {
+//     // Nếu đã là object (từ NCBI BLAST trả về), trả về luôn
+//     if (typeof output === 'object') {
+//         return output;
+//     }
+//     try {
+//         return JSON.parse(output).BlastOutput2[0].report.results.search;
+//     } catch (e) {
+//         console.error('parseBlastnResult error:', e, '\noutput:', output);
+//         throw new Error('Dữ liệu BLAST trả về không hợp lệ hoặc không phải JSON.');
+//     }
+// };
+
 var parseBlastnResult = function (output) {
-    return JSON.parse(output).BlastOutput2[0].report.results.search;
+    // Nếu đã là object (từ NCBI BLAST trả về), trả về luôn
+    if (typeof output === 'object') {
+        return output;
+    }
+    try {
+        var search = JSON.parse(output).BlastOutput2[0].report.results.search;
+        // Sửa lại accession lấy từ title
+        search.hits = search.hits.map(function(hit) {
+            var id = hit.description[0].id || "";
+            if (id.indexOf('gnl|BL_ORD_ID|') !== -1) {
+                var title = hit.description[0].title || "";
+                var accession = title.split(' ')[0];
+                hit.description[0].accession = accession;
+            }
+            return hit;
+        });
+        return search;
+    } catch (e) {
+        console.error('parseBlastnResult error:', e, '\noutput:', output);
+        throw new Error('Dữ liệu BLAST trả về không hợp lệ hoặc không phải JSON.');
+    }
 };
 
 var handleSuccessBlast = function (req, res) {

@@ -34,6 +34,13 @@ var Blast = function (options) {
                 fs.unlinkSync(inputCmd.args["-query"]);
             };
 
+            // Log lệnh blastn thực thi
+            var cmdString = inputCmd.exec;
+            for (var key in inputCmd.args) {
+                cmdString += " " + key + " " + inputCmd.args[key];
+            }
+            console.log("[Blast] Lệnh thực thi:", cmdString);
+
             runCommand(inputCmd).then(function (stdOut) {
                 handleAfterExec();
                 defer.resolve(stdOut);

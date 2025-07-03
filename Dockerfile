@@ -40,11 +40,8 @@ RUN find ./opt -name "*.sh" -exec chmod +x {} \; || true
 RUN find ./opt -type d -name "bin" -exec chmod -R +x {}/\* \; || true
 
 # Thiết lập biến môi trường cho các tool ngoài
-ENV EXTERN_TOOLS_DIR /app/opt
-ENV PATH $EXTERN_TOOLS_DIR/elasticsearch-2.2.0/bin:$PATH
-ENV PATH $EXTERN_TOOLS_DIR/iqtree-1.3.13-Linux/bin:$PATH
-ENV PATH $EXTERN_TOOLS_DIR/ufbootmp-sse-1.0.0-Linux/bin:$PATH
-ENV PATH $EXTERN_TOOLS_DIR/ncbi-blast-2.3.0+/bin:$PATH
+ENV EXTERN_TOOLS_DIR=/app/opt
+ENV PATH=$EXTERN_TOOLS_DIR/elasticsearch-2.2.0/bin:$EXTERN_TOOLS_DIR/iqtree-2.4.0-Linux-intel/bin:$EXTERN_TOOLS_DIR/ufbootmp-sse-1.0.0-Linux/bin:$EXTERN_TOOLS_DIR/ncbi-blast-2.3.0+/bin:$EXTERN_TOOLS_DIR/muscle/bin_2:$PATH
 
 # Tạo các thư mục cần thiết
 RUN mkdir -p tmp uploads/img db backup eslogs

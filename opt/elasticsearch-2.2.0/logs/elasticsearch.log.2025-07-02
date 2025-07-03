@@ -1,0 +1,51 @@
+[2025-07-02 10:32:14,735][INFO ][node                     ] [Techno] version[2.2.0], pid[17848], build[8ff36d1/2016-01-27T13:32:39Z]
+[2025-07-02 10:32:14,738][INFO ][node                     ] [Techno] initializing ...
+[2025-07-02 10:32:16,681][INFO ][plugins                  ] [Techno] modules [lang-expression, lang-groovy], plugins [elasticsearch-analysis-vietnamese], sites []
+[2025-07-02 10:32:16,713][INFO ][env                      ] [Techno] using [1] data paths, mounts [[VOL_U (F:)]], net usable_space [78.9gb], net total_space [116.1gb], spins? [unknown], types [NTFS]
+[2025-07-02 10:32:16,714][INFO ][env                      ] [Techno] heap size [910.5mb], compressed ordinary object pointers [true]
+[2025-07-02 10:32:19,579][INFO ][node                     ] [Techno] initialized
+[2025-07-02 10:32:19,580][INFO ][node                     ] [Techno] starting ...
+[2025-07-02 10:32:20,920][INFO ][transport                ] [Techno] publish_address {127.0.0.1:9300}, bound_addresses {127.0.0.1:9300}, {[::1]:9300}
+[2025-07-02 10:32:20,929][INFO ][discovery                ] [Techno] elasticsearch/0MyC9m3bQkSHA3TEnr6t5w
+[2025-07-02 10:32:25,484][INFO ][cluster.service          ] [Techno] new_master {Techno}{0MyC9m3bQkSHA3TEnr6t5w}{127.0.0.1}{127.0.0.1:9300}, reason: zen-disco-join(elected_as_master, [0] joins received)
+[2025-07-02 10:32:25,625][INFO ][gateway                  ] [Techno] recovered [2] indices into cluster_state
+[2025-07-02 10:32:27,003][INFO ][http                     ] [Techno] publish_address {127.0.0.1:9200}, bound_addresses {127.0.0.1:9200}, {[::1]:9200}
+[2025-07-02 10:32:27,004][INFO ][node                     ] [Techno] started
+[2025-07-02 12:48:38,040][INFO ][node                     ] [Techno] stopping ...
+[2025-07-02 12:48:38,140][INFO ][node                     ] [Techno] stopped
+[2025-07-02 12:48:38,141][INFO ][node                     ] [Techno] closing ...
+[2025-07-02 12:48:38,148][INFO ][node                     ] [Techno] closed
+[2025-07-02 13:19:00,618][INFO ][node                     ] [Scarlet Beetle] version[2.2.0], pid[9348], build[8ff36d1/2016-01-27T13:32:39Z]
+[2025-07-02 13:19:00,620][INFO ][node                     ] [Scarlet Beetle] initializing ...
+[2025-07-02 13:19:02,589][INFO ][plugins                  ] [Scarlet Beetle] modules [lang-expression, lang-groovy], plugins [elasticsearch-analysis-vietnamese], sites []
+[2025-07-02 13:19:02,614][INFO ][env                      ] [Scarlet Beetle] using [1] data paths, mounts [[VOL_U (F:)]], net usable_space [78.9gb], net total_space [116.1gb], spins? [unknown], types [NTFS]
+[2025-07-02 13:19:02,615][INFO ][env                      ] [Scarlet Beetle] heap size [910.5mb], compressed ordinary object pointers [true]
+[2025-07-02 13:19:05,734][INFO ][node                     ] [Scarlet Beetle] initialized
+[2025-07-02 13:19:05,735][INFO ][node                     ] [Scarlet Beetle] starting ...
+[2025-07-02 13:19:07,395][INFO ][transport                ] [Scarlet Beetle] publish_address {127.0.0.1:9300}, bound_addresses {127.0.0.1:9300}, {[::1]:9301}
+[2025-07-02 13:19:07,403][INFO ][discovery                ] [Scarlet Beetle] elasticsearch/Yv5e6LU_RQC74W6-2lZa-g
+[2025-07-02 13:19:11,952][INFO ][cluster.service          ] [Scarlet Beetle] new_master {Scarlet Beetle}{Yv5e6LU_RQC74W6-2lZa-g}{127.0.0.1}{127.0.0.1:9300}, reason: zen-disco-join(elected_as_master, [0] joins received)
+[2025-07-02 13:19:12,063][INFO ][gateway                  ] [Scarlet Beetle] recovered [2] indices into cluster_state
+[2025-07-02 13:19:13,797][INFO ][http                     ] [Scarlet Beetle] publish_address {127.0.0.1:9200}, bound_addresses {127.0.0.1:9200}, {[::1]:9201}
+[2025-07-02 13:19:13,798][INFO ][node                     ] [Scarlet Beetle] started
+[2025-07-02 13:19:46,890][INFO ][node                     ] [Scarlet Beetle] stopping ...
+[2025-07-02 13:19:46,977][INFO ][node                     ] [Scarlet Beetle] stopped
+[2025-07-02 13:19:46,978][INFO ][node                     ] [Scarlet Beetle] closing ...
+[2025-07-02 13:19:46,985][INFO ][node                     ] [Scarlet Beetle] closed
+[2025-07-02 13:19:53,498][INFO ][node                     ] [Copperhead] version[2.2.0], pid[15308], build[8ff36d1/2016-01-27T13:32:39Z]
+[2025-07-02 13:19:53,500][INFO ][node                     ] [Copperhead] initializing ...
+[2025-07-02 13:19:53,967][INFO ][plugins                  ] [Copperhead] modules [lang-expression, lang-groovy], plugins [elasticsearch-analysis-vietnamese], sites []
+[2025-07-02 13:19:53,989][INFO ][env                      ] [Copperhead] using [1] data paths, mounts [[VOL_U (F:)]], net usable_space [78.9gb], net total_space [116.1gb], spins? [unknown], types [NTFS]
+[2025-07-02 13:19:53,990][INFO ][env                      ] [Copperhead] heap size [910.5mb], compressed ordinary object pointers [true]
+[2025-07-02 13:19:56,711][INFO ][node                     ] [Copperhead] initialized
+[2025-07-02 13:19:56,711][INFO ][node                     ] [Copperhead] starting ...
+[2025-07-02 13:19:58,389][INFO ][transport                ] [Copperhead] publish_address {127.0.0.1:9300}, bound_addresses {127.0.0.1:9300}, {[::1]:9300}
+[2025-07-02 13:19:58,397][INFO ][discovery                ] [Copperhead] elasticsearch/-B6QZ7avQ6uZbCf8_G55Ig
+[2025-07-02 13:20:02,968][INFO ][cluster.service          ] [Copperhead] new_master {Copperhead}{-B6QZ7avQ6uZbCf8_G55Ig}{127.0.0.1}{127.0.0.1:9300}, reason: zen-disco-join(elected_as_master, [0] joins received)
+[2025-07-02 13:20:03,091][INFO ][gateway                  ] [Copperhead] recovered [2] indices into cluster_state
+[2025-07-02 13:20:04,608][INFO ][http                     ] [Copperhead] publish_address {127.0.0.1:9200}, bound_addresses {127.0.0.1:9200}, {[::1]:9200}
+[2025-07-02 13:20:04,609][INFO ][node                     ] [Copperhead] started
+[2025-07-02 15:55:28,892][INFO ][node                     ] [Copperhead] stopping ...
+[2025-07-02 15:55:29,093][INFO ][node                     ] [Copperhead] stopped
+[2025-07-02 15:55:29,093][INFO ][node                     ] [Copperhead] closing ...
+[2025-07-02 15:55:29,101][INFO ][node                     ] [Copperhead] closed
