@@ -3,7 +3,7 @@ services:
     image: mongo:5.0
     restart: always
     ports:
-      - "27017:27017"
+      - "27018:27017"
     volumes:
       - mongodb_data:/data/db
       - ./backup:/backup
@@ -18,8 +18,8 @@ services:
       dockerfile: Dockerfile
     restart: always
     ports:
-      - "9200:9200"
-      - "9300:9300"
+      - "9201:9200"
+      - "9301:9300"
     volumes:
       - elasticsearch_data:/usr/share/elasticsearch/data
       - ./eslogs:/usr/share/elasticsearch/logs
@@ -42,7 +42,7 @@ services:
       dockerfile: Dockerfile
     restart: always
     ports:
-      - "3000:3000"
+      - "8480:3000"
     volumes:
       - ./uploads:/app/uploads
       - ./tmp:/app/tmp

@@ -19,7 +19,7 @@ echo "Directories created and permissions set."
 
 # Wait for services to be ready
 echo "Waiting for MongoDB and Elasticsearch to be ready..."
-sleep 30
+sleep 5
 
 # Check if MongoDB is ready
 while ! curl -f http://mongodb:27017/ >/dev/null 2>&1; do

@@ -405,7 +405,8 @@ module.exports = [
                         'Encyclopedia of Life': 'eol_link',
                         'gbif': 'gbif_link',
                         'Vùng phân bố': 'distribution',
-                        'Mô tả': 'description'
+                        'Mô tả': 'description',
+                        'Accession': 'accession'
                     };
 
                     // Gom các gen cùng loài trước khi ghi vào DB
