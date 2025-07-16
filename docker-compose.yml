@@ -9,6 +9,12 @@ services:
       - ./backup:/backup
     environment:
       MONGO_INITDB_DATABASE: test
+    command: mongod --noauth --bind_ip_all
+    healthcheck:
+      test: ["CMD", "mongo", "--eval", "db.adminCommand('ping')"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
     networks:
       - dnatracker_network
 
@@ -58,7 +64,7 @@ services:
       elasticsearch:
         condition: service_healthy
       mongodb:
-        condition: service_started
+        condition: service_healthy
     networks:
       - dnatracker_network
 
@@ -79,7 +85,7 @@ services:
       elasticsearch:
         condition: service_healthy
       mongodb:
-        condition: service_started
+        condition: service_healthy
     networks:
       - dnatracker_network
     profiles:
