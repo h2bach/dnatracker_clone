@@ -10,12 +10,12 @@ services:
     environment:
       MONGO_INITDB_DATABASE: test
     command: mongod --noauth --bind_ip_all
-    healthcheck:
-      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
-      interval: 30s
-      timeout: 10s
-      retries: 5
-      start_period: 60s
+    # healthcheck:
+    #   test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+    #   interval: 30s
+    #   timeout: 10s
+    #   retries: 5
+    #   start_period: 60s
     networks:
       - dnatracker_network
 
@@ -65,7 +65,7 @@ services:
       elasticsearch:
         condition: service_healthy
       mongodb:
-        condition: service_healthy
+        condition: service_started
     networks:
       - dnatracker_network
 
@@ -86,7 +86,7 @@ services:
       elasticsearch:
         condition: service_healthy
       mongodb:
-        condition: service_healthy
+        condition: service_started
     networks:
       - dnatracker_network
     profiles:
