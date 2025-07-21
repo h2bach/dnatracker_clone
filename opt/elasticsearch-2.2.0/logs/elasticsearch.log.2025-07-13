@@ -1,0 +1,13 @@
+[2025-07-13 21:46:09,325][INFO ][node                     ] [Locus] version[2.2.0], pid[23268], build[8ff36d1/2016-01-27T13:32:39Z]
+[2025-07-13 21:46:09,328][INFO ][node                     ] [Locus] initializing ...
+[2025-07-13 21:46:09,884][INFO ][plugins                  ] [Locus] modules [lang-expression, lang-groovy], plugins [elasticsearch-analysis-vietnamese], sites []
+[2025-07-13 21:46:09,914][INFO ][env                      ] [Locus] using [1] data paths, mounts [[VOL_U (F:)]], net usable_space [84.4gb], net total_space [116.1gb], spins? [unknown], types [NTFS]
+[2025-07-13 21:46:09,915][INFO ][env                      ] [Locus] heap size [910.5mb], compressed ordinary object pointers [true]
+[2025-07-13 21:46:12,763][INFO ][node                     ] [Locus] initialized
+[2025-07-13 21:46:12,763][INFO ][node                     ] [Locus] starting ...
+[2025-07-13 21:46:13,678][INFO ][transport                ] [Locus] publish_address {127.0.0.1:9300}, bound_addresses {127.0.0.1:9300}, {[::1]:9300}
+[2025-07-13 21:46:13,688][INFO ][discovery                ] [Locus] elasticsearch/dnZLjCMUTWS2gIzH7VHeWA
+[2025-07-13 21:46:18,255][INFO ][cluster.service          ] [Locus] new_master {Locus}{dnZLjCMUTWS2gIzH7VHeWA}{127.0.0.1}{127.0.0.1:9300}, reason: zen-disco-join(elected_as_master, [0] joins received)
+[2025-07-13 21:46:18,349][INFO ][gateway                  ] [Locus] recovered [2] indices into cluster_state
+[2025-07-13 21:46:19,241][INFO ][http                     ] [Locus] publish_address {127.0.0.1:9200}, bound_addresses {127.0.0.1:9200}, {[::1]:9200}
+[2025-07-13 21:46:19,241][INFO ][node                     ] [Locus] started

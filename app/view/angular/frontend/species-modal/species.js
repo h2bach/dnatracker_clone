@@ -187,6 +187,10 @@
 			if (species_id) {
 				speciesApi.getOneById(species_id).then(function (resp) {
 					$scope.species = resp.data.data;
+					// Nếu không có trường countries, tự gán ['Vietnam']
+					if (!$scope.species.countries || !$scope.species.countries.length) {
+						$scope.species.countries = ['Vietnam'];
+					}
 					init();
 				});
 			} else {
@@ -348,6 +352,36 @@
 
 			$scope.showOnMap = function (location) {
 				MapModal.open(2, location, $scope.species.country);
+			};
+
+			$scope.showSeq = function(seq) {
+				$uibModalInstance.close();
+				setTimeout(function() {
+					var $rootScope = angular.element(document.body).injector().get('$rootScope');
+					$rootScope.$broadcast('openGeneModal', seq);
+				}, 300);
+			};
+			$scope.blastSeq = function(seq) {
+				$uibModalInstance.close();
+				var info = {
+					title: $scope.species.scientific_name || '',
+					seq: seq.seq,
+					typeGen: seq.gen_type
+				};
+				sessionStorage.setItem('searchInput', JSON.stringify(info));
+				sessionStorage.setItem('searchMethod', 'blast');
+				window.location.href = '#/search-dna?auto=1';
+			};
+			$scope.iqtreeSeq = function(seq) {
+				$uibModalInstance.close();
+				var info = {
+					title: $scope.species.scientific_name || '',
+					seq: seq.seq,
+					typeGen: seq.gen_type
+				};
+				sessionStorage.setItem('searchInput', JSON.stringify(info));
+				sessionStorage.setItem('searchMethod', 'maximum_likelihood');
+				window.location.href = '#/search-dna?auto=1';
 			};
 		})
 
@@ -554,3 +588,29 @@
 	;
 
 })();
+
+// Lắng nghe sự kiện mở modal gene ở cấp module
+angular.module("dna-tracker.modal.species")
+.run(function($rootScope, $uibModal) {
+    $rootScope.$on('openGeneModal', function(event, seq) {
+        $uibModal.open({
+            windowClass: 'gene-modal-wide',
+            template: '<div class="modal-header">' +
+                      '<button type="button" class="close" ng-click="close()">&times;</button>' +
+                      '<h4 class="modal-title">Thông tin gien</h4></div>' +
+                      '<div class="modal-body">' +
+                      '<p><strong>Accession:</strong> {{seq.accession}}</p>' +
+                      '<p><strong>Loại gen:</strong> {{seq.gen_type}}</p>' +
+                      '<p><strong>Chuỗi:</strong></p>' +
+                      '<pre style="word-break: break-all; white-space: pre-line; max-height: 300px; overflow: auto;">{{seq.seq}}</pre>' +
+                      '</div>' +
+                      '<div class="modal-footer">' +
+                      '<button class="btn btn-default" ng-click="close()">Đóng</button>' +
+                      '</div>',
+            controller: function($scope, $uibModalInstance) {
+                $scope.seq = seq;
+                $scope.close = function() { $uibModalInstance.close(); };
+            }
+        });
+    });
+});

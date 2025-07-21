@@ -1,0 +1,31 @@
+[2025-07-18 10:54:27,388][INFO ][node                     ] [Rogue] version[2.2.0], pid[48912], build[8ff36d1/2016-01-27T13:32:39Z]
+[2025-07-18 10:54:27,391][INFO ][node                     ] [Rogue] initializing ...
+[2025-07-18 10:54:30,109][INFO ][plugins                  ] [Rogue] modules [lang-expression, lang-groovy], plugins [elasticsearch-analysis-vietnamese], sites []
+[2025-07-18 10:54:30,149][INFO ][env                      ] [Rogue] using [1] data paths, mounts [[VOL_U (F:)]], net usable_space [84.4gb], net total_space [116.1gb], spins? [unknown], types [NTFS]
+[2025-07-18 10:54:30,151][INFO ][env                      ] [Rogue] heap size [910.5mb], compressed ordinary object pointers [true]
+[2025-07-18 10:54:34,206][INFO ][node                     ] [Rogue] initialized
+[2025-07-18 10:54:34,208][INFO ][node                     ] [Rogue] starting ...
+[2025-07-18 10:54:35,900][INFO ][transport                ] [Rogue] publish_address {127.0.0.1:9300}, bound_addresses {127.0.0.1:9300}, {[::1]:9300}
+[2025-07-18 10:54:35,910][INFO ][discovery                ] [Rogue] elasticsearch/YXs7I6CTTaKa5YVMggOy0w
+[2025-07-18 10:54:40,473][INFO ][cluster.service          ] [Rogue] new_master {Rogue}{YXs7I6CTTaKa5YVMggOy0w}{127.0.0.1}{127.0.0.1:9300}, reason: zen-disco-join(elected_as_master, [0] joins received)
+[2025-07-18 10:54:40,600][INFO ][gateway                  ] [Rogue] recovered [2] indices into cluster_state
+[2025-07-18 10:54:41,289][WARN ][index.translog           ] [Rogue] [dna_tracker][2] deleted previously created, but not yet committed, next generation [translog-28.tlog]. This can happen due to a tragic exception when creating a new generation
+[2025-07-18 10:54:41,290][WARN ][index.translog           ] [Rogue] [dna_tracker][1] deleted previously created, but not yet committed, next generation [translog-27.tlog]. This can happen due to a tragic exception when creating a new generation
+[2025-07-18 10:54:41,291][WARN ][index.translog           ] [Rogue] [dna_tracker][0] deleted previously created, but not yet committed, next generation [translog-26.tlog]. This can happen due to a tragic exception when creating a new generation
+[2025-07-18 10:54:41,681][WARN ][index.translog           ] [Rogue] [dna_tracker][3] deleted previously created, but not yet committed, next generation [translog-29.tlog]. This can happen due to a tragic exception when creating a new generation
+[2025-07-18 10:54:41,739][WARN ][index.translog           ] [Rogue] [dna_tracker][4] deleted previously created, but not yet committed, next generation [translog-26.tlog]. This can happen due to a tragic exception when creating a new generation
+[2025-07-18 10:54:43,015][INFO ][http                     ] [Rogue] publish_address {127.0.0.1:9200}, bound_addresses {127.0.0.1:9200}, {[::1]:9200}
+[2025-07-18 10:54:43,015][INFO ][node                     ] [Rogue] started
+[2025-07-18 23:04:12,973][INFO ][node                     ] [Manbot] version[2.2.0], pid[3732], build[8ff36d1/2016-01-27T13:32:39Z]
+[2025-07-18 23:04:12,974][INFO ][node                     ] [Manbot] initializing ...
+[2025-07-18 23:04:13,966][INFO ][plugins                  ] [Manbot] modules [lang-expression, lang-groovy], plugins [elasticsearch-analysis-vietnamese], sites []
+[2025-07-18 23:04:13,995][INFO ][env                      ] [Manbot] using [1] data paths, mounts [[VOL_U (F:)]], net usable_space [84.4gb], net total_space [116.1gb], spins? [unknown], types [NTFS]
+[2025-07-18 23:04:13,995][INFO ][env                      ] [Manbot] heap size [910.5mb], compressed ordinary object pointers [true]
+[2025-07-18 23:04:17,860][INFO ][node                     ] [Manbot] initialized
+[2025-07-18 23:04:17,861][INFO ][node                     ] [Manbot] starting ...
+[2025-07-18 23:04:19,182][INFO ][transport                ] [Manbot] publish_address {127.0.0.1:9300}, bound_addresses {127.0.0.1:9300}, {[::1]:9300}
+[2025-07-18 23:04:19,191][INFO ][discovery                ] [Manbot] elasticsearch/8kDPgHGFQ5CuOLMRHVR9Dg
+[2025-07-18 23:04:23,767][INFO ][cluster.service          ] [Manbot] new_master {Manbot}{8kDPgHGFQ5CuOLMRHVR9Dg}{127.0.0.1}{127.0.0.1:9300}, reason: zen-disco-join(elected_as_master, [0] joins received)
+[2025-07-18 23:04:23,886][INFO ][gateway                  ] [Manbot] recovered [2] indices into cluster_state
+[2025-07-18 23:04:25,009][INFO ][http                     ] [Manbot] publish_address {127.0.0.1:9200}, bound_addresses {127.0.0.1:9200}, {[::1]:9200}
+[2025-07-18 23:04:25,010][INFO ][node                     ] [Manbot] started

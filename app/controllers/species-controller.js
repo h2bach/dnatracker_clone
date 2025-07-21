@@ -65,6 +65,13 @@ module.exports = [
         handler: function getAllSpecies(req, res) {
             Species.find({}).select(selectFields).exec()
                 .then(function (results) {
+                    // Bổ sung: đảm bảo mỗi species đều có trường countries
+                    results = results.map(function(species) {
+                        if (!species.countries || !Array.isArray(species.countries) || species.countries.length === 0) {
+                            species.countries = ['Vietnam'];
+                        }
+                        return species;
+                    });
                     res.jsonSuccess(results);
                 })
                 .catch(function (err) {
@@ -78,6 +85,9 @@ module.exports = [
         handler: function getOneSpeciesById(req, res) {
             Species.findOne({_id: req.params.species_id})
                 .then(function (result) {
+                    if (result && (!result.countries || !Array.isArray(result.countries) || result.countries.length === 0)) {
+                        result.countries = ['Vietnam'];
+                    }
                     res.jsonSuccess(result);
                 })
                 .catch(function (err) {
@@ -91,6 +101,9 @@ module.exports = [
         handler: function getOneSpeciesByAccession(req, res) {
             Species.findOne({"seqs.accession": req.params.species_accession})
                 .then(function (result) {
+                    if (result && (!result.countries || !Array.isArray(result.countries) || result.countries.length === 0)) {
+                        result.countries = ['Vietnam'];
+                    }
                     res.jsonSuccess(result);
                 })
                 .catch(function (err) {
@@ -108,6 +121,11 @@ module.exports = [
         handler: function updateOneSpecies(req, res) {
             var species = (typeof req.body.species == "string") ? JSON.parse(req.body.species) : req.body.species;
             var deletedImages = req.body.deletedImages;
+
+            // Nếu chưa có trường countries, mặc định là ['Vietnam']
+            if (!species.countries || !Array.isArray(species.countries) || species.countries.length === 0) {
+                species.countries = ['Vietnam'];
+            }
 
             function addImageToData() {
                 if (req.files) {
@@ -254,6 +272,14 @@ module.exports = [
                         .then(function () {
                             var speciesData = fs.readJsonSync(workingFolder + folderImport + "/files/backup-species-data.json");
 
+                            // Đảm bảo mọi species đều có trường countries
+                            speciesData = speciesData.map(function(item) {
+                                if (!item.countries || !Array.isArray(item.countries) || item.countries.length === 0) {
+                                    item.countries = ['Vietnam'];
+                                }
+                                return item;
+                            });
+
                             Species.create(speciesData)
                                 .then(function (results) {
                                     res.jsonSuccess("import success");
@@ -288,6 +314,11 @@ module.exports = [
             console.log("=== BẮT ĐẦU TẠO LOÀI MỚI ===");
             
             var species = (typeof req.body.species == "string") ? JSON.parse(req.body.species) : req.body.species;
+            
+            // Nếu chưa có trường countries, mặc định là ['Vietnam']
+            if (!species.countries || !Array.isArray(species.countries) || species.countries.length === 0) {
+                species.countries = ['Vietnam'];
+            }
             
             console.log("Dữ liệu loài:", JSON.stringify(species, null, 2));
 
@@ -399,14 +430,15 @@ module.exports = [
                         'Tên tiếng Anh': 'english_name',
                         'Đoạn gen': 'gen_type',
                         'Trình tự': 'seq',
+                        'Trình tự tham chiếu trên Genbank': 'reference_seq',
+                        'Accession No.': 'accession',
                         'Phân hạng IUCN (2008 v3.1)': 'iucn_class',
                         'Link IUCN': 'iucn_link',
                         'Phân hạng Danh lục Đỏ Việt Nam (2024)': 'vn_redbook_class',
+                        'Mô tả': 'description',
                         'Encyclopedia of Life': 'eol_link',
                         'gbif': 'gbif_link',
-                        'Vùng phân bố': 'distribution',
-                        'Mô tả': 'description',
-                        'Accession': 'accession'
+                        'Vùng phân bố': 'distribution'
                     };
 
                     // Gom các gen cùng loài trước khi ghi vào DB
@@ -417,8 +449,10 @@ module.exports = [
                             var values = lines[i].split('|').map(value => value.trim());
                             var speciesData = {};
                             headers.forEach((header, index) => {
-                                var value = values[index] || '';
-                                var fieldName = columnMapping[header] || header;
+                                // Chuẩn hóa header và value để tránh lỗi dấu cách thừa
+                                var cleanHeader = header.trim();
+                                var value = (values[index] || '').trim();
+                                var fieldName = columnMapping[cleanHeader] || cleanHeader;
                                 speciesData[fieldName] = value;
                             });
                             if (!speciesData.scientific_name) {
@@ -426,23 +460,51 @@ module.exports = [
                                 errorDetails.push(`Dòng ${i + 1}: Thiếu tên khoa học`);
                                 continue;
                             }
-                            // Xử lý distribution: luôn chuyển sang ID trước khi lưu DB
-                            if (speciesData.distribution && typeof speciesData.distribution === 'string') {
-                                speciesData.distribution = speciesData.distribution.split(';').map(d => d.trim()).filter(d => d);
+                            // === BẮT ĐẦU SỬA LOGIC TÁCH SEQS ===
+                            // Hàm kiểm tra giá trị rỗng hoặc 'nan'
+                            function isEmptyOrNan(v) {
+                                return !v || v.trim().toLowerCase() === 'nan';
                             }
-                            if (speciesData.distribution && Array.isArray(speciesData.distribution)) {
-                                speciesData.distribution = provinceMapper.mapToIds(speciesData.distribution);
+                            // === BẮT ĐẦU SỬA LẠI HÀM parseSeqs ===
+                            function parseSeqs(row) {
+                                const gen_type = row.gen_type?.trim();
+                                const seq = row.seq?.trim();
+                                const reference_seq = row.reference_seq?.trim();
+                                const accession = row.accession?.trim();
+                                let result = [];
+                                if (!gen_type || gen_type.toLowerCase() === 'nan') return result;
+                                const isEmpty = v => !v || v.toLowerCase() === 'nan';
+                                // Có cả 3 trường
+                                if (!isEmpty(seq) && !isEmpty(reference_seq) && !isEmpty(accession)) {
+                                    result.push({ gen_type, seq });
+                                    result.push({ gen_type, seq: reference_seq, accession });
+                                }
+                                // Chỉ có seq
+                                else if (!isEmpty(seq)) {
+                                    result.push({ gen_type, seq });
+                                }
+                                // Chỉ có reference_seq và accession
+                                else if (!isEmpty(reference_seq) && !isEmpty(accession)) {
+                                    result.push({ gen_type, seq: reference_seq, accession });
+                                }
+                                // Trường hợp còn lại: bỏ qua
+                                return result;
                             }
-                            if (speciesData.seq) {
-                                speciesData.seqs = [{
-                                    accession: speciesData.accession || '',
-                                    gen_type: speciesData.gen_type || 'COI',
-                                    seq: speciesData.seq
-                                }];
-                                delete speciesData.seq;
-                                delete speciesData.gen_type;
-                                delete speciesData.accession;
-                            }
+                            // === KẾT THÚC SỬA LẠI HÀM parseSeqs ===
+                            let rawSeqs = parseSeqs(speciesData);
+                            // Lọc lại, loại bỏ bản ghi có trường nan hoặc rỗng
+                            speciesData.seqs = rawSeqs.filter(s =>
+                                s.gen_type && s.gen_type.toLowerCase() !== 'nan' &&
+                                s.seq && s.seq.toLowerCase() !== 'nan'
+                            );
+                            // Log debug để kiểm tra dữ liệu đầu vào và kết quả tách seqs
+                            console.log(`[DEBUG][UPLOAD-CSV] Dòng ${i+1} | scientific_name: ${speciesData.scientific_name} | gen_type: ${speciesData.gen_type} | seq: ${speciesData.seq} | reference_seq: ${speciesData.reference_seq} | accession: ${speciesData.accession}`);
+                            console.log(`[DEBUG][UPLOAD-CSV] Dòng ${i+1} | seqs sau khi tách:`, JSON.stringify(speciesData.seqs));
+                            delete speciesData.seq;
+                            delete speciesData.gen_type;
+                            delete speciesData.accession;
+                            delete speciesData.reference_seq;
+                            // ... existing code ...
                             var referenceLinks = [];
                             if (speciesData.iucn_link) referenceLinks.push(speciesData.iucn_link);
                             if (speciesData.eol_link) referenceLinks.push(speciesData.eol_link);
@@ -453,11 +515,19 @@ module.exports = [
                             delete speciesData.iucn_link;
                             delete speciesData.eol_link;
                             delete speciesData.gbif_link;
-                            // Đảm bảo tất cả các loài đều ở Việt Nam
-                            speciesData.countries = ['Vietnam'];
+                            
+                            // Nếu chưa có trường countries, mặc định là ['Vietnam']
+                            if (!speciesData.countries || !Array.isArray(speciesData.countries) || speciesData.countries.length === 0) {
+                                speciesData.countries = ['Vietnam'];
+                            }
+                            
                             // Gom vào speciesMap
                             var key = speciesData.scientific_name;
                             if (!speciesMap[key]) {
+                                speciesData.seqs = (speciesData.seqs || []).filter(s =>
+                                    s.gen_type && s.gen_type.toLowerCase() !== 'nan' &&
+                                    s.seq && s.seq.toLowerCase() !== 'nan'
+                                );
                                 speciesMap[key] = {
                                     ...speciesData,
                                     seqs: speciesData.seqs ? [...speciesData.seqs] : []
@@ -465,16 +535,14 @@ module.exports = [
                             } else {
                                 // Merge các trường thông tin khác nếu cần (ưu tiên dòng đầu)
                                 // Chỉ merge thêm gen mới
-                                if (speciesData.seqs && Array.isArray(speciesData.seqs)) {
-                                    speciesData.seqs.forEach(function(newSeq) {
-                                        var isExist = speciesMap[key].seqs.some(function(seq) {
-                                            return seq.accession === newSeq.accession && seq.gen_type === newSeq.gen_type;
-                                        });
-                                        if (!isExist) {
-                                            speciesMap[key].seqs.push(newSeq);
-                                        }
-                                    });
-                                }
+                                let newSeqs = speciesData.seqs && Array.isArray(speciesData.seqs) ? speciesData.seqs : [];
+                                // Gộp và filter triệt để
+                                speciesMap[key].seqs = (speciesMap[key].seqs || [])
+                                    .concat(newSeqs)
+                                    .filter(s =>
+                                        s.gen_type && s.gen_type.toLowerCase() !== 'nan' &&
+                                        s.seq && s.seq.toLowerCase() !== 'nan'
+                                    );
                                 // Khi cập nhật loài đã có, cũng ép lại
                                 speciesMap[key].countries = ['Vietnam'];
                             }
@@ -521,27 +589,10 @@ module.exports = [
                                 processed++;
                                 console.log(`Đã xử lý loài: ${speciesData.scientific_name}`);
                             })
-                            .catch(function(err) {
+                            .catch(function (err) {
                                 errors++;
-                                errorDetails.push(`Loài ${speciesData.scientific_name}: ${err.message}`);
-                                console.error(`===> LỖI LOÀI: ${speciesData.scientific_name}`);
-                                // Ghi thông tin loài lỗi vào file JSON
-                                var errorObj = {
-                                    scientific_name: speciesData.scientific_name,
-                                    error: err.message,
-                                    data: speciesData
-                                };
-                                var errorList = [];
-                                var errorSpeciesFile = path.join('./tmp', 'error-species.json');
-                                try {
-                                    if (fs.existsSync(errorSpeciesFile)) {
-                                        errorList = fs.readJsonSync(errorSpeciesFile);
-                                    }
-                                } catch (e) {
-                                    errorList = [];
-                                }
-                                errorList.push(errorObj);
-                                fs.writeJsonSync(errorSpeciesFile, errorList, { spaces: 2 });
+                                errorDetails.push(`Loài ${speciesData.scientific_name}: ${err && err.message ? err.message : JSON.stringify(err)}`);
+                                console.error(`===> LỖI LOÀI: ${speciesData.scientific_name}`, err);
                             });
                         promises.push(promise);
                     });

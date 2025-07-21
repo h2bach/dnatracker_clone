@@ -21,26 +21,23 @@ var SpeciesSchema = new mongoose.Schema({
     scientific_name: {type: String, default: '', trim: true},
     english_name: {type: String, default: '', trim: true},
     vietnamese_name: {type: String, default: '', trim: true},
-    laos_name: {type: String, default: '', trim: true},
-    campuchia_name: {type: String, default: '', trim: true},
-    type: String,
-    countries: {type: [String], validate: validatorCountry, default: [countries[0]]},
-    distribution: [String],
-    lat_lng: [{lat: Number, lng: Number}],
-    conservation_status: {type: String, default: '', trim: true},
-    images: [String],
-    reference_link: [String],
-    iucn_class: String,
-    vn_redbook_class: String,
-    seqs: [{
-        accession: {type: String, default: '', trim: true},
-        gen_type: {type: String, enum: types, default: types[0]},
-        seq: {type: String, default: '', trim: true},
-        location: {lat: Number, lng: Number}
-    }],
-    updated_at: {type: Date, default: Date.now},
+    iucn_class: {type: String, default: '', trim: true},
+    vn_redbook_class: {type: String, default: '', trim: true},
     description: {type: String, default: '', trim: true},
-    img_source: {type: String, default: '', trim: true}
+    reference_link: [String],
+    distribution: [String],
+    images: [String],
+    countries: {
+        type: [String],
+        default: ['Vietnam'],
+        validate: [validatorCountry, 'Invalid country']
+    },
+    seqs: [{
+        gen_type: {type: String, required: true, trim: true},
+        seq: {type: String, required: true, trim: true},
+        accession: {type: String, trim: true}
+    }],
+    updated_at: {type: Date, default: Date.now}
 });
 
 var hookElasticSearch = function (species) {
