@@ -84,7 +84,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="provinces">
-                    <p><strong>Tỉnh:</strong> (hãy chọn nước để có thể nhập các tỉnh)</p>
+                    <p><strong>Tỉnh:</strong> (chỉ còn 34 tỉnh/thành phố mới, nhập hoặc chọn từ danh sách mới)</p>
                     <tags-input ng-model="distribution">
                         <auto-complete source="getProvinces($query)" load-on-focus="true" debounce-delay="0" min-length="1"
                            max-results-to-show="20">
@@ -193,7 +193,7 @@
         <p><strong>Phân hạng IUCN (2008 v3.1):</strong> {{species.iucn_class | noData}}</p>
         <p ng-if="hasData(species.vn_redbook_class) && species.countries.indexOf('Vietnam') >= 0"><strong>Phân hạng Danh lục Đỏ Việt Nam (2007):</strong> {{species.vn_redbook_class}}</p>
         <p><strong>Bản đồ:</strong></p>
-        <button class="btn btn-default" ng-disabled="distribution.length == 0" ng-click="openMapArea()">Phân bố theo tỉnh</button>
+        <button class="btn btn-default" ng-disabled="!species.distribution || species.distribution.length == 0" ng-click="openMapArea()">Phân bố theo tỉnh</button>
         <button class="btn btn-success" ng-if="isRole('admin curator') && false" ng-disabled="species.lat_lng.length == 0" ng-click="openMapLatLng()">Phân bố theo tọa độ</button>
     </div>
     <div class="col-md-12">

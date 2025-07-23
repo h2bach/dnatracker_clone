@@ -77,6 +77,153 @@ app.controller("UpdateSpeciesController", ["$scope", "$http", "$state", "species
         return map;
     }, {});
 
+    // Danh sách 34 tỉnh mới
+    $scope.vnProvinces34 = [
+        { id: "VN-HN", text: "Hà Nội" },
+        { id: "VN-SG", text: "Hồ Chí Minh" },
+        { id: "VN-26", text: "Huế" },
+        { id: "VN-DN", text: "Đà Nẵng" },
+        { id: "VN-CT", text: "Cần Thơ" },
+        { id: "VN-HP", text: "Hải Phòng" },
+        { id: "VN-01", text: "Lai Châu" },
+        { id: "VN-71", text: "Điện Biên" },
+        { id: "VN-05", text: "Sơn La" },
+        { id: "VN-09", text: "Lạng Sơn" },
+        { id: "VN-13", text: "Quảng Ninh" },
+        { id: "VN-21", text: "Thanh Hoá" },
+        { id: "VN-22", text: "Nghệ An" },
+        { id: "VN-23", text: "Hà Tĩnh" },
+        { id: "VN-04", text: "Cao Bằng" },
+        { id: "VN-07", text: "Tuyên Quang" },
+        { id: "VN-02", text: "Lào Cai" },
+        { id: "VN-06", text: "Yên Bái" },
+        { id: "VN-69", text: "Thái Nguyên" },
+        { id: "VN-53", text: "Bắc Kạn" },
+        { id: "VN-68", text: "Phú Thọ" },
+        { id: "VN-70", text: "Vĩnh Phúc" },
+        { id: "VN-14", text: "Hoà Bình" },
+        { id: "VN-56", text: "Bắc Ninh" },
+        { id: "VN-54", text: "Bắc Giang" },
+        { id: "VN-66", text: "Hưng Yên" },
+        { id: "VN-20", text: "Thái Bình" },
+        { id: "VN-18", text: "Ninh Bình" },
+        { id: "VN-63", text: "Hà Nam" },
+        { id: "VN-67", text: "Nam Định" },
+        { id: "VN-25", text: "Quảng Trị" },
+        { id: "VN-24", text: "Quảng Bình" },
+        { id: "VN-29", text: "Quảng Ngãi" },
+        { id: "VN-28", text: "Kon Tum" },
+        { id: "VN-30", text: "Gia Lai" },
+        { id: "VN-31", text: "Bình Định" },
+        { id: "VN-34", text: "Khánh Hòa" },
+        { id: "VN-36", text: "Ninh Thuận" },
+        { id: "VN-35", text: "Lâm Đồng" },
+        { id: "VN-72", text: "Đắk Nông" },
+        { id: "VN-40", text: "Bình Thuận" },
+        { id: "VN-33", text: "Đắk Lắk" },
+        { id: "VN-32", text: "Phú Yên" },
+        { id: "VN-39", text: "Đồng Nai" },
+        { id: "VN-58", text: "Bình Phước" },
+        { id: "VN-37", text: "Tây Ninh" },
+        { id: "VN-41", text: "Long An" },
+        { id: "VN-49", text: "Vĩnh Long" },
+        { id: "VN-50", text: "Bến Tre" },
+        { id: "VN-51", text: "Trà Vinh" },
+        { id: "VN-45", text: "Đồng Tháp" },
+        { id: "VN-46", text: "Tiền Giang" },
+        { id: "VN-59", text: "Cà Mau" },
+        { id: "VN-55", text: "Bạc Liêu" },
+        { id: "VN-44", text: "An Giang" },
+        { id: "VN-47", text: "Kiên Giang" },
+        { id: "VN-73", text: "Hậu Giang" },
+        { id: "VN-52", text: "Sóc Trăng" }
+    ];
+
+    // Mapping tên/id cũ sang tên mới (tương tự backend, chỉ lấy tên mới)
+    $scope.provinceOldToNew = {
+        "Hà Nội": "Hà Nội", "VN-HN": "Hà Nội",
+        "Hồ Chí Minh": "Hồ Chí Minh", "VN-SG": "Hồ Chí Minh", "TP.HCM": "Hồ Chí Minh", "Bà Rịa–Vũng Tàu": "Hồ Chí Minh", "VN-43": "Hồ Chí Minh", "Bình Dương": "Hồ Chí Minh", "VN-57": "Hồ Chí Minh",
+        "Huế": "Huế", "VN-26": "Huế", "Thừa Thiên–Huế": "Huế", "Thừa Thiên Huế": "Huế",
+        "Đà Nẵng": "Đà Nẵng", "VN-DN": "Đà Nẵng", "Quảng Nam": "Đà Nẵng", "VN-27": "Đà Nẵng",
+        "Cần Thơ": "Cần Thơ", "VN-CT": "Cần Thơ", "Sóc Trăng": "Cần Thơ", "VN-52": "Cần Thơ", "Hậu Giang": "Cần Thơ", "VN-73": "Cần Thơ",
+        "Hải Phòng": "Hải Phòng", "VN-HP": "Hải Phòng", "Hải Dương": "Hải Phòng", "VN-61": "Hải Phòng",
+        "Lai Châu": "Lai Châu", "VN-01": "Lai Châu",
+        "Điện Biên": "Điện Biên", "VN-71": "Điện Biên",
+        "Sơn La": "Sơn La", "VN-05": "Sơn La",
+        "Lạng Sơn": "Lạng Sơn", "VN-09": "Lạng Sơn",
+        "Quảng Ninh": "Quảng Ninh", "VN-13": "Quảng Ninh",
+        "Thanh Hoá": "Thanh Hoá", "VN-21": "Thanh Hoá",
+        "Nghệ An": "Nghệ An", "VN-22": "Nghệ An",
+        "Hà Tĩnh": "Hà Tĩnh", "VN-23": "Hà Tĩnh",
+        "Cao Bằng": "Cao Bằng", "VN-04": "Cao Bằng",
+        "Tuyên Quang": "Tuyên Quang", "VN-07": "Tuyên Quang", "Hà Giang": "Tuyên Quang", "VN-03": "Tuyên Quang",
+        "Lào Cai": "Lào Cai", "VN-02": "Lào Cai", "Yên Bái": "Lào Cai", "VN-06": "Lào Cai",
+        "Thái Nguyên": "Thái Nguyên", "VN-69": "Thái Nguyên", "Bắc Kạn": "Thái Nguyên", "VN-53": "Thái Nguyên",
+        "Phú Thọ": "Phú Thọ", "VN-68": "Phú Thọ", "Vĩnh Phúc": "Phú Thọ", "VN-70": "Phú Thọ", "Hoà Bình": "Phú Thọ", "VN-14": "Phú Thọ",
+        "Bắc Ninh": "Bắc Ninh", "VN-56": "Bắc Ninh", "Bắc Giang": "Bắc Ninh", "VN-54": "Bắc Ninh",
+        "Hưng Yên": "Hưng Yên", "VN-66": "Hưng Yên", "Thái Bình": "Hưng Yên", "VN-20": "Hưng Yên",
+        "Ninh Bình": "Ninh Bình", "VN-18": "Ninh Bình", "Hà Nam": "Ninh Bình", "VN-63": "Ninh Bình", "Nam Định": "Ninh Bình", "VN-67": "Ninh Bình",
+        "Quảng Trị": "Quảng Trị", "VN-25": "Quảng Trị", "Quảng Bình": "Quảng Trị", "VN-24": "Quảng Trị",
+        "Quảng Ngãi": "Quảng Ngãi", "VN-29": "Quảng Ngãi", "Kon Tum": "Quảng Ngãi", "VN-28": "Quảng Ngãi",
+        "Gia Lai": "Gia Lai", "VN-30": "Gia Lai", "Bình Định": "Gia Lai", "VN-31": "Gia Lai",
+        "Khánh Hòa": "Khánh Hòa", "VN-34": "Khánh Hòa", "Ninh Thuận": "Khánh Hòa", "VN-36": "Khánh Hòa",
+        "Lâm Đồng": "Lâm Đồng", "VN-35": "Lâm Đồng", "Đắk Nông": "Lâm Đồng", "VN-72": "Lâm Đồng", "Bình Thuận": "Lâm Đồng", "VN-40": "Lâm Đồng",
+        "Đắk Lắk": "Đắk Lắk", "VN-33": "Đắk Lắk", "Phú Yên": "Đắk Lắk", "VN-32": "Đắk Lắk",
+        "Đồng Nai": "Đồng Nai", "VN-39": "Đồng Nai", "Bình Phước": "Đồng Nai", "VN-58": "Đồng Nai",
+        "Tây Ninh": "Tây Ninh", "VN-37": "Tây Ninh", "Long An": "Tây Ninh", "VN-41": "Tây Ninh",
+        "Vĩnh Long": "Vĩnh Long", "VN-49": "Vĩnh Long", "Bến Tre": "Vĩnh Long", "VN-50": "Vĩnh Long", "Trà Vinh": "Vĩnh Long", "VN-51": "Vĩnh Long",
+        "Đồng Tháp": "Đồng Tháp", "VN-45": "Đồng Tháp", "Tiền Giang": "Đồng Tháp", "VN-46": "Đồng Tháp",
+        "Cà Mau": "Cà Mau", "VN-59": "Cà Mau", "Bạc Liêu": "Cà Mau", "VN-55": "Cà Mau",
+        "An Giang": "An Giang", "VN-44": "An Giang", "Kiên Giang": "An Giang"
+    };
+
+    // Hàm ánh xạ tên/id cũ sang tên mới
+    $scope.getNewProvinceName = function(oldNameOrId) {
+        return $scope.provinceOldToNew[oldNameOrId] || oldNameOrId;
+    };
+
+    // Import mapping mới nếu cần, hoặc copy lại logic ánh xạ mã ISO cũ sang tên mới
+    $scope.getNewProvinceNameFromISO = function(oldIso) {
+        // Mapping này nên đồng bộ với backend
+        const isoToNewProvince = {
+            "VN-01": "Hà Nội",
+            "VN-79": "Hồ Chí Minh", "VN-43": "Hồ Chí Minh", "VN-57": "Hồ Chí Minh",
+            "VN-26": "Huế",
+            "VN-48": "Đà Nẵng", "VN-27": "Đà Nẵng",
+            "VN-92": "Cần Thơ", "VN-52": "Cần Thơ", "VN-93": "Cần Thơ",
+            "VN-31": "Hải Phòng", "VN-30": "Hải Phòng",
+            "VN-12": "Lai Châu",
+            "VN-14": "Điện Biên",
+            "VN-05": "Sơn La",
+            "VN-09": "Lạng Sơn",
+            "VN-13": "Quảng Ninh",
+            "VN-21": "Thanh Hoá",
+            "VN-22": "Nghệ An",
+            "VN-23": "Hà Tĩnh",
+            "VN-04": "Cao Bằng",
+            "VN-07": "Tuyên Quang", "VN-03": "Tuyên Quang",
+            "VN-02": "Lào Cai", "VN-06": "Lào Cai",
+            "VN-19": "Thái Nguyên", "VN-09": "Thái Nguyên",
+            "VN-25": "Phú Thọ", "VN-26": "Phú Thọ", "VN-15": "Phú Thọ",
+            "VN-27": "Bắc Ninh", "VN-24": "Bắc Ninh",
+            "VN-66": "Hưng Yên", "VN-20": "Hưng Yên",
+            "VN-18": "Ninh Bình", "VN-35": "Ninh Bình", "VN-37": "Ninh Bình",
+            "VN-45": "Quảng Trị", "VN-44": "Quảng Trị",
+            "VN-51": "Quảng Ngãi", "VN-49": "Quảng Ngãi",
+            "VN-30": "Gia Lai", "VN-31": "Gia Lai",
+            "VN-34": "Khánh Hòa", "VN-58": "Khánh Hòa",
+            "VN-35": "Lâm Đồng", "VN-72": "Lâm Đồng", "VN-40": "Lâm Đồng",
+            "VN-33": "Đắk Lắk", "VN-32": "Đắk Lắk",
+            "VN-39": "Đồng Nai", "VN-37": "Đồng Nai",
+            "VN-37": "Tây Ninh", "VN-41": "Tây Ninh",
+            "VN-49": "Vĩnh Long", "VN-50": "Vĩnh Long", "VN-51": "Vĩnh Long",
+            "VN-45": "Đồng Tháp", "VN-46": "Đồng Tháp",
+            "VN-59": "Cà Mau", "VN-55": "Cà Mau",
+            "VN-44": "An Giang", "VN-47": "An Giang"
+        };
+        return isoToNewProvince[oldIso] || oldIso;
+    };
+
     // Thêm chuỗi DNA/RNA mới
     $scope.addNewSeq = function() {
         $scope.species.seqs.push({
@@ -280,7 +427,7 @@ app.controller("UpdateSpeciesController", ["$scope", "$http", "$state", "species
         }
 
         // --- Xử lý và ánh xạ phân bố tỉnh --- 
-        let distributionIds = [];
+        let distributionNames = [];
         const notFoundNames = [];
         if ($scope.distributionInputText && typeof $scope.distributionInputText === 'string') {
             const provinceNames = $scope.distributionInputText.split('|')
@@ -288,21 +435,21 @@ app.controller("UpdateSpeciesController", ["$scope", "$http", "$state", "species
                                       .filter(name => name); // Loại bỏ các chuỗi rỗng sau khi split và trim
 
             provinceNames.forEach(name => {
-                const normalizedName = name.toLowerCase();
-                if (provinceNameToIdMap[normalizedName]) {
-                    distributionIds.push(provinceNameToIdMap[normalizedName]);
+                const newName = $scope.getNewProvinceName(name);
+                if (newName) {
+                    distributionNames.push(newName);
                 } else {
                     notFoundNames.push(name); // Lưu lại tên gốc không tìm thấy
                 }
             });
         }
         // Gán mảng ID đã được map vào $scope.species.distribution
-        $scope.species.distribution = distributionIds;
+        $scope.species.distribution = Array.from(new Set(distributionNames));
 
         // Cảnh báo nếu có tên tỉnh không tìm thấy
         if (notFoundNames.length > 0) {
-            alert("Không tìm thấy ID cho các tỉnh/thành sau: " + notFoundNames.join(', ') + ". Các tỉnh này sẽ không được lưu.");
-            console.warn("Không tìm thấy ID cho các tỉnh/thành:", notFoundNames);
+            alert("Không tìm thấy tên mới cho các tỉnh/thành sau: " + notFoundNames.join(', ') + ". Các tỉnh này sẽ không được lưu.");
+            console.warn("Không tìm thấy tên mới cho các tỉnh/thành:", notFoundNames);
         }
         // --- Kết thúc xử lý phân bố tỉnh ---
 

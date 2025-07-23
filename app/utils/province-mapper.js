@@ -1,128 +1,65 @@
 "use strict";
 
-const Vietnam = [
-    { id: "VN-44", text: "An Giang" },
-    { id: "VN-43", text: "Bà Rịa–Vũng Tàu" },
-    { id: "VN-54", text: "Bắc Giang" },
-    { id: "VN-53", text: "Bắc Kạn" },
-    { id: "VN-55", text: "Bạc Liêu" },
-    { id: "VN-56", text: "Bắc Ninh" },
-    { id: "VN-50", text: "Bến Tre" },
-    { id: "VN-31", text: "Bình Định" },
-    { id: "VN-57", text: "Bình Dương" },
-    { id: "VN-58", text: "Bình Phước" },
-    { id: "VN-40", text: "Bình Thuận" },
-    { id: "VN-59", text: "Cà Mau" },
-    { id: "VN-04", text: "Cao Bằng" },
-    { id: "VN-33", text: "Đắk Lắk" },
-    { id: "VN-72", text: "Đắk Nông" },
-    { id: "VN-71", text: "Điện Biên" },
-    { id: "VN-39", text: "Đồng Nai" },
-    { id: "VN-45", text: "Đồng Tháp" },
-    { id: "VN-30", text: "Gia Lai" },
-    { id: "VN-03", text: "Hà Giang" },
-    { id: "VN-63", text: "Hà Nam" },
-    { id: "VN-23", text: "Hà Tĩnh" },
-    { id: "VN-61", text: "Hải Dương" },
-    { id: "VN-73", text: "Hậu Giang" },
-    { id: "VN-14", text: "Hòa Bình" },
-    { id: "VN-66", text: "Hưng Yên" },
-    { id: "VN-34", text: "Khánh Hòa" },
-    { id: "VN-47", text: "Kiên Giang" },
-    { id: "VN-28", text: "Kon Tum" },
-    { id: "VN-01", text: "Lai Châu" },
-    { id: "VN-35", text: "Lâm Đồng" },
-    { id: "VN-09", text: "Lạng Sơn" },
-    { id: "VN-02", text: "Lào Cai" },
-    { id: "VN-41", text: "Long An" },
-    { id: "VN-67", text: "Nam Định" },
-    { id: "VN-22", text: "Nghệ An" },
-    { id: "VN-18", text: "Ninh Bình" },
-    { id: "VN-36", text: "Ninh Thuận" },
-    { id: "VN-68", text: "Phú Thọ" },
-    { id: "VN-32", text: "Phú Yên" },
-    { id: "VN-24", text: "Quảng Bình" },
-    { id: "VN-27", text: "Quảng Nam" },
-    { id: "VN-29", text: "Quảng Ngãi" },
-    { id: "VN-13", text: "Quảng Ninh" },
-    { id: "VN-25", text: "Quảng Trị" },
-    { id: "VN-52", text: "Sóc Trăng" },
-    { id: "VN-05", text: "Sơn La" },
-    { id: "VN-37", text: "Tây Ninh" },
-    { id: "VN-20", text: "Thái Bình" },
-    { id: "VN-69", text: "Thái Nguyên" },
-    { id: "VN-21", text: "Thanh Hóa" },
-    { id: "VN-26", text: "Thừa Thiên–Huế" },
-    { id: "VN-46", text: "Tiền Giang" },
-    { id: "VN-51", text: "Trà Vinh" },
-    { id: "VN-07", text: "Tuyên Quang" },
-    { id: "VN-49", text: "Vĩnh Long" },
-    { id: "VN-70", text: "Vĩnh Phúc" },
-    { id: "VN-06", text: "Yên Bái" },
-    { id: "VN-CT", text: "Cần Thơ" },
-    { id: "VN-DN", text: "Đà Nẵng" },
-    { id: "VN-HN", text: "Hà Nội" },
-    { id: "VN-HP", text: "Hải Phòng" },
-    { id: "VN-SG", text: "Tp. Hồ Chí Minh" }
+// Danh sách 34 tỉnh/thành phố mới với mảng mã ISO cũ
+const Provinces34 = [
+  { name: "Hà Nội", codes: ["VN-01"] },
+  { name: "Hồ Chí Minh", codes: ["VN-79", "VN-43", "VN-57"] },
+  { name: "Huế", codes: ["VN-26"] },
+  { name: "Đà Nẵng", codes: ["VN-48", "VN-27"] },
+  { name: "Cần Thơ", codes: ["VN-92", "VN-52", "VN-93"] },
+  { name: "Hải Phòng", codes: ["VN-31", "VN-30"] },
+  { name: "Lai Châu", codes: ["VN-12"] },
+  { name: "Điện Biên", codes: ["VN-14"] },
+  { name: "Sơn La", codes: ["VN-05"] },
+  { name: "Lạng Sơn", codes: ["VN-09"] },
+  { name: "Quảng Ninh", codes: ["VN-13"] },
+  { name: "Thanh Hoá", codes: ["VN-21"] },
+  { name: "Nghệ An", codes: ["VN-22"] },
+  { name: "Hà Tĩnh", codes: ["VN-23"] },
+  { name: "Cao Bằng", codes: ["VN-04"] },
+  { name: "Tuyên Quang", codes: ["VN-07", "VN-03"] },
+  { name: "Lào Cai", codes: ["VN-02", "VN-06"] },
+  { name: "Thái Nguyên", codes: ["VN-19", "VN-09"] },
+  { name: "Phú Thọ", codes: ["VN-25", "VN-26", "VN-15"] },
+  { name: "Bắc Ninh", codes: ["VN-27", "VN-24"] },
+  { name: "Hưng Yên", codes: ["VN-66", "VN-20"] },
+  { name: "Ninh Bình", codes: ["VN-18", "VN-35", "VN-37"] },
+  { name: "Quảng Trị", codes: ["VN-45", "VN-44"] },
+  { name: "Quảng Ngãi", codes: ["VN-51", "VN-49"] },
+  { name: "Gia Lai", codes: ["VN-30", "VN-31"] },
+  { name: "Khánh Hòa", codes: ["VN-34", "VN-58"] },
+  { name: "Lâm Đồng", codes: ["VN-35", "VN-72", "VN-40"] },
+  { name: "Đắk Lắk", codes: ["VN-33", "VN-32"] },
+  { name: "Đồng Nai", codes: ["VN-39", "VN-37"] },
+  { name: "Tây Ninh", codes: ["VN-37", "VN-41"] },
+  { name: "Vĩnh Long", codes: ["VN-49", "VN-50", "VN-51"] },
+  { name: "Đồng Tháp", codes: ["VN-45", "VN-46"] },
+  { name: "Cà Mau", codes: ["VN-59", "VN-55"] },
+  { name: "An Giang", codes: ["VN-44", "VN-47"] }
 ];
 
-const Laos = [
-    { id: "LA-AT", text: "Attapu" },
-    { id: "LA-BK", text: "Bokeo" },
-    { id: "LA-BL", text: "Bolikhamxai" },
-    { id: "LA-CH", text: "Champasak" },
-    { id: "LA-HO", text: "Houaphan" },
-    { id: "LA-KH", text: "Khammouan" },
-    { id: "LA-LM", text: "Louang Namtha" },
-    { id: "LA-LP", text: "Louangphrabang" },
-    { id: "LA-OU", text: "Oudômxai" },
-    { id: "LA-PH", text: "Phôngsali" },
-    { id: "LA-SL", text: "Saravan" },
-    { id: "LA-SV", text: "Savannakhét" },
-    { id: "LA-VI", text: "Vientiane" },
-    { id: "LA-VT", text: "Vientiane-Capital" },
-    { id: "LA-XA", text: "Xaignabouri" },
-    { id: "LA-XS", text: "Xaisômboun" },
-    { id: "LA-XE", text: "Xékong" },
-    { id: "LA-XI", text: "Xiangkhoang" }
-];
+// Tạo mapping mã ISO cũ sang tên tỉnh mới
+const isoToNewProvince = {};
+Provinces34.forEach(province => {
+  province.codes.forEach(code => {
+    isoToNewProvince[code] = province.name;
+  });
+});
 
-const Campuchia = [
-    { id: "KH-12", text: "Phnom Penh" },
-    { id: "KH-1", text: "Banteay Meanchey" },
-    { id: "KH-2", text: "Battambang" },
-    { id: "KH-3", text: "Kampong Cham" },
-    { id: "KH-4", text: "Kampong Chhnang" },
-    { id: "KH-5", text: "Kampong Speu" },
-    { id: "KH-6", text: "Kampong Thom" },
-    { id: "KH-7", text: "Kampot" },
-    { id: "KH-8", text: "Kandal" },
-    { id: "KH-9", text: "Koh Kong" },
-    { id: "KH-23", text: "Kep" },
-    { id: "KH-10", text: "Kratié" },
-    { id: "KH-11", text: "Mondulkiri" },
-    { id: "KH-22", text: "Oddar Meanchey" },
-    { id: "KH-24", text: "Pailin" },
-    { id: "KH-18", text: "Preah Sihanouk" },
-    { id: "KH-13", text: "Preah Vihear" },
-    { id: "KH-15", text: "Pursat" },
-    { id: "KH-14", text: "Prey Veng" },
-    { id: "KH-16", text: "Ratanakiri" },
-    { id: "KH-17", text: "Siem Reap" },
-    { id: "KH-19", text: "Stung Treng" },
-    { id: "KH-20", text: "Svay Rieng" },
-    { id: "KH-21", text: "Takéo" },
-    { id: "KH-25", text: "Tboung Khmum" }
-];
+// Hàm tra cứu tên tỉnh mới từ mã ISO cũ
+function getNewProvinceNameFromISO(oldIso) {
+  return isoToNewProvince[oldIso] || null;
+}
 
-const allProvinces = [].concat(Vietnam, Laos, Campuchia);
-const provinceMap = allProvinces.reduce((map, province) => {
-    map[province.text] = province.id;
-    return map;
-}, {});
+// Hàm lấy danh sách mã ISO từ tên tỉnh mới
+function getISOCodesFromNewProvince(newName) {
+  const found = Provinces34.find(p => p.name === newName);
+  return found ? found.codes : [];
+}
 
 module.exports = {
-    mapToIds: function (provinceNames) {
-        return provinceNames.map(name => provinceMap[name.trim()] || null).filter(Boolean); // Remove null values
-    }
+  Provinces34,
+  isoToNewProvince,
+  getNewProvinceNameFromISO,
+  getISOCodesFromNewProvince
 };

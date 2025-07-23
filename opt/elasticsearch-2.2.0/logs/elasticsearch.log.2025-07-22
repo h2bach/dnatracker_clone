@@ -1,0 +1,14 @@
+[2025-07-22 22:13:57,293][INFO ][node                     ] [Isis] version[2.2.0], pid[7896], build[8ff36d1/2016-01-27T13:32:39Z]
+[2025-07-22 22:13:57,297][INFO ][node                     ] [Isis] initializing ...
+[2025-07-22 22:13:57,994][INFO ][plugins                  ] [Isis] modules [lang-expression, lang-groovy], plugins [elasticsearch-analysis-vietnamese], sites []
+[2025-07-22 22:13:58,030][INFO ][env                      ] [Isis] using [1] data paths, mounts [[VOL_U (F:)]], net usable_space [84.4gb], net total_space [116.1gb], spins? [unknown], types [NTFS]
+[2025-07-22 22:13:58,031][INFO ][env                      ] [Isis] heap size [910.5mb], compressed ordinary object pointers [true]
+[2025-07-22 22:14:01,625][INFO ][node                     ] [Isis] initialized
+[2025-07-22 22:14:01,626][INFO ][node                     ] [Isis] starting ...
+[2025-07-22 22:14:02,817][INFO ][transport                ] [Isis] publish_address {127.0.0.1:9300}, bound_addresses {127.0.0.1:9300}, {[::1]:9300}
+[2025-07-22 22:14:02,828][INFO ][discovery                ] [Isis] elasticsearch/UY03q59BQJuQmCqUal26gA
+[2025-07-22 22:14:07,418][INFO ][cluster.service          ] [Isis] new_master {Isis}{UY03q59BQJuQmCqUal26gA}{127.0.0.1}{127.0.0.1:9300}, reason: zen-disco-join(elected_as_master, [0] joins received)
+[2025-07-22 22:14:07,526][INFO ][gateway                  ] [Isis] recovered [1] indices into cluster_state
+[2025-07-22 22:14:08,340][INFO ][cluster.routing.allocation] [Isis] Cluster health status changed from [RED] to [YELLOW] (reason: [shards started [[dna_tracker][4]] ...]).
+[2025-07-22 22:14:09,009][INFO ][http                     ] [Isis] publish_address {127.0.0.1:9200}, bound_addresses {127.0.0.1:9200}, {[::1]:9200}
+[2025-07-22 22:14:09,011][INFO ][node                     ] [Isis] started
