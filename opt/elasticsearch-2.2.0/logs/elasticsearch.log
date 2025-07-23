@@ -1,85 +1,18 @@
-[2025-07-03 13:05:47,965][INFO ][node                     ] [Analyzer] version[2.2.0], pid[31420], build[8ff36d1/2016-01-27T13:32:39Z]
-[2025-07-03 13:05:47,969][INFO ][node                     ] [Analyzer] initializing ...
-[2025-07-03 13:05:48,547][INFO ][plugins                  ] [Analyzer] modules [lang-expression, lang-groovy], plugins [elasticsearch-analysis-vietnamese], sites []
-[2025-07-03 13:05:48,579][INFO ][env                      ] [Analyzer] using [1] data paths, mounts [[VOL_U (F:)]], net usable_space [84.5gb], net total_space [116.1gb], spins? [unknown], types [NTFS]
-[2025-07-03 13:05:48,579][INFO ][env                      ] [Analyzer] heap size [910.5mb], compressed ordinary object pointers [true]
-[2025-07-03 13:05:52,206][INFO ][node                     ] [Analyzer] initialized
-[2025-07-03 13:05:52,207][INFO ][node                     ] [Analyzer] starting ...
-[2025-07-03 13:05:53,820][INFO ][transport                ] [Analyzer] publish_address {127.0.0.1:9300}, bound_addresses {127.0.0.1:9300}, {[::1]:9301}
-[2025-07-03 13:05:53,834][INFO ][discovery                ] [Analyzer] elasticsearch/52ns0U2WRxOhIeUYlKgFDQ
-[2025-07-03 13:05:58,418][INFO ][cluster.service          ] [Analyzer] new_master {Analyzer}{52ns0U2WRxOhIeUYlKgFDQ}{127.0.0.1}{127.0.0.1:9300}, reason: zen-disco-join(elected_as_master, [0] joins received)
-[2025-07-03 13:05:58,538][INFO ][gateway                  ] [Analyzer] recovered [2] indices into cluster_state
-[2025-07-03 13:06:00,468][INFO ][http                     ] [Analyzer] publish_address {127.0.0.1:9200}, bound_addresses {127.0.0.1:9200}, {[::1]:9201}
-[2025-07-03 13:06:00,468][INFO ][node                     ] [Analyzer] started
-[2025-07-03 13:13:20,885][INFO ][node                     ] [Analyzer] stopping ...
-[2025-07-03 13:13:20,956][INFO ][node                     ] [Analyzer] stopped
-[2025-07-03 13:13:20,957][INFO ][node                     ] [Analyzer] closing ...
-[2025-07-03 13:13:20,962][INFO ][node                     ] [Analyzer] closed
-[2025-07-03 13:13:50,218][INFO ][node                     ] [Rahne Sinclair] version[2.2.0], pid[4756], build[8ff36d1/2016-01-27T13:32:39Z]
-[2025-07-03 13:13:50,219][INFO ][node                     ] [Rahne Sinclair] initializing ...
-[2025-07-03 13:13:50,682][INFO ][plugins                  ] [Rahne Sinclair] modules [lang-expression, lang-groovy], plugins [elasticsearch-analysis-vietnamese], sites []
-[2025-07-03 13:13:50,703][INFO ][env                      ] [Rahne Sinclair] using [1] data paths, mounts [[VOL_U (F:)]], net usable_space [84.5gb], net total_space [116.1gb], spins? [unknown], types [NTFS]
-[2025-07-03 13:13:50,704][INFO ][env                      ] [Rahne Sinclair] heap size [910.5mb], compressed ordinary object pointers [true]
-[2025-07-03 13:13:53,198][INFO ][node                     ] [Rahne Sinclair] initialized
-[2025-07-03 13:13:53,199][INFO ][node                     ] [Rahne Sinclair] starting ...
-[2025-07-03 13:13:54,768][INFO ][transport                ] [Rahne Sinclair] publish_address {127.0.0.1:9300}, bound_addresses {127.0.0.1:9300}, {[::1]:9300}
-[2025-07-03 13:13:54,776][INFO ][discovery                ] [Rahne Sinclair] elasticsearch/fwoRgrr7T22iHQwrzezKmw
-[2025-07-03 13:13:59,341][INFO ][cluster.service          ] [Rahne Sinclair] new_master {Rahne Sinclair}{fwoRgrr7T22iHQwrzezKmw}{127.0.0.1}{127.0.0.1:9300}, reason: zen-disco-join(elected_as_master, [0] joins received)
-[2025-07-03 13:13:59,461][INFO ][gateway                  ] [Rahne Sinclair] recovered [2] indices into cluster_state
-[2025-07-03 13:14:00,910][INFO ][http                     ] [Rahne Sinclair] publish_address {127.0.0.1:9200}, bound_addresses {127.0.0.1:9200}, {[::1]:9200}
-[2025-07-03 13:14:00,911][INFO ][node                     ] [Rahne Sinclair] started
-[2025-07-03 13:18:02,197][INFO ][node                     ] [Rahne Sinclair] stopping ...
-[2025-07-03 13:18:02,266][INFO ][node                     ] [Rahne Sinclair] stopped
-[2025-07-03 13:18:02,267][INFO ][node                     ] [Rahne Sinclair] closing ...
-[2025-07-03 13:18:02,272][INFO ][node                     ] [Rahne Sinclair] closed
-[2025-07-03 21:55:58,470][INFO ][node                     ] [Ernst] version[2.2.0], pid[10612], build[8ff36d1/2016-01-27T13:32:39Z]
-[2025-07-03 21:55:58,472][INFO ][node                     ] [Ernst] initializing ...
-[2025-07-03 21:56:00,485][INFO ][plugins                  ] [Ernst] modules [lang-expression, lang-groovy], plugins [elasticsearch-analysis-vietnamese], sites []
-[2025-07-03 21:56:00,514][INFO ][env                      ] [Ernst] using [1] data paths, mounts [[VOL_U (F:)]], net usable_space [84.5gb], net total_space [116.1gb], spins? [unknown], types [NTFS]
-[2025-07-03 21:56:00,514][INFO ][env                      ] [Ernst] heap size [910.5mb], compressed ordinary object pointers [true]
-[2025-07-03 21:56:04,530][INFO ][node                     ] [Ernst] initialized
-[2025-07-03 21:56:04,530][INFO ][node                     ] [Ernst] starting ...
-[2025-07-03 21:56:06,239][INFO ][transport                ] [Ernst] publish_address {127.0.0.1:9300}, bound_addresses {127.0.0.1:9300}, {[::1]:9300}
-[2025-07-03 21:56:06,248][INFO ][discovery                ] [Ernst] elasticsearch/0OF56aU0SFWccE9YeuEqgQ
-[2025-07-03 21:56:10,801][INFO ][cluster.service          ] [Ernst] new_master {Ernst}{0OF56aU0SFWccE9YeuEqgQ}{127.0.0.1}{127.0.0.1:9300}, reason: zen-disco-join(elected_as_master, [0] joins received)
-[2025-07-03 21:56:10,946][INFO ][gateway                  ] [Ernst] recovered [2] indices into cluster_state
-[2025-07-03 21:56:13,257][INFO ][http                     ] [Ernst] publish_address {127.0.0.1:9200}, bound_addresses {127.0.0.1:9200}, {[::1]:9200}
-[2025-07-03 21:56:13,258][INFO ][node                     ] [Ernst] started
-[2025-07-03 22:11:00,284][INFO ][node                     ] [Ernst] stopping ...
-[2025-07-03 22:11:00,368][INFO ][node                     ] [Ernst] stopped
-[2025-07-03 22:11:00,369][INFO ][node                     ] [Ernst] closing ...
-[2025-07-03 22:11:00,383][INFO ][node                     ] [Ernst] closed
-[2025-07-03 22:21:13,391][INFO ][node                     ] [Bast] version[2.2.0], pid[37400], build[8ff36d1/2016-01-27T13:32:39Z]
-[2025-07-03 22:21:13,392][INFO ][node                     ] [Bast] initializing ...
-[2025-07-03 22:21:14,579][INFO ][plugins                  ] [Bast] modules [lang-expression, lang-groovy], plugins [elasticsearch-analysis-vietnamese], sites []
-[2025-07-03 22:21:14,610][INFO ][env                      ] [Bast] using [1] data paths, mounts [[VOL_U (F:)]], net usable_space [84.5gb], net total_space [116.1gb], spins? [unknown], types [NTFS]
-[2025-07-03 22:21:14,611][INFO ][env                      ] [Bast] heap size [910.5mb], compressed ordinary object pointers [true]
-[2025-07-03 22:21:18,509][INFO ][node                     ] [Bast] initialized
-[2025-07-03 22:21:18,510][INFO ][node                     ] [Bast] starting ...
-[2025-07-03 22:21:20,332][INFO ][transport                ] [Bast] publish_address {127.0.0.1:9300}, bound_addresses {127.0.0.1:9300}, {[::1]:9300}
-[2025-07-03 22:21:20,340][INFO ][discovery                ] [Bast] elasticsearch/Ydxb81fBSKqg6zUeYCRDCw
-[2025-07-03 22:21:24,924][INFO ][cluster.service          ] [Bast] new_master {Bast}{Ydxb81fBSKqg6zUeYCRDCw}{127.0.0.1}{127.0.0.1:9300}, reason: zen-disco-join(elected_as_master, [0] joins received)
-[2025-07-03 22:21:25,051][INFO ][gateway                  ] [Bast] recovered [2] indices into cluster_state
-[2025-07-03 22:21:27,813][INFO ][http                     ] [Bast] publish_address {127.0.0.1:9200}, bound_addresses {127.0.0.1:9200}, {[::1]:9200}
-[2025-07-03 22:21:27,814][INFO ][node                     ] [Bast] started
-[2025-07-03 22:28:16,401][INFO ][node                     ] [Bast] stopping ...
-[2025-07-03 22:28:16,477][INFO ][node                     ] [Bast] stopped
-[2025-07-03 22:28:16,477][INFO ][node                     ] [Bast] closing ...
-[2025-07-03 22:28:16,482][INFO ][node                     ] [Bast] closed
-[2025-07-03 22:43:13,716][INFO ][node                     ] [MODAM] version[2.2.0], pid[40176], build[8ff36d1/2016-01-27T13:32:39Z]
-[2025-07-03 22:43:13,717][INFO ][node                     ] [MODAM] initializing ...
-[2025-07-03 22:43:14,206][INFO ][plugins                  ] [MODAM] modules [lang-expression, lang-groovy], plugins [elasticsearch-analysis-vietnamese], sites []
-[2025-07-03 22:43:14,227][INFO ][env                      ] [MODAM] using [1] data paths, mounts [[VOL_U (F:)]], net usable_space [84.5gb], net total_space [116.1gb], spins? [unknown], types [NTFS]
-[2025-07-03 22:43:14,228][INFO ][env                      ] [MODAM] heap size [910.5mb], compressed ordinary object pointers [true]
-[2025-07-03 22:43:16,759][INFO ][node                     ] [MODAM] initialized
-[2025-07-03 22:43:16,760][INFO ][node                     ] [MODAM] starting ...
-[2025-07-03 22:43:18,332][INFO ][transport                ] [MODAM] publish_address {127.0.0.1:9300}, bound_addresses {127.0.0.1:9300}, {[::1]:9300}
-[2025-07-03 22:43:18,340][INFO ][discovery                ] [MODAM] elasticsearch/d1mIDaNJQbeyXWfU2OFtZg
-[2025-07-03 22:43:22,941][INFO ][cluster.service          ] [MODAM] new_master {MODAM}{d1mIDaNJQbeyXWfU2OFtZg}{127.0.0.1}{127.0.0.1:9300}, reason: zen-disco-join(elected_as_master, [0] joins received)
-[2025-07-03 22:43:23,120][INFO ][gateway                  ] [MODAM] recovered [2] indices into cluster_state
-[2025-07-03 22:43:24,674][INFO ][http                     ] [MODAM] publish_address {127.0.0.1:9200}, bound_addresses {127.0.0.1:9200}, {[::1]:9200}
-[2025-07-03 22:43:24,675][INFO ][node                     ] [MODAM] started
-[2025-07-03 22:44:41,409][INFO ][node                     ] [MODAM] stopping ...
-[2025-07-03 22:44:41,486][INFO ][node                     ] [MODAM] stopped
-[2025-07-03 22:44:41,487][INFO ][node                     ] [MODAM] closing ...
-[2025-07-03 22:44:41,491][INFO ][node                     ] [MODAM] closed
+[2025-07-23 13:48:30,772][INFO ][node                     ] [Eric Williams] version[2.2.0], pid[22712], build[8ff36d1/2016-01-27T13:32:39Z]
+[2025-07-23 13:48:30,776][INFO ][node                     ] [Eric Williams] initializing ...
+[2025-07-23 13:48:33,181][INFO ][plugins                  ] [Eric Williams] modules [lang-expression, lang-groovy], plugins [elasticsearch-analysis-vietnamese], sites []
+[2025-07-23 13:48:33,213][INFO ][env                      ] [Eric Williams] using [1] data paths, mounts [[VOL_U (F:)]], net usable_space [84.4gb], net total_space [116.1gb], spins? [unknown], types [NTFS]
+[2025-07-23 13:48:33,213][INFO ][env                      ] [Eric Williams] heap size [910.5mb], compressed ordinary object pointers [true]
+[2025-07-23 13:48:36,065][INFO ][node                     ] [Eric Williams] initialized
+[2025-07-23 13:48:36,065][INFO ][node                     ] [Eric Williams] starting ...
+[2025-07-23 13:48:37,087][INFO ][transport                ] [Eric Williams] publish_address {127.0.0.1:9300}, bound_addresses {127.0.0.1:9300}, {[::1]:9300}
+[2025-07-23 13:48:37,095][INFO ][discovery                ] [Eric Williams] elasticsearch/NPRtsledTSyojZU4RGrCxA
+[2025-07-23 13:48:41,648][INFO ][cluster.service          ] [Eric Williams] new_master {Eric Williams}{NPRtsledTSyojZU4RGrCxA}{127.0.0.1}{127.0.0.1:9300}, reason: zen-disco-join(elected_as_master, [0] joins received)
+[2025-07-23 13:48:41,819][INFO ][gateway                  ] [Eric Williams] recovered [1] indices into cluster_state
+[2025-07-23 13:48:42,850][INFO ][cluster.routing.allocation] [Eric Williams] Cluster health status changed from [RED] to [YELLOW] (reason: [shards started [[dna_tracker][1]] ...]).
+[2025-07-23 13:48:43,209][INFO ][http                     ] [Eric Williams] publish_address {127.0.0.1:9200}, bound_addresses {127.0.0.1:9200}, {[::1]:9200}
+[2025-07-23 13:48:43,209][INFO ][node                     ] [Eric Williams] started
+[2025-07-23 17:52:03,870][INFO ][node                     ] [Eric Williams] stopping ...
+[2025-07-23 17:52:03,981][INFO ][node                     ] [Eric Williams] stopped
+[2025-07-23 17:52:03,983][INFO ][node                     ] [Eric Williams] closing ...
+[2025-07-23 17:52:04,035][INFO ][node                     ] [Eric Williams] closed

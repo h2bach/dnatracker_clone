@@ -32,7 +32,7 @@
             }
         })
 
-        .controller("search-dna.ctrl", function($scope, $state, SearchApi, CacheService) {
+        .controller("search-dna.ctrl", function($scope, $state, SearchApi, CacheService, $location, $timeout) {
             $scope.view = {
                 usingFile: false,
                 searching: false
@@ -41,12 +41,12 @@
             $scope.input = CacheService.data || {
                 text: null,
                 file: null,
-	            typeGen: "",
-	            title: ""
+                typeGen: "",
+                title: ""
             };
 
             $scope.isDisabled = function () {
-	            if ($scope.input.typeGen.length == 0) return true;
+                if ($scope.input.typeGen.length == 0) return true;
                 if ($scope.input.file) return false;
 
                 return !$scope.input.text;
@@ -69,6 +69,29 @@
                     });
                 }
             }
+
+            // --- Tự động thực hiện tìm kiếm nếu có auto=1 trên URL ---
+            $timeout(function() {
+                var search = window.location.search || window.location.hash;
+                if (search && search.indexOf('auto=1') !== -1) {
+                    var info = sessionStorage.getItem('searchInput');
+                    var method = sessionStorage.getItem('searchMethod');
+                    if (info && method) {
+                        try {
+                            info = JSON.parse(info);
+                            $scope.input.title = info.title || '';
+                            $scope.input.text = info.seq || '';
+                            $scope.input.typeGen = info.typeGen || '';
+                            $scope.input.file = null;
+                            $scope.view.searching = false;
+                            $scope.$applyAsync();
+                            $timeout(function() {
+                                $scope.search(method);
+                            }, 300);
+                        } catch(e) {}
+                    }
+                }
+            }, 200);
         })
 
         .controller("search-species.ctrl", function($scope, $state, UserRole, User) {

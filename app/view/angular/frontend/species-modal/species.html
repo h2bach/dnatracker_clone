@@ -1,3 +1,9 @@
+<style>
+.gene-modal-wide .modal-dialog {
+    width: 700px !important; /* modal sm mặc định ~300px, 300*2.5=750, chọn 700 cho hợp lý */
+    max-width: 90vw;
+}
+</style>
 <div class="modal-header" ng-if="isRole('admin curator')">
     <button type="button" class="close" ng-click="close()">
         <span aria-hidden="true">×</span></button>
@@ -6,10 +12,8 @@
 <!--edit-->
 <div class="modal-body" ng-if="view.editting && isRole('admin curator')">
     <div class="col-md-12">
-        <species-thumb ng-repeat="image in images track by $index" image="image.img" on-delete="deleteImage(image)"
-                       on-view="viewImage(image)"></species-thumb>
-        <species-thumb ng-repeat="image in view.newImages track by $index" image="image" on-delete="deleteImage(image)"
-                       on-view="viewImage(image)"></species-thumb>
+        <species-thumb ng-repeat="image in images track by $index" image="image.img" on-delete="deleteImage(image)" on-view="viewImage(image)"></species-thumb>
+        <species-thumb ng-repeat="image in view.newImages track by $index" image="image" on-delete="deleteImage(image)" on-view="viewImage(image)"></species-thumb>
         <div class="add-images drop-box" ngf-select ngf-resize="{quality: 0.8}" ng-model="view.inputImages"
              accept="image/*" ngf-multiple="true">
             <div class="content-center">
@@ -80,7 +84,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="provinces">
-                    <p><strong>Tỉnh:</strong> (hãy chọn nước để có thể nhập các tỉnh)</p>
+                    <p><strong>Tỉnh:</strong> (chỉ còn 34 tỉnh/thành phố mới, nhập hoặc chọn từ danh sách mới)</p>
                     <tags-input ng-model="distribution">
                         <auto-complete source="getProvinces($query)" load-on-focus="true" debounce-delay="0" min-length="1"
                            max-results-to-show="20">
@@ -127,12 +131,11 @@
                     <th>Accession</th>
                     <th>Loại</th>
                     <th>Seq</th>
-                    <th>Tọa độ</th>
                     <th></th>
                 </tr>
                 <tr ng-form="inputSeq">
                     <td style="min-width: 80px; max-width: 80px;">
-                        <input class="form-control" type="text" ng-model="termSeq.accession" required>
+                        <input class="form-control" type="text" ng-model="termSeq.accession">
                     </td>
                     <td style="min-width: 100px; max-width: 100px;">
                         <select class="form-control" ng-model="termSeq.gen_type" required>
@@ -144,27 +147,22 @@
                         <textarea rows="3" class="form-control" ng-model="termSeq.seq" required></textarea>
                     </td>
                     <td>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <input class="form-control" type="text" ng-model="termSeq.location.lat">
-                            </div>
-                            <div class="col-md-6">
-                                <input class="form-control" type="text" ng-model="termSeq.location.lng">
-                            </div>
-                        </div>
-                    </td>
-                    <td>
                         <button class="btn btn-primary" ng-disabled="inputSeq.$invalid" ng-click="addSeq()">Thêm</button>
                     </td>
                 </tr>
                 <tr ng-repeat="seq in species.seqs">
-                    <td style="min-width: 80px; max-width: 80px;">{{seq.accession}}</td>
+                    <td style="min-width: 80px; max-width: 80px;">
+                        <span ng-if="seq.accession">
+                          <a ng-href="https://www.ncbi.nlm.nih.gov/nuccore/{{seq.accession}}" target="_blank">{{seq.accession}}</a>
+                        </span>
+                        <span ng-if="!seq.accession">(Không có accession)</span>
+                    </td>
                     <td style="min-width: 100px; max-width: 100px;">{{seq.gen_type}}</td>
                     <td><pre style="max-width: 550px; white-space: pre-line;">{{seq.seq}}</pre></td>
                     <td>
-                        <p ng-if="seq.location.lat && seq.location.lng">Lat: {{seq.location.lat}}, Lng: {{seq.location.lng}}</p>
-                    </td>
-                    <td>
+                        <button class="btn btn-info btn-xs" ng-click="showSeq(seq)"><i class="fa fa-eye"></i> Hiển thị gien</button>
+                        <button class="btn btn-primary btn-xs" ng-click="blastSeq(seq)"><i class="fa fa-search"></i> BLAST</button>
+                        <button class="btn btn-warning btn-xs" ng-click="iqtreeSeq(seq)"><i class="fa fa-tree"></i> IQTREE</button>
                         <button class="btn btn-danger" ng-click="deleteSeq(seq)">Xóa</button>
                     </td>
                 </tr>
@@ -195,8 +193,8 @@
         <p><strong>Phân hạng IUCN (2008 v3.1):</strong> {{species.iucn_class | noData}}</p>
         <p ng-if="hasData(species.vn_redbook_class) && species.countries.indexOf('Vietnam') >= 0"><strong>Phân hạng Danh lục Đỏ Việt Nam (2007):</strong> {{species.vn_redbook_class}}</p>
         <p><strong>Bản đồ:</strong></p>
-        <button class="btn btn-default" ng-disabled="distribution.length == 0" ng-click="openMapArea()">Phân bố theo tỉnh</button>
-        <button class="btn btn-success" ng-if="isRole('admin curator')" ng-disabled="species.lat_lng.length == 0" ng-click="openMapLatLng()">Phân bố theo tọa độ</button>
+        <button class="btn btn-default" ng-disabled="!species.distribution || species.distribution.length == 0" ng-click="openMapArea()">Phân bố theo tỉnh</button>
+        <button class="btn btn-success" ng-if="isRole('admin curator') && false" ng-disabled="species.lat_lng.length == 0" ng-click="openMapLatLng()">Phân bố theo tọa độ</button>
     </div>
     <div class="col-md-12">
         <p><strong>Mô tả:</strong> {{species.description | noData}}</p>
@@ -218,21 +216,24 @@
                 <tr>
                     <th>Accession</th>
                     <th>Gen</th>
-                    <th ng-if="isRole('admin curator')">Tọa độ</th>
+                    <th></th>
                 </tr>
                 <tr ng-repeat="seq in species.seqs">
                     <td>
-                        <a href="{{'https://www.ncbi.nlm.nih.gov/nuccore/' + seq.accession}}" data-toggle="tooltip" data-placement="right" title="Link to NCBI">
+                        <a ng-if="seq.accession" href="{{'https://www.ncbi.nlm.nih.gov/nuccore/' + seq.accession}}" data-toggle="tooltip" data-placement="right" title="Link to NCBI">
                             {{seq.accession}}
                             <i class="fa fa-link"></i>
                         </a>
+                        <span ng-if="!seq.accession">(Không có accession)</span>
                     </td>
                     <td>{{seq.gen_type}}</td>
-                    <td ng-if="isRole('admin curator')">
-                        <a ng-if="seq.location.lat && seq.location.lng" ng-click="showOnMap(seq.location)">Xem tọa độ</a>
-                        <p ng-if="!(seq.location.lat && seq.location.lng)">Chưa có tọa độ</p>
+                    <td>
+                        <button class="btn btn-info btn-xs" ng-click="showSeq(seq)"><i class="fa fa-eye"></i> Hiển thị gien</button>
+                        <button class="btn btn-primary btn-xs" ng-click="blastSeq(seq)"><i class="fa fa-search"></i> BLAST</button>
+                        <button class="btn btn-warning btn-xs" ng-click="iqtreeSeq(seq)"><i class="fa fa-tree"></i> IQTREE</button>
                     </td>
                 </tr>
+                </tbody>
             </table>
         </div>
     </div>
