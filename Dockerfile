@@ -2,24 +2,25 @@ FROM ubuntu:22.04
 
 WORKDIR /app
 
-# Không hỏi khi cài đặt
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Đảm bảo shell là bash
+# Dùng bash thay vì sh
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
+# Thêm GPG key để tránh lỗi NO_PUBKEY
+RUN curl -fsSL "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x871920D1991BC93C" \
+    | gpg --dearmor -o /etc/apt/trusted.gpg.d/ubuntu-keyring.gpg
 
+# Cài các công cụ cần thiết sớm (gpg, curl để thêm key)
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    curl \
+    gnupg \
+    ca-certificates
 
-# Cài đặt các gói cần thiết
-RUN apt-get update && apt-get install -y --no-install-recommends gnupg
-
-RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 871920D1991BC93C
-
+# Cập nhật lại sau khi có key, rồi cài các gói cần thiết
 RUN apt-get update && apt-get install -y --no-install-recommends \
     apt-transport-https \
     build-essential \
-    ca-certificates \
-    curl \
     git \
     libssl-dev \
     wget \
