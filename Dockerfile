@@ -1,26 +1,25 @@
-FROM ubuntu:22.04
+FROM ubuntu:22.04@sha256:ad57d0ad90b216aebc8d154e1278b1f0932c6a0b8c1c719a185a3dbdc17fcd7c
 
 WORKDIR /app
 
+# Không hỏi khi cài đặt
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Dùng bash thay vì sh
+# Đảm bảo shell là bash
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
-# Thêm GPG key để tránh lỗi NO_PUBKEY
-RUN curl -fsSL "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x871920D1991BC93C" \
-    | gpg --dearmor -o /etc/apt/trusted.gpg.d/ubuntu-keyring.gpg
 
-# Cài các công cụ cần thiết sớm (gpg, curl để thêm key)
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    curl \
-    gnupg \
-    ca-certificates
 
-# Cập nhật lại sau khi có key, rồi cài các gói cần thiết
+# Cài đặt các gói cần thiết
+RUN apt-get update && apt-get install -y --no-install-recommends gnupg
+
+RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 871920D1991BC93C
+
 RUN apt-get update && apt-get install -y --no-install-recommends \
     apt-transport-https \
     build-essential \
+    ca-certificates \
+    curl \
     git \
     libssl-dev \
     wget \
@@ -53,7 +52,7 @@ ENV PATH=$EXTERN_TOOLS_DIR/elasticsearch-2.2.0/bin:$EXTERN_TOOLS_DIR/iqtree-2.4.
 # Tạo các thư mục cần thiết
 RUN mkdir -p tmp uploads/img db backup eslogs
 
-# Copy và set permission cho entrypoint script  
+# Copy và set permission cho entrypoint script
 COPY docker-entrypoint.sh /usr/local/bin/
 RUN ls -l /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
