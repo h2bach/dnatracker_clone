@@ -8,7 +8,11 @@ ENV DEBIAN_FRONTEND=noninteractive
 # Đảm bảo shell là bash
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
+
+
 # Cài đặt các gói cần thiết
+RUN apt-get update && apt-get install -y --no-install-recommends gnupg
+
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 871920D1991BC93C
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
