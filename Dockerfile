@@ -9,6 +9,8 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
 # Cài đặt các gói cần thiết
+RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 871920D1991BC93C
+
 RUN apt-get update && apt-get install -y --no-install-recommends \
     apt-transport-https \
     build-essential \
