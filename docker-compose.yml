@@ -49,7 +49,7 @@ services:
       dockerfile: Dockerfile
     restart: always
     ports:
-      - "8480:3000"
+      - "8481:3000"
     volumes:
       - ./uploads:/app/uploads
       - ./tmp:/app/tmp
