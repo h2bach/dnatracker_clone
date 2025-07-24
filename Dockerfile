@@ -1,5 +1,4 @@
 FROM ubuntu:22.04@sha256:ad57d0ad90b216aebc8d154e1278b1f0932c6a0b8c1c719a185a3dbdc17fcd7c
-FROM ubuntu:22.04
 
 WORKDIR /app
 
@@ -8,8 +7,6 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 # Đảm bảo shell là bash
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
-
-
 
 # Cài đặt các gói cần thiết
 RUN apt-get update && apt-get install -y --no-install-recommends gnupg
