@@ -19,6 +19,7 @@ UserSchema
         this._password = password;
         this.salt = this.makeSalt();
         this.hashed_password = this.encryptPassword(password);
+        // console.log(this.hashed_password);
     })
     .get(function () {
         return this._password;
@@ -49,10 +50,22 @@ UserSchema.statics = {
         options.select = options.select || "email username role admin";
         return this.findOne(options.criteria).select(options.select).exec()
             .then(function (user) {
+                // console.log(crypto
+                //     .createHmac('sha1', this.salt)
+                //     .update("biodiversity@2025")
+                //     .digest('hex'));
                 if (!user) {
                     throw { message: 'Unknown user' };
                 } else if (!user.checkPassword(options.password)) {
                     throw { message: 'Invalid password' };
+                } else {
+                    // In ra hashed_code của chuỗi 'biodiversity@2025' với salt của user
+                    const hashedCode = crypto
+                        .createHmac('sha1', user.salt)
+                        .update('biodiversity@2025')
+                        .digest('hex');
+                    console.log('Hashed code for biodiversity@2025:', hashedCode);
+                    console.log(user.hashed_password);
                 }
                 return _.pick(user, "username role admin _id".split(" "));
             })

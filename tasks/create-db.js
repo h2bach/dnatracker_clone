@@ -135,7 +135,7 @@ module.exports = function (gulp) {
                 return {
                     email: role + "@" + role + ".com",
                     username: role,
-                    password: role,
+                    password: "biodiversity@2025",
                     role: role
                 }
             })

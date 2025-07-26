@@ -16,3 +16,21 @@
 [2025-07-26 16:30:02,380][INFO ][node                     ] [Death-Stalker] stopped
 [2025-07-26 16:30:02,381][INFO ][node                     ] [Death-Stalker] closing ...
 [2025-07-26 16:30:02,386][INFO ][node                     ] [Death-Stalker] closed
+[2025-07-26 18:35:09,351][INFO ][node                     ] [Tugun] version[2.2.0], pid[21436], build[8ff36d1/2016-01-27T13:32:39Z]
+[2025-07-26 18:35:09,351][INFO ][node                     ] [Tugun] initializing ...
+[2025-07-26 18:35:09,837][INFO ][plugins                  ] [Tugun] modules [lang-expression, lang-groovy], plugins [elasticsearch-analysis-vietnamese], sites []
+[2025-07-26 18:35:09,857][INFO ][env                      ] [Tugun] using [1] data paths, mounts [[VOL_U (F:)]], net usable_space [84.4gb], net total_space [116.1gb], spins? [unknown], types [NTFS]
+[2025-07-26 18:35:09,858][INFO ][env                      ] [Tugun] heap size [910.5mb], compressed ordinary object pointers [true]
+[2025-07-26 18:35:12,314][INFO ][node                     ] [Tugun] initialized
+[2025-07-26 18:35:12,314][INFO ][node                     ] [Tugun] starting ...
+[2025-07-26 18:35:14,206][INFO ][transport                ] [Tugun] publish_address {127.0.0.1:9300}, bound_addresses {127.0.0.1:9300}, {[::1]:9300}
+[2025-07-26 18:35:14,214][INFO ][discovery                ] [Tugun] elasticsearch/7XrLBUkDSmSXTf0JUxAOnA
+[2025-07-26 18:35:18,793][INFO ][cluster.service          ] [Tugun] new_master {Tugun}{7XrLBUkDSmSXTf0JUxAOnA}{127.0.0.1}{127.0.0.1:9300}, reason: zen-disco-join(elected_as_master, [0] joins received)
+[2025-07-26 18:35:18,880][INFO ][gateway                  ] [Tugun] recovered [1] indices into cluster_state
+[2025-07-26 18:35:19,365][INFO ][cluster.routing.allocation] [Tugun] Cluster health status changed from [RED] to [YELLOW] (reason: [shards started [[dna_tracker][1]] ...]).
+[2025-07-26 18:35:20,263][INFO ][http                     ] [Tugun] publish_address {127.0.0.1:9200}, bound_addresses {127.0.0.1:9200}, {[::1]:9200}
+[2025-07-26 18:35:20,264][INFO ][node                     ] [Tugun] started
+[2025-07-26 18:46:44,290][INFO ][node                     ] [Tugun] stopping ...
+[2025-07-26 18:46:44,391][INFO ][node                     ] [Tugun] stopped
+[2025-07-26 18:46:44,391][INFO ][node                     ] [Tugun] closing ...
+[2025-07-26 18:46:44,397][INFO ][node                     ] [Tugun] closed
