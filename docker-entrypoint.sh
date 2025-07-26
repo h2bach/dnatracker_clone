@@ -33,7 +33,7 @@ while ! curl -f http://elasticsearch:9200/_cluster/health >/dev/null 2>&1; do
     sleep 5
 done
 
-echo "All services are ready. Starting DNA Tracker..."
+echo "All services are ready. Starting Biodiversity Vietnam..."
 
 # Start the application
 exec node dna-tracker.js

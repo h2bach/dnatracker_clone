@@ -1,4 +1,4 @@
-# DNA Tracker - Docker Setup
+# Biodiversity Vietnam - Docker Setup
 
 ## Hướng dẫn chạy với Docker
 
@@ -56,7 +56,7 @@ docker compose down -v
 
 ## Cấu trúc Docker
 
-- **Dockerfile**: Build image chính cho DNA Tracker application
+- **Dockerfile**: Build image chính cho Biodiversity Vietnam application
 - **docker/elasticsearch/**: Custom Elasticsearch 2.2.0 image
 - **docker-compose.yml**: Định nghĩa tất cả services
 - **.env**: Biến môi trường

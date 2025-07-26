@@ -6,7 +6,8 @@
     <div class="header-content overlay"></div>
     <div class="header-content">
         <div class="header-content-inner">
-            <h2>Trang web nhận dạng các loài động vật có xương sống</h2>
+            <h1><strong>Biodiversity Vietnam</strong></h1>
+            <h2>Trang web nhận dạng các loài động vật có xương sống quý hiếm</h2>
             <h2>được bảo vệ tại Việt Nam</h2>
             <hr style="max-width: 200px;">
             <div class="row" ng-if="!view.searching">
@@ -36,10 +37,15 @@
                         <input ng-disabled="input.file" type="text" class="form-control" ng-model="input.text" placeholder="Nhập chuỗi DNA"/>
                     </div>
                 </div>
-                <div class="col-sm-6 col-xs-12 col-xs-offset-0 col-sm-offset-3">
-                    <file-input-form ng-model="input.file" title="Hoặc chọn file (.txt, .fa, .fasta)"></file-input-form>
+                <div class="col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1 list-button" style="margin-bottom: -10px; display: flex; gap: 20px;">
+                    <div style="flex:1;">
+                        <file-input-form ng-model="input.file" title="Hoặc chọn file (.txt, .fa, .fasta)" style="width:100%; height: 48px;"></file-input-form>
+                    </div>
+                    <a href="assets/sample-cytoB.fasta" download class="btn btn-success btn-xl" style="width: 180px; min-width: 120px; max-width: 220px; display: flex; align-items: center; justify-content: center; height: 48px;">
+                        <i class="fa fa-download"></i> <span style="margin-left:8px;">Tải mẫu FASTA</span>
+                    </a>
                 </div>
-                <div class="col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1 list-button" style="margin-top: 30px;">
+                <div class="col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1 list-button" style="margin-top: 15px;">
                     <button class="btn btn-primary btn-xl" ng-click="search('blast')" ng-disabled="isDisabled()"><i class="fa fa-search"></i> Blast</button>
                     <button class="btn btn-warning btn-xl" ng-click="search('maximum_likelihood')" ng-disabled="isDisabled()"><i class="fa fa-search"></i> IQTREE</button>
                 </div>

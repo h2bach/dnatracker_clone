@@ -1,0 +1,18 @@
+[2025-07-23 13:48:30,772][INFO ][node                     ] [Eric Williams] version[2.2.0], pid[22712], build[8ff36d1/2016-01-27T13:32:39Z]
+[2025-07-23 13:48:30,776][INFO ][node                     ] [Eric Williams] initializing ...
+[2025-07-23 13:48:33,181][INFO ][plugins                  ] [Eric Williams] modules [lang-expression, lang-groovy], plugins [elasticsearch-analysis-vietnamese], sites []
+[2025-07-23 13:48:33,213][INFO ][env                      ] [Eric Williams] using [1] data paths, mounts [[VOL_U (F:)]], net usable_space [84.4gb], net total_space [116.1gb], spins? [unknown], types [NTFS]
+[2025-07-23 13:48:33,213][INFO ][env                      ] [Eric Williams] heap size [910.5mb], compressed ordinary object pointers [true]
+[2025-07-23 13:48:36,065][INFO ][node                     ] [Eric Williams] initialized
+[2025-07-23 13:48:36,065][INFO ][node                     ] [Eric Williams] starting ...
+[2025-07-23 13:48:37,087][INFO ][transport                ] [Eric Williams] publish_address {127.0.0.1:9300}, bound_addresses {127.0.0.1:9300}, {[::1]:9300}
+[2025-07-23 13:48:37,095][INFO ][discovery                ] [Eric Williams] elasticsearch/NPRtsledTSyojZU4RGrCxA
+[2025-07-23 13:48:41,648][INFO ][cluster.service          ] [Eric Williams] new_master {Eric Williams}{NPRtsledTSyojZU4RGrCxA}{127.0.0.1}{127.0.0.1:9300}, reason: zen-disco-join(elected_as_master, [0] joins received)
+[2025-07-23 13:48:41,819][INFO ][gateway                  ] [Eric Williams] recovered [1] indices into cluster_state
+[2025-07-23 13:48:42,850][INFO ][cluster.routing.allocation] [Eric Williams] Cluster health status changed from [RED] to [YELLOW] (reason: [shards started [[dna_tracker][1]] ...]).
+[2025-07-23 13:48:43,209][INFO ][http                     ] [Eric Williams] publish_address {127.0.0.1:9200}, bound_addresses {127.0.0.1:9200}, {[::1]:9200}
+[2025-07-23 13:48:43,209][INFO ][node                     ] [Eric Williams] started
+[2025-07-23 17:52:03,870][INFO ][node                     ] [Eric Williams] stopping ...
+[2025-07-23 17:52:03,981][INFO ][node                     ] [Eric Williams] stopped
+[2025-07-23 17:52:03,983][INFO ][node                     ] [Eric Williams] closing ...
+[2025-07-23 17:52:04,035][INFO ][node                     ] [Eric Williams] closed

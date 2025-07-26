@@ -1,18 +1,18 @@
-[2025-07-23 13:48:30,772][INFO ][node                     ] [Eric Williams] version[2.2.0], pid[22712], build[8ff36d1/2016-01-27T13:32:39Z]
-[2025-07-23 13:48:30,776][INFO ][node                     ] [Eric Williams] initializing ...
-[2025-07-23 13:48:33,181][INFO ][plugins                  ] [Eric Williams] modules [lang-expression, lang-groovy], plugins [elasticsearch-analysis-vietnamese], sites []
-[2025-07-23 13:48:33,213][INFO ][env                      ] [Eric Williams] using [1] data paths, mounts [[VOL_U (F:)]], net usable_space [84.4gb], net total_space [116.1gb], spins? [unknown], types [NTFS]
-[2025-07-23 13:48:33,213][INFO ][env                      ] [Eric Williams] heap size [910.5mb], compressed ordinary object pointers [true]
-[2025-07-23 13:48:36,065][INFO ][node                     ] [Eric Williams] initialized
-[2025-07-23 13:48:36,065][INFO ][node                     ] [Eric Williams] starting ...
-[2025-07-23 13:48:37,087][INFO ][transport                ] [Eric Williams] publish_address {127.0.0.1:9300}, bound_addresses {127.0.0.1:9300}, {[::1]:9300}
-[2025-07-23 13:48:37,095][INFO ][discovery                ] [Eric Williams] elasticsearch/NPRtsledTSyojZU4RGrCxA
-[2025-07-23 13:48:41,648][INFO ][cluster.service          ] [Eric Williams] new_master {Eric Williams}{NPRtsledTSyojZU4RGrCxA}{127.0.0.1}{127.0.0.1:9300}, reason: zen-disco-join(elected_as_master, [0] joins received)
-[2025-07-23 13:48:41,819][INFO ][gateway                  ] [Eric Williams] recovered [1] indices into cluster_state
-[2025-07-23 13:48:42,850][INFO ][cluster.routing.allocation] [Eric Williams] Cluster health status changed from [RED] to [YELLOW] (reason: [shards started [[dna_tracker][1]] ...]).
-[2025-07-23 13:48:43,209][INFO ][http                     ] [Eric Williams] publish_address {127.0.0.1:9200}, bound_addresses {127.0.0.1:9200}, {[::1]:9200}
-[2025-07-23 13:48:43,209][INFO ][node                     ] [Eric Williams] started
-[2025-07-23 17:52:03,870][INFO ][node                     ] [Eric Williams] stopping ...
-[2025-07-23 17:52:03,981][INFO ][node                     ] [Eric Williams] stopped
-[2025-07-23 17:52:03,983][INFO ][node                     ] [Eric Williams] closing ...
-[2025-07-23 17:52:04,035][INFO ][node                     ] [Eric Williams] closed
+[2025-07-26 15:58:54,335][INFO ][node                     ] [Death-Stalker] version[2.2.0], pid[23868], build[8ff36d1/2016-01-27T13:32:39Z]
+[2025-07-26 15:58:54,339][INFO ][node                     ] [Death-Stalker] initializing ...
+[2025-07-26 15:58:55,182][INFO ][plugins                  ] [Death-Stalker] modules [lang-expression, lang-groovy], plugins [elasticsearch-analysis-vietnamese], sites []
+[2025-07-26 15:58:55,213][INFO ][env                      ] [Death-Stalker] using [1] data paths, mounts [[VOL_U (F:)]], net usable_space [84.4gb], net total_space [116.1gb], spins? [unknown], types [NTFS]
+[2025-07-26 15:58:55,213][INFO ][env                      ] [Death-Stalker] heap size [910.5mb], compressed ordinary object pointers [true]
+[2025-07-26 15:58:58,732][INFO ][node                     ] [Death-Stalker] initialized
+[2025-07-26 15:58:58,732][INFO ][node                     ] [Death-Stalker] starting ...
+[2025-07-26 15:59:00,489][INFO ][transport                ] [Death-Stalker] publish_address {127.0.0.1:9300}, bound_addresses {127.0.0.1:9300}, {[::1]:9300}
+[2025-07-26 15:59:00,498][INFO ][discovery                ] [Death-Stalker] elasticsearch/KCORPvCpQmCzDkhCG6F8ng
+[2025-07-26 15:59:05,087][INFO ][cluster.service          ] [Death-Stalker] new_master {Death-Stalker}{KCORPvCpQmCzDkhCG6F8ng}{127.0.0.1}{127.0.0.1:9300}, reason: zen-disco-join(elected_as_master, [0] joins received)
+[2025-07-26 15:59:05,275][INFO ][gateway                  ] [Death-Stalker] recovered [1] indices into cluster_state
+[2025-07-26 15:59:06,128][INFO ][cluster.routing.allocation] [Death-Stalker] Cluster health status changed from [RED] to [YELLOW] (reason: [shards started [[dna_tracker][1]] ...]).
+[2025-07-26 15:59:08,052][INFO ][http                     ] [Death-Stalker] publish_address {127.0.0.1:9200}, bound_addresses {127.0.0.1:9200}, {[::1]:9200}
+[2025-07-26 15:59:08,053][INFO ][node                     ] [Death-Stalker] started
+[2025-07-26 16:30:02,290][INFO ][node                     ] [Death-Stalker] stopping ...
+[2025-07-26 16:30:02,380][INFO ][node                     ] [Death-Stalker] stopped
+[2025-07-26 16:30:02,381][INFO ][node                     ] [Death-Stalker] closing ...
+[2025-07-26 16:30:02,386][INFO ][node                     ] [Death-Stalker] closed

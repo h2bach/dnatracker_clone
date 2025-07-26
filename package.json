@@ -1,5 +1,5 @@
 {
-  "name": "dna-tracker",
+  "name": "biodiversity-vietnam",
   "version": "0.0.1",
   "description": "Building web app identifying of the protected vertebrate species in Indochina",
   "main": "dna-tracker.js",

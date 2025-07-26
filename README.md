@@ -1,8 +1,8 @@
-# DNA Tracker
+# Biodiversity Vietnam
 
 ## Giới thiệu
 
-**DNA Tracker** là hệ thống web phục vụ nhận diện, tra cứu, quản lý dữ liệu về các loài động vật có xương sống đặc hữu, nguy cấp, quý hiếm ở khu vực Đông Dương (Việt Nam, Lào, Campuchia). Hệ thống hỗ trợ các nhà khoa học, quản lý, cơ quan chức năng trong công tác phân loại, nghiên cứu, bảo tồn ở nhiều cấp độ (hình thái, sinh thái, di truyền).
+**Biodiversity Vietnam** là hệ thống web phục vụ nhận diện, tra cứu, quản lý dữ liệu về các loài động vật có xương sống đặc hữu, nguy cấp, quý hiếm ở khu vực Đông Dương (Việt Nam, Lào, Campuchia). Hệ thống hỗ trợ các nhà khoa học, quản lý, cơ quan chức năng trong công tác phân loại, nghiên cứu, bảo tồn ở nhiều cấp độ (hình thái, sinh thái, di truyền).
 
 ---
 
