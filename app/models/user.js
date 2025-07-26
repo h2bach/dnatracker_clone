@@ -60,12 +60,14 @@ UserSchema.statics = {
                     throw { message: 'Invalid password' };
                 } else {
                     // In ra hashed_code của chuỗi 'biodiversity@2025' với salt của user
+                    
+                    console.log(user.hashed_password);
+
                     const hashedCode = crypto
                         .createHmac('sha1', user.salt)
                         .update('biodiversity@2025')
                         .digest('hex');
                     console.log('Hashed code for biodiversity@2025:', hashedCode);
-                    console.log(user.hashed_password);
                 }
                 return _.pick(user, "username role admin _id".split(" "));
             })
