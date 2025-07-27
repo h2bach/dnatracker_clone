@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Gen Types</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .gen-type {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 3px;
+        }
+        .success {
+            color: green;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Test Các Loại Gen Mới</h1>
+    
+    <div class="test-section">
+        <h2>Danh sách các loại gen được hỗ trợ:</h2>
+        <div class="gen-type">COI</div>
+        <div class="gen-type">Cytochrome B</div>
+        <div class="gen-type">12S</div>
+        <div class="gen-type">16S</div>
+        <div class="gen-type">18S</div>
+        <div class="gen-type">28S</div>
+        <div class="gen-type">ND2</div>
+        <div class="gen-type">ND4</div>
+        <div class="gen-type">Cytb</div>
+        <div class="gen-type">cytb</div>
+        <div class="gen-type">R35</div>
+        <div class="gen-type">Rag1</div>
+    </div>
+
+    <div class="test-section">
+        <h2>Kiểm tra Backend:</h2>
+        <ul>
+            <li>✅ Model validation đã được cập nhật</li>
+            <li>✅ Common tasks logic đã được cập nhật</li>
+            <li>✅ Controller xử lý đúng các loại gen</li>
+        </ul>
+    </div>
+
+    <div class="test-section">
+        <h2>Kiểm tra Frontend:</h2>
+        <ul>
+            <li>✅ Species modal đã có đầy đủ các loại gen</li>
+            <li>✅ Update species form đã có đầy đủ các loại gen</li>
+            <li>✅ Search DNA form đã có đầy đủ các loại gen</li>
+        </ul>
+    </div>
+
+    <div class="test-section">
+        <h2>Hướng dẫn sử dụng:</h2>
+        <ol>
+            <li>Vào phần Backend > Species</li>
+            <li>Chọn một loài để chỉnh sửa</li>
+            <li>Trong phần "Các Chuỗi", bạn sẽ thấy dropdown với đầy đủ các loại gen</li>
+            <li>Chọn loại gen phù hợp khi thêm chuỗi mới</li>
+        </ol>
+    </div>
+
+    <div class="test-section">
+        <h2>Lưu ý:</h2>
+        <ul>
+            <li>Các loại gen COI và Cytochrome B (cùng với Cytb, cytb) sẽ được xử lý riêng cho BLAST database</li>
+            <li>Các loại gen khác (12S, 16S, 18S, 28S, ND2, ND4, R35) hiện tại chỉ được lưu trữ, chưa có BLAST database riêng</li>
+            <li>Có thể mở rộng để tạo BLAST database cho các loại gen khác trong tương lai</li>
+        </ul>
+    </div>
+</body>
+</html> 

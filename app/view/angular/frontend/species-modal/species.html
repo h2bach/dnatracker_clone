@@ -141,6 +141,16 @@
                         <select class="form-control" ng-model="termSeq.gen_type" required>
                             <option value="COI">COI</option>
                             <option value="Cytochrome B">Cytochrome B</option>
+                            <option value="12S">12S</option>
+                            <option value="16S">16S</option>
+                            <option value="18S">18S</option>
+                            <option value="28S">28S</option>
+                            <option value="ND2">ND2</option>
+                            <option value="ND4">ND4</option>
+                            <option value="Cytb">Cytb</option>
+                            <option value="cytb">cytb</option>
+                            <option value="R35">R35</option>
+                            <option value="Rag1">Rag1</option>
                         </select>
                     </td>
                     <td>
@@ -178,7 +188,7 @@
 <div class="modal-body" ng-if="!view.editting" style="padding-top: 35px;">
     <div class="col-md-6">
         <div ng-if="images.length == 0" style="border: 2px dashed #ddd;">
-            <img style="width: 100%;" src="assets/img/default.jpg" alt="">
+            <img style="width: 100%;" ng-src="assets/img/default.jpg" alt="">
         </div>
         <fotorama ng-if="images.length > 0" items="images" options="view.options"></fotorama>
         <p><strong>Nguồn ảnh:</strong> {{species.img_source | noData}}</p>

@@ -118,14 +118,21 @@ module.exports = [
                     }
                 });
 
-                Species.findOneAndUpdate({_id: req.params.species_id}, species)
-                    .then(function (result) {
-                        upDateBlastDb();
-                        res.jsonSuccess(species);
-                    })
-                    .catch(function (err) {
-                        res.jsonFail(err);
-                    });
+                Species.findOne({_id: req.params.species_id}).then(function (oldSpecies) {
+                    // Nếu không gửi hoặc gửi mảng rỗng, giữ lại dữ liệu cũ
+                    if (!species.distribution || species.distribution.length === 0) {
+                        species.distribution = oldSpecies.distribution;
+                    }
+                    // Có thể merge các trường khác nếu muốn bảo toàn dữ liệu cũ
+                    return Species.findOneAndUpdate({_id: req.params.species_id}, species, {new: true});
+                })
+                .then(function (result) {
+                    upDateBlastDb();
+                    res.jsonSuccess(result);
+                })
+                .catch(function (err) {
+                    res.jsonFail(err);
+                });
 
             } else {
                 addImageToData();

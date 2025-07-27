@@ -1,0 +1,62 @@
+[2025-07-26 15:58:54,335][INFO ][node                     ] [Death-Stalker] version[2.2.0], pid[23868], build[8ff36d1/2016-01-27T13:32:39Z]
+[2025-07-26 15:58:54,339][INFO ][node                     ] [Death-Stalker] initializing ...
+[2025-07-26 15:58:55,182][INFO ][plugins                  ] [Death-Stalker] modules [lang-expression, lang-groovy], plugins [elasticsearch-analysis-vietnamese], sites []
+[2025-07-26 15:58:55,213][INFO ][env                      ] [Death-Stalker] using [1] data paths, mounts [[VOL_U (F:)]], net usable_space [84.4gb], net total_space [116.1gb], spins? [unknown], types [NTFS]
+[2025-07-26 15:58:55,213][INFO ][env                      ] [Death-Stalker] heap size [910.5mb], compressed ordinary object pointers [true]
+[2025-07-26 15:58:58,732][INFO ][node                     ] [Death-Stalker] initialized
+[2025-07-26 15:58:58,732][INFO ][node                     ] [Death-Stalker] starting ...
+[2025-07-26 15:59:00,489][INFO ][transport                ] [Death-Stalker] publish_address {127.0.0.1:9300}, bound_addresses {127.0.0.1:9300}, {[::1]:9300}
+[2025-07-26 15:59:00,498][INFO ][discovery                ] [Death-Stalker] elasticsearch/KCORPvCpQmCzDkhCG6F8ng
+[2025-07-26 15:59:05,087][INFO ][cluster.service          ] [Death-Stalker] new_master {Death-Stalker}{KCORPvCpQmCzDkhCG6F8ng}{127.0.0.1}{127.0.0.1:9300}, reason: zen-disco-join(elected_as_master, [0] joins received)
+[2025-07-26 15:59:05,275][INFO ][gateway                  ] [Death-Stalker] recovered [1] indices into cluster_state
+[2025-07-26 15:59:06,128][INFO ][cluster.routing.allocation] [Death-Stalker] Cluster health status changed from [RED] to [YELLOW] (reason: [shards started [[dna_tracker][1]] ...]).
+[2025-07-26 15:59:08,052][INFO ][http                     ] [Death-Stalker] publish_address {127.0.0.1:9200}, bound_addresses {127.0.0.1:9200}, {[::1]:9200}
+[2025-07-26 15:59:08,053][INFO ][node                     ] [Death-Stalker] started
+[2025-07-26 16:30:02,290][INFO ][node                     ] [Death-Stalker] stopping ...
+[2025-07-26 16:30:02,380][INFO ][node                     ] [Death-Stalker] stopped
+[2025-07-26 16:30:02,381][INFO ][node                     ] [Death-Stalker] closing ...
+[2025-07-26 16:30:02,386][INFO ][node                     ] [Death-Stalker] closed
+[2025-07-26 18:35:09,351][INFO ][node                     ] [Tugun] version[2.2.0], pid[21436], build[8ff36d1/2016-01-27T13:32:39Z]
+[2025-07-26 18:35:09,351][INFO ][node                     ] [Tugun] initializing ...
+[2025-07-26 18:35:09,837][INFO ][plugins                  ] [Tugun] modules [lang-expression, lang-groovy], plugins [elasticsearch-analysis-vietnamese], sites []
+[2025-07-26 18:35:09,857][INFO ][env                      ] [Tugun] using [1] data paths, mounts [[VOL_U (F:)]], net usable_space [84.4gb], net total_space [116.1gb], spins? [unknown], types [NTFS]
+[2025-07-26 18:35:09,858][INFO ][env                      ] [Tugun] heap size [910.5mb], compressed ordinary object pointers [true]
+[2025-07-26 18:35:12,314][INFO ][node                     ] [Tugun] initialized
+[2025-07-26 18:35:12,314][INFO ][node                     ] [Tugun] starting ...
+[2025-07-26 18:35:14,206][INFO ][transport                ] [Tugun] publish_address {127.0.0.1:9300}, bound_addresses {127.0.0.1:9300}, {[::1]:9300}
+[2025-07-26 18:35:14,214][INFO ][discovery                ] [Tugun] elasticsearch/7XrLBUkDSmSXTf0JUxAOnA
+[2025-07-26 18:35:18,793][INFO ][cluster.service          ] [Tugun] new_master {Tugun}{7XrLBUkDSmSXTf0JUxAOnA}{127.0.0.1}{127.0.0.1:9300}, reason: zen-disco-join(elected_as_master, [0] joins received)
+[2025-07-26 18:35:18,880][INFO ][gateway                  ] [Tugun] recovered [1] indices into cluster_state
+[2025-07-26 18:35:19,365][INFO ][cluster.routing.allocation] [Tugun] Cluster health status changed from [RED] to [YELLOW] (reason: [shards started [[dna_tracker][1]] ...]).
+[2025-07-26 18:35:20,263][INFO ][http                     ] [Tugun] publish_address {127.0.0.1:9200}, bound_addresses {127.0.0.1:9200}, {[::1]:9200}
+[2025-07-26 18:35:20,264][INFO ][node                     ] [Tugun] started
+[2025-07-26 18:46:44,290][INFO ][node                     ] [Tugun] stopping ...
+[2025-07-26 18:46:44,391][INFO ][node                     ] [Tugun] stopped
+[2025-07-26 18:46:44,391][INFO ][node                     ] [Tugun] closing ...
+[2025-07-26 18:46:44,397][INFO ][node                     ] [Tugun] closed
+[2025-07-26 21:16:37,425][INFO ][node                     ] [Kismet Deadly] version[2.2.0], pid[33320], build[8ff36d1/2016-01-27T13:32:39Z]
+[2025-07-26 21:16:37,426][INFO ][node                     ] [Kismet Deadly] initializing ...
+[2025-07-26 21:16:37,946][INFO ][plugins                  ] [Kismet Deadly] modules [lang-expression, lang-groovy], plugins [elasticsearch-analysis-vietnamese], sites []
+[2025-07-26 21:16:37,967][INFO ][env                      ] [Kismet Deadly] using [1] data paths, mounts [[VOL_U (F:)]], net usable_space [84.4gb], net total_space [116.1gb], spins? [unknown], types [NTFS]
+[2025-07-26 21:16:37,968][INFO ][env                      ] [Kismet Deadly] heap size [910.5mb], compressed ordinary object pointers [true]
+[2025-07-26 21:16:41,318][INFO ][node                     ] [Kismet Deadly] initialized
+[2025-07-26 21:16:41,318][INFO ][node                     ] [Kismet Deadly] starting ...
+[2025-07-26 21:16:43,651][INFO ][transport                ] [Kismet Deadly] publish_address {127.0.0.1:9300}, bound_addresses {127.0.0.1:9300}, {[::1]:9300}
+[2025-07-26 21:16:43,659][INFO ][discovery                ] [Kismet Deadly] elasticsearch/cp65_wjVTdeCQvyGJH0__g
+[2025-07-26 21:16:48,231][INFO ][cluster.service          ] [Kismet Deadly] new_master {Kismet Deadly}{cp65_wjVTdeCQvyGJH0__g}{127.0.0.1}{127.0.0.1:9300}, reason: zen-disco-join(elected_as_master, [0] joins received)
+[2025-07-26 21:16:48,335][INFO ][gateway                  ] [Kismet Deadly] recovered [1] indices into cluster_state
+[2025-07-26 21:16:48,841][INFO ][cluster.routing.allocation] [Kismet Deadly] Cluster health status changed from [RED] to [YELLOW] (reason: [shards started [[dna_tracker][4]] ...]).
+[2025-07-26 21:16:49,816][INFO ][http                     ] [Kismet Deadly] publish_address {127.0.0.1:9200}, bound_addresses {127.0.0.1:9200}, {[::1]:9200}
+[2025-07-26 21:16:49,817][INFO ][node                     ] [Kismet Deadly] started
+[2025-07-26 21:31:51,382][INFO ][cluster.metadata         ] [Kismet Deadly] [dna_tracker] creating index, cause [api], templates [], shards [5]/[1], mappings []
+[2025-07-26 21:31:51,443][INFO ][cluster.metadata         ] [Kismet Deadly] [dna_tracker] create_mapping [species]
+[2025-07-26 21:31:51,488][INFO ][cluster.routing.allocation] [Kismet Deadly] Cluster health status changed from [RED] to [YELLOW] (reason: [shards started [[dna_tracker][4]] ...]).
+[2025-07-26 21:31:51,859][INFO ][cluster.metadata         ] [Kismet Deadly] [dna_tracker] update_mapping [species]
+[2025-07-26 21:52:44,039][INFO ][cluster.metadata         ] [Kismet Deadly] [dna_tracker] creating index, cause [api], templates [], shards [5]/[1], mappings []
+[2025-07-26 21:52:44,080][INFO ][cluster.metadata         ] [Kismet Deadly] [dna_tracker] create_mapping [species]
+[2025-07-26 21:52:44,134][INFO ][cluster.routing.allocation] [Kismet Deadly] Cluster health status changed from [RED] to [YELLOW] (reason: [shards started [[dna_tracker][4]] ...]).
+[2025-07-26 21:52:44,415][INFO ][cluster.metadata         ] [Kismet Deadly] [dna_tracker] update_mapping [species]
+[2025-07-26 21:54:33,528][INFO ][cluster.metadata         ] [Kismet Deadly] [dna_tracker] creating index, cause [api], templates [], shards [5]/[1], mappings []
+[2025-07-26 21:54:33,568][INFO ][cluster.metadata         ] [Kismet Deadly] [dna_tracker] create_mapping [species]
+[2025-07-26 21:54:33,621][INFO ][cluster.routing.allocation] [Kismet Deadly] Cluster health status changed from [RED] to [YELLOW] (reason: [shards started [[dna_tracker][4]] ...]).
+[2025-07-26 21:54:33,875][INFO ][cluster.metadata         ] [Kismet Deadly] [dna_tracker] update_mapping [species]

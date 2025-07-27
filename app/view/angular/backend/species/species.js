@@ -109,7 +109,11 @@
                         speciesApi.update({species: $scope.species}).then(function (resp) {
                             $scope.backUp = angular.copy($scope.species);
                             $scope.editting = false;
-                        })
+                            // Gọi lại init() ở controller cha nếu cần reload danh sách
+                            if ($scope.$parent && $scope.$parent.init) $scope.$parent.init();
+                        }).catch(function (err) {
+                            alert('Cập nhật thất bại: ' + (err.data && err.data.message ? err.data.message : 'Lỗi không xác định'));
+                        });
                     };
                 }
             };

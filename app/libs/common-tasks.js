@@ -76,9 +76,10 @@ module.exports = {
                         if (seq.accession && seq.seq) {
                             if (seq.gen_type == "COI") {
                                 fastaFiles.coi.seqs.push(seq);
-                            } else {
+                            } else if (seq.gen_type == "Cytochrome B" || seq.gen_type == "Cytb" || seq.gen_type == "cytb") {
                                 fastaFiles.cytoB.seqs.push(seq);
                             }
+                            // Có thể thêm xử lý cho các loại gen khác trong tương lai
                         }
                     });
                 });

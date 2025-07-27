@@ -40,7 +40,7 @@ RUN npm install
 COPY . .
 
 # Thiết lập quyền thực thi cho các tools
-RUN find ./opt -name "*.sh" -exec chmod +x {} \; || true
+RUN find ./cdopt -name "*.sh" -exec chmod +x {} \; || true
 RUN find ./opt -type d -name "bin" -exec chmod -R +x {}/\* \; || true
 
 # Thiết lập biến môi trường cho các tool ngoài

@@ -5,7 +5,7 @@ var vi = require('../libs/vi.js');
 var StaticConfig = require("../config/config.js");
 var elastic = require('../libs/elasticsearch.js')(StaticConfig.elasticsearch);
 
-var types = ["COI", "Cytochrome B", "12S", "16S", "18S", "28S","ND2", "ND4", "Cytb", "cytb", "R35"]
+var types = ["COI", "Cytochrome B", "12S", "16S", "18S", "28S","ND2", "ND4", "Cytb", "cytb", "R35", "Rag1"]
 var countries = ["Vietnam", "Laos", "Campuchia"];
 
 function validatorCountry (values) {
@@ -33,7 +33,18 @@ var SpeciesSchema = new mongoose.Schema({
         validate: [validatorCountry, 'Invalid country']
     },
     seqs: [{
-        gen_type: {type: String, required: true, trim: true},
+        gen_type: {
+            type: String, 
+            required: true, 
+            trim: true,
+            enum: types,
+            validate: {
+                validator: function(v) {
+                    return types.indexOf(v) !== -1;
+                },
+                message: 'Loại gen không hợp lệ. Các loại gen được hỗ trợ: ' + types.join(', ')
+            }
+        },
         seq: {type: String, required: true, trim: true},
         accession: {type: String, trim: true}
     }],
