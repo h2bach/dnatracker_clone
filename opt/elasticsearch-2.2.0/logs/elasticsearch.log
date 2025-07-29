@@ -1,20 +1,19 @@
-[2025-07-27 09:14:31,981][INFO ][cluster.metadata         ] [Kismet Deadly] [dna_tracker] creating index, cause [api], templates [], shards [5]/[1], mappings []
-[2025-07-27 09:14:32,076][INFO ][cluster.metadata         ] [Kismet Deadly] [dna_tracker] create_mapping [species]
-[2025-07-27 09:14:32,084][INFO ][cluster.routing.allocation] [Kismet Deadly] Cluster health status changed from [RED] to [YELLOW] (reason: [shards started [[dna_tracker][4]] ...]).
-[2025-07-27 09:14:32,372][INFO ][cluster.metadata         ] [Kismet Deadly] [dna_tracker] update_mapping [species]
-[2025-07-27 11:19:43,849][INFO ][cluster.metadata         ] [Kismet Deadly] [dna_tracker] creating index, cause [api], templates [], shards [5]/[1], mappings []
-[2025-07-27 11:19:43,893][INFO ][cluster.metadata         ] [Kismet Deadly] [dna_tracker] create_mapping [species]
-[2025-07-27 11:19:43,948][INFO ][cluster.routing.allocation] [Kismet Deadly] Cluster health status changed from [RED] to [YELLOW] (reason: [shards started [[dna_tracker][4]] ...]).
-[2025-07-27 11:19:44,306][INFO ][cluster.metadata         ] [Kismet Deadly] [dna_tracker] update_mapping [species]
-[2025-07-27 11:37:39,794][INFO ][cluster.metadata         ] [Kismet Deadly] [dna_tracker] creating index, cause [api], templates [], shards [5]/[1], mappings []
-[2025-07-27 11:37:39,860][INFO ][cluster.metadata         ] [Kismet Deadly] [dna_tracker] create_mapping [species]
-[2025-07-27 11:37:39,886][INFO ][cluster.routing.allocation] [Kismet Deadly] Cluster health status changed from [RED] to [YELLOW] (reason: [shards started [[dna_tracker][4]] ...]).
-[2025-07-27 11:37:40,204][INFO ][cluster.metadata         ] [Kismet Deadly] [dna_tracker] update_mapping [species]
-[2025-07-27 11:40:31,794][INFO ][cluster.metadata         ] [Kismet Deadly] [dna_tracker] creating index, cause [api], templates [], shards [5]/[1], mappings []
-[2025-07-27 11:40:31,856][INFO ][cluster.metadata         ] [Kismet Deadly] [dna_tracker] create_mapping [species]
-[2025-07-27 11:40:31,883][INFO ][cluster.routing.allocation] [Kismet Deadly] Cluster health status changed from [RED] to [YELLOW] (reason: [shards started [[dna_tracker][4]] ...]).
-[2025-07-27 11:40:32,262][INFO ][cluster.metadata         ] [Kismet Deadly] [dna_tracker] update_mapping [species]
-[2025-07-27 14:52:23,877][INFO ][cluster.metadata         ] [Kismet Deadly] [dna_tracker] creating index, cause [api], templates [], shards [5]/[1], mappings []
-[2025-07-27 14:52:23,923][INFO ][cluster.metadata         ] [Kismet Deadly] [dna_tracker] create_mapping [species]
-[2025-07-27 14:52:23,984][INFO ][cluster.routing.allocation] [Kismet Deadly] Cluster health status changed from [RED] to [YELLOW] (reason: [shards started [[dna_tracker][4]] ...]).
-[2025-07-27 14:52:24,274][INFO ][cluster.metadata         ] [Kismet Deadly] [dna_tracker] update_mapping [species]
+[2025-07-29 10:36:28,243][INFO ][node                     ] [Betty Brant Leeds] version[2.2.0], pid[29012], build[8ff36d1/2016-01-27T13:32:39Z]
+[2025-07-29 10:36:28,246][INFO ][node                     ] [Betty Brant Leeds] initializing ...
+[2025-07-29 10:36:28,761][INFO ][plugins                  ] [Betty Brant Leeds] modules [lang-expression, lang-groovy], plugins [elasticsearch-analysis-vietnamese], sites []
+[2025-07-29 10:36:28,793][INFO ][env                      ] [Betty Brant Leeds] using [1] data paths, mounts [[VOL_U (F:)]], net usable_space [84.4gb], net total_space [116.1gb], spins? [unknown], types [NTFS]
+[2025-07-29 10:36:28,793][INFO ][env                      ] [Betty Brant Leeds] heap size [910.5mb], compressed ordinary object pointers [true]
+[2025-07-29 10:36:32,159][INFO ][node                     ] [Betty Brant Leeds] initialized
+[2025-07-29 10:36:32,160][INFO ][node                     ] [Betty Brant Leeds] starting ...
+[2025-07-29 10:36:33,352][INFO ][transport                ] [Betty Brant Leeds] publish_address {127.0.0.1:9300}, bound_addresses {127.0.0.1:9300}, {[::1]:9300}
+[2025-07-29 10:36:33,361][INFO ][discovery                ] [Betty Brant Leeds] elasticsearch/YvGHUsuRSvuZl_YjwDWHLw
+[2025-07-29 10:36:37,943][INFO ][cluster.service          ] [Betty Brant Leeds] new_master {Betty Brant Leeds}{YvGHUsuRSvuZl_YjwDWHLw}{127.0.0.1}{127.0.0.1:9300}, reason: zen-disco-join(elected_as_master, [0] joins received)
+[2025-07-29 10:36:38,204][INFO ][gateway                  ] [Betty Brant Leeds] recovered [1] indices into cluster_state
+[2025-07-29 10:36:38,886][INFO ][cluster.routing.allocation] [Betty Brant Leeds] Cluster health status changed from [RED] to [YELLOW] (reason: [shards started [[dna_tracker][4]] ...]).
+[2025-07-29 10:36:39,324][INFO ][http                     ] [Betty Brant Leeds] publish_address {127.0.0.1:9200}, bound_addresses {127.0.0.1:9200}, {[::1]:9200}
+[2025-07-29 10:36:39,325][INFO ][node                     ] [Betty Brant Leeds] started
+[2025-07-29 10:41:21,389][INFO ][bootstrap                ] running graceful exit on windows
+[2025-07-29 10:41:21,389][INFO ][node                     ] [Betty Brant Leeds] stopping ...
+[2025-07-29 10:41:21,469][INFO ][node                     ] [Betty Brant Leeds] stopped
+[2025-07-29 10:41:21,469][INFO ][node                     ] [Betty Brant Leeds] closing ...
+[2025-07-29 10:41:21,474][INFO ][node                     ] [Betty Brant Leeds] closed

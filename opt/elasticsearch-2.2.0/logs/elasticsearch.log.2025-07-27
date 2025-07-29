@@ -1,0 +1,20 @@
+[2025-07-27 09:14:31,981][INFO ][cluster.metadata         ] [Kismet Deadly] [dna_tracker] creating index, cause [api], templates [], shards [5]/[1], mappings []
+[2025-07-27 09:14:32,076][INFO ][cluster.metadata         ] [Kismet Deadly] [dna_tracker] create_mapping [species]
+[2025-07-27 09:14:32,084][INFO ][cluster.routing.allocation] [Kismet Deadly] Cluster health status changed from [RED] to [YELLOW] (reason: [shards started [[dna_tracker][4]] ...]).
+[2025-07-27 09:14:32,372][INFO ][cluster.metadata         ] [Kismet Deadly] [dna_tracker] update_mapping [species]
+[2025-07-27 11:19:43,849][INFO ][cluster.metadata         ] [Kismet Deadly] [dna_tracker] creating index, cause [api], templates [], shards [5]/[1], mappings []
+[2025-07-27 11:19:43,893][INFO ][cluster.metadata         ] [Kismet Deadly] [dna_tracker] create_mapping [species]
+[2025-07-27 11:19:43,948][INFO ][cluster.routing.allocation] [Kismet Deadly] Cluster health status changed from [RED] to [YELLOW] (reason: [shards started [[dna_tracker][4]] ...]).
+[2025-07-27 11:19:44,306][INFO ][cluster.metadata         ] [Kismet Deadly] [dna_tracker] update_mapping [species]
+[2025-07-27 11:37:39,794][INFO ][cluster.metadata         ] [Kismet Deadly] [dna_tracker] creating index, cause [api], templates [], shards [5]/[1], mappings []
+[2025-07-27 11:37:39,860][INFO ][cluster.metadata         ] [Kismet Deadly] [dna_tracker] create_mapping [species]
+[2025-07-27 11:37:39,886][INFO ][cluster.routing.allocation] [Kismet Deadly] Cluster health status changed from [RED] to [YELLOW] (reason: [shards started [[dna_tracker][4]] ...]).
+[2025-07-27 11:37:40,204][INFO ][cluster.metadata         ] [Kismet Deadly] [dna_tracker] update_mapping [species]
+[2025-07-27 11:40:31,794][INFO ][cluster.metadata         ] [Kismet Deadly] [dna_tracker] creating index, cause [api], templates [], shards [5]/[1], mappings []
+[2025-07-27 11:40:31,856][INFO ][cluster.metadata         ] [Kismet Deadly] [dna_tracker] create_mapping [species]
+[2025-07-27 11:40:31,883][INFO ][cluster.routing.allocation] [Kismet Deadly] Cluster health status changed from [RED] to [YELLOW] (reason: [shards started [[dna_tracker][4]] ...]).
+[2025-07-27 11:40:32,262][INFO ][cluster.metadata         ] [Kismet Deadly] [dna_tracker] update_mapping [species]
+[2025-07-27 14:52:23,877][INFO ][cluster.metadata         ] [Kismet Deadly] [dna_tracker] creating index, cause [api], templates [], shards [5]/[1], mappings []
+[2025-07-27 14:52:23,923][INFO ][cluster.metadata         ] [Kismet Deadly] [dna_tracker] create_mapping [species]
+[2025-07-27 14:52:23,984][INFO ][cluster.routing.allocation] [Kismet Deadly] Cluster health status changed from [RED] to [YELLOW] (reason: [shards started [[dna_tracker][4]] ...]).
+[2025-07-27 14:52:24,274][INFO ][cluster.metadata         ] [Kismet Deadly] [dna_tracker] update_mapping [species]

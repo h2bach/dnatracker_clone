@@ -40,15 +40,15 @@
                 </div>
                 <div class="col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1 list-button" style="margin-bottom: -10px; display: flex; gap: 20px;">
                     <div style="flex:1;">
-                        <file-input-form ng-model="input.file" title="Hoặc chọn file (.txt, .fa, .fasta)" style="width:100%; height: 48px;"></file-input-form>
+                        <file-input-form ng-model="input.file" title="Hoặc chọn file FASTA (.fasta, .fa)" style="width:100%; height: 48px;"></file-input-form>
                     </div>
-                    <a href="assets/sample-cytoB.fasta" download class="btn btn-success btn-xl" style="width: 180px; min-width: 120px; max-width: 220px; display: flex; align-items: center; justify-content: center; height: 48px;">
+                    <a href="assets/sample-16S.fasta" download class="btn btn-success btn-xl" style="width: 180px; min-width: 120px; max-width: 220px; display: flex; align-items: center; justify-content: center; height: 48px;">
                         <i class="fa fa-download"></i> <span style="margin-left:8px;">Tải mẫu FASTA</span>
                     </a>
                 </div>
                 <div class="col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1 list-button" style="margin-top: 15px;">
                     <button class="btn btn-primary btn-xl" ng-click="search('blast')" ng-disabled="isDisabled()"><i class="fa fa-search"></i> Blast</button>
-                    <button class="btn btn-warning btn-xl" ng-click="search('maximum_likelihood')" ng-disabled="isDisabled()"><i class="fa fa-search"></i> IQTREE</button>
+                    <button class="btn btn-warning btn-xl" ng-click="search('maximum_likelihood')" ng-disabled="isDisabled()"><i class="fa fa-search"></i> IQ-TREE</button>
                 </div>
             </div>
             <div class="row" ng-if="view.searching">
