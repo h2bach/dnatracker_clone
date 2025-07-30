@@ -35,7 +35,7 @@
             <div class="text-center content" ng-if="!view.searching">
                 <hr class="primary" style="max-width: 400px; border-color: #31b0d5;">
                 <h2 class="section-heading" ng-if="report.hits.length == 0">Không tìm thấy kết quả trên dữ liệu của Biodiversity Vietnam</h2>
-                <h2 class="section-heading" ng-if="message && message.indexOf('Alignment must have at least') >= 0">Không đủ sequence để dựng cây phát sinh loài</h2>
+                <h2 class="section-heading" ng-if="message && message.indexOf('Alignment must have at least') >= 0">Không đủ số lượng loài để dựng cây phát sinh loài</h2>
                 <h3 class="section-heading" ng-if="method == 'blast'">Có muốn thử tìm kiếm trên dữ liệu của NCBI?</h3>
                 <h3 class="section-heading" ng-if="method == 'maximum_likelihood' || method == 'maximum_parsimony' || method == 'phylogenetic_distance'">Có muốn thử tìm kiếm trên dữ liệu của NCBI và dựng cây phát sinh loài?</h3>
                 <h3 class="section-heading" ng-if="method == 'blast'">(Thời gian có thể từ 2-3 phút hoặc nhiều hơn)</h3>
