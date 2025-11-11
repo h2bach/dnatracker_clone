@@ -29,6 +29,9 @@ docker compose logs -f mongodb
 ```bash
 # Chạy service restore-data để khôi phục dữ liệu từ backup
 docker compose --profile restore run --rm restore-data
+
+# Chạy resdưới
+bash opt_startup.sh
 ```
 
 ### 4. Truy cập ứng dụng
