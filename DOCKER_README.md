@@ -30,6 +30,9 @@ docker compose logs -f mongodb
 # Chạy service restore-data để khôi phục dữ liệu từ backup
 docker compose --profile restore run --rm restore-data
 
+# Chạy permission restoration cho các tool
+docker exec -it dnatracker_clone-dnatracker-1 /bin/bash
+
 # Trong Root, chạy cmd dưới
 bash opt_startup.sh
 ```
