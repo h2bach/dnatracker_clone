@@ -30,7 +30,7 @@ docker compose logs -f mongodb
 # Chạy service restore-data để khôi phục dữ liệu từ backup
 docker compose --profile restore run --rm restore-data
 
-# Chạy resdưới
+# Trong Root, chạy cmd dưới
 bash opt_startup.sh
 ```
 
@@ -38,8 +38,7 @@ bash opt_startup.sh
 
 - Giao diện người dùng: http://localhost:3000/
 - Giao diện quản trị: http://localhost:3000/#/backend/login
-  - Username: admin
-  - Password: admin
+
 
 ### 5. Kiểm tra services
 
