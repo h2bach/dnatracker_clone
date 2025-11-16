@@ -200,8 +200,8 @@
         <p ng-if="hasData(species.laos_name)"><strong>Tên Lào:</strong> {{species.laos_name}}</p>
         <p ng-if="hasData(species.campuchia_name)"><strong>Tên Campuchia:</strong> {{species.campuchia_name}}</p>
         <p ng-if="hasData(species.type)"><strong>Kiểu gen:</strong> {{species.type}}</p>
-        <p><strong>Phân hạng IUCN (2008 v3.1):</strong> {{species.iucn_class | noData}}</p>
-        <p ng-if="hasData(species.vn_redbook_class) && species.countries.indexOf('Vietnam') >= 0"><strong>Phân hạng Danh lục Đỏ Việt Nam (2007):</strong> {{species.vn_redbook_class}}</p>
+        <p><strong>Phân hạng IUCN (2020):</strong> {{species.iucn_class | noData}}</p>
+        <p ng-if="hasData(species.vn_redbook_class) && species.countries.indexOf('Vietnam') >= 0"><strong>Phân hạng Danh lục Đỏ Việt Nam (2024):</strong> {{species.vn_redbook_class}}</p>
         <p><strong>Bản đồ:</strong></p>
         <button class="btn" style="background-color: rgba(0, 255, 255, 0.6); border-color: rgba(0, 255, 255, 0.6); color: #333;" ng-disabled="!species.distribution || species.distribution.length == 0" ng-click="openMapArea()">Phân bố theo tỉnh</button>
         <button class="btn btn-success" ng-if="isRole('admin curator') && false" ng-disabled="species.lat_lng.length == 0" ng-click="openMapLatLng()">Phân bố theo tọa độ</button>

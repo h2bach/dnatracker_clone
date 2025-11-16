@@ -39,9 +39,9 @@ Data columns (total 13 columns):
  3   Kiểu gen                               126 non-null    object
  4   COI                                    86 non-null     object
  5   Cytb                                   127 non-null    object
- 6   Phân hạng IUCN (2008 v3.1)             133 non-null    object
+ 6   Phân hạng IUCN (2020)             133 non-null    object
  7   Link IUCN                              131 non-null    object
- 8   Phân hạng Danh lục Đỏ Việt Nam (2007)  113 non-null    object
+ 8   Phân hạng Danh lục Đỏ Việt Nam (2024)  113 non-null    object
  9   Mô tả                                  100 non-null    object
  10  Arkive                                 100 non-null    object
  11  Encyclopedia of Life                   139 non-null    object

@@ -413,7 +413,7 @@ module.exports = [
                         'Trình tự': 'seq',
                         'Trình tự tham chiếu trên Genbank': 'reference_seq',
                         'Accession No.': 'accession',
-                        'Phân hạng IUCN (2008 v3.1)': 'iucn_class',
+                        'Phân hạng IUCN (2020)': 'iucn_class',
                         'Link IUCN': 'iucn_link',
                         'Phân hạng Danh lục Đỏ Việt Nam (2024)': 'vn_redbook_class',
                         'Mô tả': 'description',
