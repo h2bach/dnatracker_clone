@@ -29,14 +29,19 @@ docker compose logs -f mongodb
 ```bash
 # Chạy service restore-data để khôi phục dữ liệu từ backup
 docker compose --profile restore run --rm restore-data
+
+# Chạy permission restoration cho các tool
+docker exec -it dnatracker_clone-dnatracker-1 /bin/bash
+
+# Trong Root, chạy cmd dưới
+bash opt_startup.sh
 ```
 
 ### 4. Truy cập ứng dụng
 
 - Giao diện người dùng: http://localhost:3000/
 - Giao diện quản trị: http://localhost:3000/#/backend/login
-  - Username: admin
-  - Password: admin
+
 
 ### 5. Kiểm tra services
 
