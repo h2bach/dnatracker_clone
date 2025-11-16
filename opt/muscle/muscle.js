@@ -27,6 +27,7 @@ var muscle = function (input, inputOptions) {
                 deleteAfterRun: false,
                 getData: []
             };
+        var commandPromise;
 
         var inputCmd = function (input) {
             return {
@@ -35,25 +36,56 @@ var muscle = function (input, inputOptions) {
             };
         }(input);
 
+        // Cleanup function for files
+        var cleanupFiles = function() {
+            try {
+                if (inputCmd.args && inputCmd.args["-in"]) {
+                    fs.unlinkSync(inputCmd.args["-in"]);
+                }
+                if (options.deleteAfterRun && options.getData) {
+                    options.getData.forEach(function (file) {
+                        if (fs.existsSync(file)) {
+                            fs.unlinkSync(file);
+                        }
+                    });
+                }
+            } catch (err) {
+                console.warn("Warning: Error during file cleanup:", err.message);
+            }
+        };
 
-        runCommand(inputCmd).then(function (a) {
+        commandPromise = runCommand(inputCmd, 60000); // 60 second timeout for muscle
+        commandPromise.then(function (a) {
             var returnData = (function () {
                 var data = {};
-                options.getData.forEach(function (file) {
-                    data[path.extname(file).replace(".", "")] = fs.readFileSync(file).toString();
-                });
+                if (options.getData) {
+                    options.getData.forEach(function (file) {
+                        if (fs.existsSync(file)) {
+                            data[path.extname(file).replace(".", "")] = fs.readFileSync(file).toString();
+                        }
+                    });
+                }
                 return data;
             })();
-            fs.unlinkSync(inputCmd.args["-in"]);
-            if (options.deleteAfterRun) {
-                options.getData.forEach(function (file) {
-                    fs.unlinkSync(file);
-                });
-            }
+            
+            // Clean up files after successful execution
+            cleanupFiles();
             defer.resolve(returnData);
         }, function (b) {
+            // Clean up files even if execution failed
+            cleanupFiles();
             defer.reject(b);
         });
+
+        // Add cleanup method to the promise
+        defer.promise.cancel = function() {
+            if (commandPromise && commandPromise.cancel) {
+                commandPromise.cancel();
+            }
+            cleanupFiles();
+            defer.reject("Muscle operation cancelled");
+        };
+
         return defer.promise;
     }
 };

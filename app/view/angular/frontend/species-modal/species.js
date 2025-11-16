@@ -114,6 +114,26 @@
 
 		.controller("species-modal.ctrl", function ($scope, $uibModalInstance, species_id, speciesApi, Provinces, MapModal) {
 
+			// Timer cleanup array
+			var timers = [];
+			var watchDeregisters = [];
+
+			// Cleanup function
+			var cleanup = function() {
+				timers.forEach(function(timerId) {
+					if (timerId) clearTimeout(timerId);
+				});
+				timers = [];
+				watchDeregisters.forEach(function(deregister) {
+					if (deregister) deregister();
+				});
+				watchDeregisters = [];
+			};
+
+			$scope.$on('$destroy', function() {
+				cleanup();
+			});
+
 			$scope.view = {
 				editting: false,
 				options: {
@@ -208,7 +228,7 @@
 				$scope.view.editting = true;
 			}
 
-			$scope.$watch('view.inputImages', function (images) {
+			var watchDeregister1 = $scope.$watch('view.inputImages', function (images) {
 				_.forEach(images, function (image) {
 					var index = _.findIndex($scope.view.newImages, function (o) {
 						return o.$ngfName == image.$ngfName;
@@ -216,6 +236,7 @@
 					index < 0 ? $scope.view.newImages.push(image) : '';
 				});
 			});
+			watchDeregisters.push(watchDeregister1);
 
 			$scope.edit = function () {
 				$scope.view.editting = true;
@@ -542,10 +563,11 @@
 
 			$scope.showSeq = function(seq) {
 				$uibModalInstance.close();
-				setTimeout(function() {
+				var timerId = setTimeout(function() {
 					var $rootScope = angular.element(document.body).injector().get('$rootScope');
 					$rootScope.$broadcast('openGeneModal', seq);
 				}, 300);
+				timers.push(timerId);
 			};
 			$scope.blastSeq = function(seq) {
 				$uibModalInstance.close();
@@ -642,9 +664,10 @@
 
 					$scope.$watch('locations', function (value) {
 						if (value && value.length > 0) {
-							setTimeout(function(){
+							var timerId = setTimeout(function(){
 								initialize();
 							});
+							timers.push(timerId);
 						}
 					});
 
@@ -721,9 +744,10 @@
 
 					$scope.$watch('location', function (value) {
 						if (value) {
-							setTimeout(function(){
+							var timerId = setTimeout(function(){
 								initialize();
 							});
+							timers.push(timerId);
 						}
 					});
 

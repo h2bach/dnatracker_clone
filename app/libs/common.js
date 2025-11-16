@@ -1,14 +1,16 @@
 var Q = require("q");
 
 module.exports = {
-    runCommand: function (cmd) {
+    runCommand: function (cmd, timeout) {
+        timeout = timeout || 30000; // Default 30 seconds timeout
         var defer = Q.defer();
         var exec = require('child_process').exec;
         var cmdString = cmd.exec;
         for (var key in cmd.args) {
             cmdString += " " + key + " " + cmd.args[key];
         }
-        exec(cmdString, function (err, stdOut, stdErr) {
+        
+        var childProcess = exec(cmdString, { timeout: timeout }, function (err, stdOut, stdErr) {
             if (err) {
                 // console.log("-----error-----");
                 // console.log(err);
@@ -22,6 +24,15 @@ module.exports = {
                 defer.resolve(returnMessage);
             }
         });
+
+        // Add cleanup method to the promise
+        defer.promise.cancel = function() {
+            if (childProcess) {
+                childProcess.kill();
+            }
+            defer.reject("Command cancelled");
+        };
+
         return defer.promise;
     }
 };

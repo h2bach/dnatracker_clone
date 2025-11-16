@@ -224,16 +224,25 @@ module.exports = [
                 var fileData = "backup-species-data.json";
                 function extract(path, tempImportDir) {
                     var defer = Q.defer();
+                    var timeoutId;
 
                     var targz = require('tar.gz');
                     targz().extract(path, tempImportDir).then(function () {
-                            setTimeout(function () {
+                            timeoutId = setTimeout(function () {
                                 defer.resolve();
-                            },3000);
+                            }, 3000);
                         })
                         .catch(function (err) {
+                            if (timeoutId) clearTimeout(timeoutId);
                             console.log('Something is wrong :' + err);
+                            defer.reject(err);
                         });
+
+                    // Add cleanup method to the promise
+                    defer.promise.cancel = function() {
+                        if (timeoutId) clearTimeout(timeoutId);
+                        defer.reject("Extract cancelled");
+                    };
 
                     return defer.promise;
                 }

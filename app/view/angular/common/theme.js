@@ -34,6 +34,7 @@
                 restrict: "E",
                 link: function ($scope, elem, attrs) {
                     var model = $parse(attrs.ngModel);
+                    var watchDeregisters = [];
 
                     var randomId = StringUtil.randomId(8);
                     var $form = $('<form><input id=' + randomId + ' type="file" style="display: none" name="file" accept="text/*,.fa,.fasta"/></form>');
@@ -73,24 +74,30 @@
                         });
                     });
 
-                    $scope.$watch(attrs.disabled, function (value) {
+                    var watchDeregister1 = $scope.$watch(attrs.disabled, function (value) {
                         $btn.attr("disabled", value);
                     }, false);
+                    watchDeregisters.push(watchDeregister1);
 
-                    $scope.$watch(function () {
+                    var watchDeregister2 = $scope.$watch(function () {
                         return Cols.isEmpty($fileInput[0].files);
                     }, function (isEmpty) {
                         $btnDelete.attr("disabled", isEmpty);
                     });
+                    watchDeregisters.push(watchDeregister2);
 
                     $fileInput.bind('change', function () {
                         $scope.$applyAsync(function () {
                             if (Cols.isNotEmpty($fileInput[0].files)) {
                                 model.assign($scope, $fileInput[0].files[0]);
                                 setBtnText($fileInput[0].files[0].name);
-                            } else {
-                                clearForm();
                             }
+                        });
+                    });
+
+                    $scope.$on('$destroy', function() {
+                        watchDeregisters.forEach(function(deregister) {
+                            if (deregister) deregister();
                         });
                     });
                 }
@@ -108,12 +115,21 @@
                         items: '='
                     },
                     link: function ($scope, element, attrs) {
-                        $scope.$watch('items', function (items) {
+                        var watchDeregisters = [];
+                        
+                        var watchDeregister1 = $scope.$watch('items', function (items) {
                             _.forEach(items, function (item) {
                                 $('<a href="' + item.img + '"><img src="' + item.thumb + '"></a>').appendTo(element);
                             });
                             var $fotoramaDiv = $('.fotorama').fotorama();
                             $fotoramaDiv.data('fotorama').setOptions($scope.options);
+                        });
+                        watchDeregisters.push(watchDeregister1);
+
+                        $scope.$on('$destroy', function() {
+                            watchDeregisters.forEach(function(deregister) {
+                                if (deregister) deregister();
+                            });
                         });
                     }
                 };

@@ -26,6 +26,9 @@ var putRequestBlastCgi = function (url) {
 var getFileResult = function (requestInfo) {
     var defer = Q.defer();
     var urlGetResult = hostUrl + "CMD=Get&RID=" + requestInfo.rid + "&FORMAT_TYPE=JSON2_S";
+    var retryCount = 0;
+    var maxRetries = 60; // Maximum 5 minutes (60 * 5 seconds)
+    var timeoutId;
 
     var getInfo = function () {
         request(urlGetResult, function (error, response, body) {
@@ -33,9 +36,14 @@ var getFileResult = function (requestInfo) {
                 if (body.indexOf("BlastOutput2") >= 0) {
                     defer.resolve(body);
                 } else {
-                    setTimeout(function () {
-                        getInfo();
-                    }, 1000 * 5);
+                    retryCount++;
+                    if (retryCount < maxRetries) {
+                        timeoutId = setTimeout(function () {
+                            getInfo();
+                        }, 1000 * 5);
+                    } else {
+                        defer.reject("Maximum retry attempts exceeded");
+                    }
                 }
             } else {
                 defer.reject(error || "Failed to get results");
@@ -43,9 +51,18 @@ var getFileResult = function (requestInfo) {
         });
     };
 
-    setTimeout(function () {
+    timeoutId = setTimeout(function () {
         getInfo();
     }, 1000 * (parseInt(requestInfo.rtoe)));
+
+    // Add cleanup method to the promise
+    defer.promise.cancel = function() {
+        if (timeoutId) {
+            clearTimeout(timeoutId);
+        }
+        defer.reject("Request cancelled");
+    };
+
     return defer.promise;
 };
 
